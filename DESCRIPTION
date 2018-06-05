@@ -8,6 +8,14 @@ Encoding: UTF-8
 LazyData: true
 ByteCompile: true
 Imports: 
-    brandseyer
-Remotes:  
+    brandseyer,
+    assertthat,
+    magrittr,
+    lubridate,
+    dplyr,
+    ggplot2,
+    tidyr
+Remotes: 
     brandseye/brandseyer
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.0.1
