@@ -27,11 +27,11 @@
 #' @export
 time_of_day <- function(account, filter) {
   assert_that(!missing(filter) && is.string(filter))
-  brandseyer::account_count(account, filter, groupby="published[hour]", include = "engagement") %>%
+  brandseyer::account_count(account, filter, groupby="published[hour]", include = "sentiment-count") %>%
     dplyr::mutate(hour = lubridate::hour(published)) %>%
     dplyr::group_by(hour) %>%
     dplyr::summarise(count = sum(count, na.rm = TRUE),
-                     engagement = sum(engagement, na.rm = TRUE))
+                     net = sum(positiveCount, na.rm = TRUE) - sum(negativeCount, na.rm = TRUE))
 }
 
 #' Plots the time of day to post (by hour)
@@ -43,8 +43,8 @@ time_of_day <- function(account, filter) {
 #' @export
 plot_time_of_day <- function(account, filter) {
   time_of_day(account, filter) %>%
-    ggplot(aes(x = hour, y = engagement)) +
-    geom_bar(stat = "identity") +
+    ggplot(aes(x = hour, y = count)) +
+    geom_line() +
     ggplot2::labs(title = "Time of day", x = "Hour of day")
 
 
