@@ -43,8 +43,10 @@ time_of_day <- function(account, filter) {
 #' @export
 plot_time_of_day <- function(account, filter) {
   time_of_day(account, filter) %>%
-    ggplot(aes(x = hour, y = count)) +
-    geom_line() +
+    ggplot(aes(x = hour)) +
+    geom_line(aes(y = count, colour = "volume")) +
+    geom_line(aes(y = net + 100, colour = "sentiment")) +
+    scale_y_continuous("Miles/gallon", sec.axis = sec_axis(~.-100)) +
     ggplot2::labs(title = "Time of day", x = "Hour of day")
 
 
