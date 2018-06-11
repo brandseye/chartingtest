@@ -1,11 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-Charting Test
-=============
+
+# Charting Test
 
 Provides charting libraries for BrandsEye.
 
-License
--------
+## License
 
-This is copyright BrandsEye, and licensed under the MIT license. See the license files for details.
+This is copyright BrandsEye, and licensed under the MIT license. See the
+license files for details.
