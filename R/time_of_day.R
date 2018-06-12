@@ -27,6 +27,11 @@
 #' @export
 time_of_day <- function(account, filter) {
   assert_that(!missing(filter) && is.string(filter))
+
+  # For devtools::check
+  published <- NULL; hour <- NULL; count <- NULL;
+  positiveCount <- NULL; negativeCount <- NULL;
+
   brandseyer::account_count(account, filter, groupby="published[hour]", include = "sentiment-count") %>%
     dplyr::mutate(hour = lubridate::hour(published)) %>%
     dplyr::group_by(hour) %>%
@@ -42,6 +47,9 @@ time_of_day <- function(account, filter) {
 #' @return the ggplot object
 #' @export
 plot_time_of_day <- function(account, filter) {
+  # For devtools::check
+  hour <- NULL; count <- NULL; net <- NULL;
+
   time_of_day(account, filter) %>%
     ggplot(aes(x = hour)) +
     geom_line(aes(y = count, colour = "volume")) +

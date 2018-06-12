@@ -20,7 +20,11 @@ Imports:
     ggplot2,
     tidyr,
     extrafont,
-    rlang
+    rlang,
+    glue,
+    readr,
+    crayon,
+    clisymbols
 Remotes: 
     brandseye/brandseyer
 Roxygen: list(markdown = TRUE)
