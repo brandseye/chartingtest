@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • chartingtest</title>
+<title>Returns the data for creating a volume/sentiment — volume_sentiment • chartingtest</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +30,10 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Returns the data for creating a volume/sentiment — volume_sentiment" />
+
+<meta property="og:description" content="Returns the data for creating a volume/sentiment" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -46,7 +49,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -87,60 +90,56 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Returns the data for creating a volume/sentiment</h1>
+    
+    <div class="hidden name"><code>volume_sentiment.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    
+    <p>Returns the data for creating a volume/sentiment</p>
+    
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
-
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      <tr>
-        
-        <td>
-          <p><code><a href="plot_time_of_day.html">plot_time_of_day()</a></code> </p>
-        </td>
-        <td><p>Plots the time of day to post (by hour)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="theme_brandseye.html">theme_brandseye()</a></code> </p>
-        </td>
-        <td><p>Provides a BrandsEye ggplot2 theme.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="time_of_day.html">time_of_day()</a></code> </p>
-        </td>
-        <td><p>Get data for determining time of day to post (by hour)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="volume_sentiment.html">volume_sentiment()</a></code> </p>
-        </td>
-        <td><p>Returns the data for creating a volume/sentiment</p></td>
-      </tr>
-    </tbody>
+    <pre class="usage"><span class='fu'>volume_sentiment</span>(<span class='no'>code</span>, <span class='no'>filter</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"day"</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>code</th>
+      <td><p>The account code to use</p></td>
+    </tr>
+    <tr>
+      <th>filter</th>
+      <td><p>The filter for the data.</p></td>
+    </tr>
+    <tr>
+      <th>group</th>
+      <td><p>An optional string to group data by. Can be "day", "week", "month"</p></td>
+    </tr>
+    <tr>
+      <th>file</th>
+      <td><p>An optional file name to save a CSV file to.</p></td>
+    </tr>
     </table>
-  </div>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>A tibble of your data</p>
+    
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
-    </ul>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
+
   </div>
 </div>
 
