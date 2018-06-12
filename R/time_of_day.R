@@ -47,7 +47,6 @@ plot_time_of_day <- function(account, filter) {
     geom_line(aes(y = count, colour = "volume")) +
     geom_line(aes(y = net + 100, colour = "sentiment")) +
     scale_y_continuous(sec.axis = sec_axis(~.-100, name = "Sentiment")) +
-    ggplot2::labs(title = "Time of day", x = "Hour of day", y = "Volume")
-
-
+    labs(title = "Time of day", x = "Hour of day", y = "Volume") +
+    theme_brandseye()
 }
