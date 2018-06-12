@@ -2,6 +2,7 @@
 
 export("%>%")
 export(plot_time_of_day)
+export(theme_brandseye)
 export(time_of_day)
 import(ggplot2)
 importFrom(assertthat,assert_that)

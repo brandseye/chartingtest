@@ -18,7 +18,9 @@ Imports:
     lubridate,
     dplyr,
     ggplot2,
-    tidyr
+    tidyr,
+    extrafont,
+    rlang
 Remotes: 
     brandseye/brandseyer
 Roxygen: list(markdown = TRUE)
