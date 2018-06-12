@@ -9,3 +9,6 @@ done <- function (...) {
   bullet(paste0(...), bullet = crayon::green(clisymbols::symbol$tick))
 }
 
+warn <- function(...) {
+  rlang::warn(paste(crayon::red(clisymbols::symbol$warning), paste0(...)))
+}

@@ -33,6 +33,8 @@ theme_brandseye <- function() {
   # panel.border = element_blank(),
   theme_light() + theme(text = element_text(family = "Open Sans Light",
                                             colour = DARK_GREY),
+                        title = element_text(family = "Nunito Sans"),
+                        axis.title = element_text("Open Sans Light"),
                         panel.grid = element_line(colour = LIGHT_GREY),
                         panel.grid.major = element_line(color = LIGHT_GREY),
                         panel.grid.major.x = element_blank(),

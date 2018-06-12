@@ -51,3 +51,12 @@ volume_sentiment <- function(code, filter, group = "day", file = NULL) {
 
   data
 }
+
+plot_volume_sentiment <- function(code, filter, group = "day") {
+  data <- volume_sentiment(code, filter, group)
+
+  ggplot(data, aes(x = published, y = count)) +
+    geom_bar(stat = "identity", fill = MID_GREY) +
+    theme_brandseye()
+
+}
