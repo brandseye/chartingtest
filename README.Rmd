@@ -8,6 +8,22 @@ output: github_document
 
 Provides charting libraries for BrandsEye. 
 
+# Installing
+
+You can install the this library using the `devtools` package:
+
+```{r eval=FALSE}
+# Install the devtools package
+install.packages("devtools")
+library(devtools)
+
+# Install the library
+install_github("brandseye/chartingtest")
+
+# Load the library
+library(chartingtest)
+```
+
 
 ## License
 
