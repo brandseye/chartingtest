@@ -42,6 +42,9 @@ library(chartingtest)
 volume_sentiment("QUIR01BA", "published inthelast week")
 ```
 
+# What data is available so far?
+
+You can find a list of functions that can provide data for you online, [here](reference/index.html).
 
 ## License
 

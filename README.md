@@ -45,8 +45,13 @@ And this is what the data would look like in R itself (there will be similar col
     ## 5 2018-06-11 00:00:00  1543   382           404            22         1118
     ## 6 2018-06-12 00:00:00  1692   392           450            58         1185
     ## 7 2018-06-13 00:00:00  2421   451           491            40         1890
-    ## 8 2018-06-14 00:00:00  1312   125           197            72         1043
+    ## 8 2018-06-14 00:00:00  1323   128           200            72         1051
     ## # ... with 1 more variable: unknownCount <int>
+
+What data is available so far?
+==============================
+
+You can find a list of functions that can provide data for you online, [here](reference/index.html).
 
 License
 -------
