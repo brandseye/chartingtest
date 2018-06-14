@@ -4,12 +4,14 @@
 \alias{plot_volume_sentiment}
 \title{Plots volume overlayed with sentiment.}
 \usage{
-plot_volume_sentiment(code, filter, group = "day")
+plot_volume_sentiment(account, filter, group = "day")
 }
 \arguments{
+\item{account}{An account code}
+
 \item{filter}{A filter for data}
 
-\item{account}{An account code}
+\item{group}{A string indicating how you want your data gruoped.}
 }
 \value{
 the ggplot object

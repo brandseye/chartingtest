@@ -21,3 +21,7 @@ A tibble of data
 \description{
 Get data for determining the best time of day to post (by hour)
 }
+\examples{
+
+time_of_day("QUIR01BA", "published inthelast week")
+}

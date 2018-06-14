@@ -18,7 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-#' Get data for determining the best time of day to post (by hour)
+#' Get data for determining the best day of the week to post
 #'
 #' @param account An account code
 #' @param filter A filter to use
@@ -30,18 +30,22 @@
 #'
 #' @examples
 #'
-#' time_of_day("QUIR01BA", "published inthelast week")
-time_of_day <- function(account, filter, file = NULL, save = FALSE) {
+#' day_of_week("QUIR01BA", "published inthelast week")
+#'
+day_of_week <- function(account, filter, file = NULL, save = FALSE) {
   assert_that(!missing(filter) && is.string(filter), msg = "No filter has been provided")
 
   # For devtools::check
-  published <- NULL; hour <- NULL; count <- NULL;
+  published <- NULL; count <- NULL; day <- NULL;
   positiveCount <- NULL; negativeCount <- NULL; engagement <- NULL;
 
-  data <- brandseyer::account_count(account, filter, groupby="published[hour]",
-                            include = c("sentiment-count", "engagement")) %>%
-    mutate(hour = lubridate::hour(published)) %>%
-    group_by(hour) %>%
+  days <- c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
+
+  data <- brandseyer::account_count(account, filter, groupby="published",
+                                    include = c("sentiment-count", "engagement")) %>%
+    mutate(day = factor(days[lubridate::wday(published, week_start = 1)],
+                        levels = days, ordered = TRUE)) %>%
+    group_by(day) %>%
     summarise(count = sum(count, na.rm = TRUE),
               net = sum(positiveCount, na.rm = TRUE) - sum(negativeCount, na.rm = TRUE),
               engagement = sum(engagement, na.rm = TRUE))
@@ -59,24 +63,4 @@ time_of_day <- function(account, filter, file = NULL, save = FALSE) {
   }
 
   data
-}
-
-#' Plots the time of day to post (by hour)
-#'
-#' @param account An account code
-#' @param filter A filter for data
-#'
-#' @return the ggplot object
-#' @export
-plot_time_of_day <- function(account, filter) {
-  # For devtools::check
-  hour <- NULL; count <- NULL; net <- NULL;
-
-  time_of_day(account, filter) %>%
-    ggplot(aes(x = hour)) +
-    geom_line(aes(y = count, colour = "volume")) +
-    geom_line(aes(y = net + 100, colour = "sentiment")) +
-    scale_y_continuous(sec.axis = sec_axis(~.-100, name = "Sentiment")) +
-    labs(title = "Time of day", x = "Hour of day", y = "Volume") +
-    theme_brandseye()
 }

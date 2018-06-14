@@ -28,6 +28,10 @@
 #'
 #' @return A tibble of your data
 #' @export
+#'
+#' @examples
+#'
+#' volume_sentiment("QUIR01BA", "published inthelast week")
 volume_sentiment <- function(code, filter, group = "day", file = NULL, save = FALSE) {
   assert_that(is.string(code))
   assert_that(is.string(filter))
@@ -65,13 +69,14 @@ volume_sentiment <- function(code, filter, group = "day", file = NULL, save = FA
 #'
 #' @param account An account code
 #' @param filter A filter for data
+#' @param group A string indicating how you want your data gruoped.
 #'
 #' @return the ggplot object
 #' @export
-plot_volume_sentiment <- function(code, filter, group = "day") {
+plot_volume_sentiment <- function(account, filter, group = "day") {
   published <- NULL
 
-  data <- volume_sentiment(code, filter, group)
+  data <- volume_sentiment(account, filter, group)
 
   ggplot(data, aes(x = published, y = count)) +
     geom_bar(stat = "identity", fill = MID_GREY) +

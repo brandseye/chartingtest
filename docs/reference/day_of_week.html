@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Returns the data for creating volume/sentiment charts — volume_sentiment • chartingtest</title>
+<title>Get data for determining the best day of the week to post — day_of_week • chartingtest</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Returns the data for creating volume/sentiment charts — volume_sentiment" />
+<meta property="og:title" content="Get data for determining the best day of the week to post — day_of_week" />
 
-<meta property="og:description" content="Returns the data for creating volume/sentiment charts" />
+<meta property="og:description" content="Get data for determining the best day of the week to post" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -92,63 +92,58 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Returns the data for creating volume/sentiment charts</h1>
+    <h1>Get data for determining the best day of the week to post</h1>
     
-    <div class="hidden name"><code>volume_sentiment.Rd</code></div>
+    <div class="hidden name"><code>day_of_week.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Returns the data for creating volume/sentiment charts</p>
+    <p>Get data for determining the best day of the week to post</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>volume_sentiment</span>(<span class='no'>code</span>, <span class='no'>filter</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"day"</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>save</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>day_of_week</span>(<span class='no'>account</span>, <span class='no'>filter</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>save</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>code</th>
-      <td><p>The account code to use</p></td>
+      <th>account</th>
+      <td><p>An account code</p></td>
     </tr>
     <tr>
       <th>filter</th>
-      <td><p>The filter for the data.</p></td>
-    </tr>
-    <tr>
-      <th>group</th>
-      <td><p>An optional string to group data by. Can be "day", "week", "month"</p></td>
+      <td><p>A filter to use</p></td>
     </tr>
     <tr>
       <th>file</th>
-      <td><p>An optional file name to save a CSV file to.</p></td>
+      <td><p>A filename to save the data to as a CSV</p></td>
     </tr>
     <tr>
       <th>save</th>
-      <td><p>Set to TRUE if you'd like a dialog file to choose where to save your CSV.</p></td>
+      <td><p>Set to true to be given a save file dialog.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble of your data</p>
+    <p>A tibble of data</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>volume_sentiment</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week"</span>)</div><div class='output co'>#&gt; # A tibble: 8 x 7
-#&gt;   published           count   net positiveCount negativeCount neutralCount
-#&gt;   &lt;dttm&gt;              &lt;int&gt; &lt;int&gt;         &lt;int&gt;         &lt;int&gt;        &lt;int&gt;
-#&gt; 1 2018-06-07 00:00:00  1688   514           546            32         1110
-#&gt; 2 2018-06-08 00:00:00  1467   455           494            39          934
-#&gt; 3 2018-06-09 00:00:00  1033   339           355            16          662
-#&gt; 4 2018-06-10 00:00:00   946   280           292            12          642
-#&gt; 5 2018-06-11 00:00:00  1543   382           404            22         1118
-#&gt; 6 2018-06-12 00:00:00  1692   392           450            58         1185
-#&gt; 7 2018-06-13 00:00:00  2422   451           491            40         1891
-#&gt; 8 2018-06-14 00:00:00  1607   190           272            82         1253
-#&gt; # ... with 1 more variable: unknownCount &lt;int&gt;</div></pre>
+<span class='fu'>day_of_week</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week"</span>)</div><div class='output co'>#&gt; # A tibble: 7 x 4
+#&gt;   day   count   net engagement
+#&gt;   &lt;ord&gt; &lt;int&gt; &lt;int&gt;      &lt;int&gt;
+#&gt; 1 Mon    1543   382        545
+#&gt; 2 Tue    1692   392        501
+#&gt; 3 Wed    2422   451       1847
+#&gt; 4 Thu    3295   704        525
+#&gt; 5 Fri    1467   455        292
+#&gt; 6 Sat    1033   339        181
+#&gt; 7 Sun     946   280        154</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

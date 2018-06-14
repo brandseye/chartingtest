@@ -23,3 +23,7 @@ A tibble of your data
 \description{
 Returns the data for creating volume/sentiment charts
 }
+\examples{
+
+volume_sentiment("QUIR01BA", "published inthelast week")
+}
