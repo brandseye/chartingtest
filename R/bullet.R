@@ -1,7 +1,7 @@
 # Based on usethis
 bullet <- function (lines, bullet) {
   lines <- paste0(bullet, " ", lines)
-  cat(lines)
+  cat(lines, "\n")
 }
 
 # Based on usethis

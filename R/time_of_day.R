@@ -18,25 +18,43 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-#' Get data for determining time of day to post (by hour)
+#' Get data for determining the best time of day to post (by hour)
 #'
 #' @param account An account code
 #' @param filter A filter to use
+#' @param file A filename to save the data to as a CSV
+#' @param save Set to true to be given a save file dialog.
 #'
 #' @return A tibble of data
 #' @export
-time_of_day <- function(account, filter) {
-  assert_that(!missing(filter) && is.string(filter))
+time_of_day <- function(account, filter, file = NULL, save = FALSE) {
+  assert_that(!missing(filter) && is.string(filter), msg = "No filter has been provided")
 
   # For devtools::check
   published <- NULL; hour <- NULL; count <- NULL;
-  positiveCount <- NULL; negativeCount <- NULL;
+  positiveCount <- NULL; negativeCount <- NULL; engagement <- NULL;
 
-  brandseyer::account_count(account, filter, groupby="published[hour]", include = "sentiment-count") %>%
-    dplyr::mutate(hour = lubridate::hour(published)) %>%
-    dplyr::group_by(hour) %>%
-    dplyr::summarise(count = sum(count, na.rm = TRUE),
-                     net = sum(positiveCount, na.rm = TRUE) - sum(negativeCount, na.rm = TRUE))
+  data <- brandseyer::account_count(account, filter, groupby="published[hour]",
+                            include = c("sentiment-count", "engagement")) %>%
+    mutate(hour = lubridate::hour(published)) %>%
+    group_by(hour) %>%
+    summarise(count = sum(count, na.rm = TRUE),
+              net = sum(positiveCount, na.rm = TRUE) - sum(negativeCount, na.rm = TRUE),
+              engagement = sum(engagement, na.rm = TRUE))
+
+  if (save) file = rstudioapi::selectFile(caption = "Save as",
+                                          filter = "CSV Files (*.csv)",
+                                          existing = FALSE)
+  if (save && is.null(file)) {
+    warn("Saving of file cancelled")
+  }
+
+  if (!is.null(file)) {
+    readr::write_excel_csv(data, file, na = "")
+    done(glue("Written your CSV to {file}"))
+  }
+
+  data
 }
 
 #' Plots the time of day to post (by hour)

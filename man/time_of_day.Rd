@@ -2,18 +2,22 @@
 % Please edit documentation in R/time_of_day.R
 \name{time_of_day}
 \alias{time_of_day}
-\title{Get data for determining time of day to post (by hour)}
+\title{Get data for determining the best time of day to post (by hour)}
 \usage{
-time_of_day(account, filter)
+time_of_day(account, filter, file = NULL, save = FALSE)
 }
 \arguments{
 \item{account}{An account code}
 
 \item{filter}{A filter to use}
+
+\item{file}{A filename to save the data to as a CSV}
+
+\item{save}{Set to true to be given a save file dialog.}
 }
 \value{
 A tibble of data
 }
 \description{
-Get data for determining time of day to post (by hour)
+Get data for determining the best time of day to post (by hour)
 }

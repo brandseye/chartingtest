@@ -2,9 +2,9 @@
 % Please edit documentation in R/volume-sentiment.R
 \name{volume_sentiment}
 \alias{volume_sentiment}
-\title{Returns the data for creating a volume/sentiment}
+\title{Returns the data for creating volume/sentiment charts}
 \usage{
-volume_sentiment(code, filter, group = "day", file = NULL)
+volume_sentiment(code, filter, group = "day", file = NULL, save = FALSE)
 }
 \arguments{
 \item{code}{The account code to use}
@@ -14,10 +14,12 @@ volume_sentiment(code, filter, group = "day", file = NULL)
 \item{group}{An optional string to group data by. Can be "day", "week", "month"}
 
 \item{file}{An optional file name to save a CSV file to.}
+
+\item{save}{Set to TRUE if you'd like a dialog file to choose where to save your CSV.}
 }
 \value{
 A tibble of your data
 }
 \description{
-Returns the data for creating a volume/sentiment
+Returns the data for creating volume/sentiment charts
 }
