@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Returns the data for creating a volume/sentiment — volume_sentiment • chartingtest</title>
+<title>Returns the data for creating volume/sentiment charts — volume_sentiment • chartingtest</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Returns the data for creating a volume/sentiment — volume_sentiment" />
+<meta property="og:title" content="Returns the data for creating volume/sentiment charts — volume_sentiment" />
 
-<meta property="og:description" content="Returns the data for creating a volume/sentiment" />
+<meta property="og:description" content="Returns the data for creating volume/sentiment charts" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -92,18 +92,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Returns the data for creating a volume/sentiment</h1>
+    <h1>Returns the data for creating volume/sentiment charts</h1>
     
     <div class="hidden name"><code>volume_sentiment.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Returns the data for creating a volume/sentiment</p>
+    <p>Returns the data for creating volume/sentiment charts</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>volume_sentiment</span>(<span class='no'>code</span>, <span class='no'>filter</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"day"</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>volume_sentiment</span>(<span class='no'>code</span>, <span class='no'>filter</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"day"</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>save</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -123,6 +123,10 @@
     <tr>
       <th>file</th>
       <td><p>An optional file name to save a CSV file to.</p></td>
+    </tr>
+    <tr>
+      <th>save</th>
+      <td><p>Set to TRUE if you'd like a dialog file to choose where to save your CSV.</p></td>
     </tr>
     </table>
     

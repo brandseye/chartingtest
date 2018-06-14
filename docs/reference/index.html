@@ -103,17 +103,31 @@
     <tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
+          <h2 id="section-getting-data" class="hasAnchor"><a href="#section-getting-data" class="anchor"></a>Getting data</h2>
+          <p class="section-desc"><p>These functions will give you data pulled from the API. The also make it easy to save this data to CSV files, usually using a <code>save = TRUE</code> argument.</p></p>
         </th>
       </tr>
       <tr>
         
         <td>
-          <p><code><a href="plot_time_of_day.html">plot_time_of_day()</a></code> </p>
+          <p><code><a href="volume_sentiment.html">volume_sentiment()</a></code> </p>
         </td>
-        <td><p>Plots the time of day to post (by hour)</p></td>
+        <td><p>Returns the data for creating volume/sentiment charts</p></td>
       </tr><tr>
+        
+        <td>
+          <p><code><a href="time_of_day.html">time_of_day()</a></code> </p>
+        </td>
+        <td><p>Get data for determining the best time of day to post (by hour)</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-creating-charts-and-metrics" class="hasAnchor"><a href="#section-creating-charts-and-metrics" class="anchor"></a>Creating charts and metrics</h2>
+          <p class="section-desc"><p>These functions make it easy to plot specific charts / metrics. They use the same data as the “Getting data” functions would provide.</p></p>
+        </th>
+      </tr>
+      <tr>
         
         <td>
           <p><code><a href="theme_brandseye.html">theme_brandseye()</a></code> </p>
@@ -122,15 +136,15 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="time_of_day.html">time_of_day()</a></code> </p>
+          <p><code><a href="plot_volume_sentiment.html">plot_volume_sentiment()</a></code> </p>
         </td>
-        <td><p>Get data for determining time of day to post (by hour)</p></td>
+        <td><p>Plots volume overlayed with sentiment.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="volume_sentiment.html">volume_sentiment()</a></code> </p>
+          <p><code><a href="plot_time_of_day.html">plot_time_of_day()</a></code> </p>
         </td>
-        <td><p>Returns the data for creating a volume/sentiment</p></td>
+        <td><p>Plots the time of day to post (by hour)</p></td>
       </tr>
     </tbody>
     </table>
@@ -139,7 +153,8 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#section-getting-data">Getting data</a></li>
+      <li><a href="#section-creating-charts-and-metrics">Creating charts and metrics</a></li>
     </ul>
   </div>
 </div>

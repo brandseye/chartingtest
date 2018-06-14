@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get data for determining the best time of day to post (by hour) — time_of_day • chartingtest</title>
+<title>Plots volume overlayed with sentiment. — plot_volume_sentiment • chartingtest</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Get data for determining the best time of day to post (by hour) — time_of_day" />
+<meta property="og:title" content="Plots volume overlayed with sentiment. — plot_volume_sentiment" />
 
-<meta property="og:description" content="Get data for determining the best time of day to post (by hour)" />
+<meta property="og:description" content="Plots volume overlayed with sentiment." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -92,43 +92,35 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get data for determining the best time of day to post (by hour)</h1>
+    <h1>Plots volume overlayed with sentiment.</h1>
     
-    <div class="hidden name"><code>time_of_day.Rd</code></div>
+    <div class="hidden name"><code>plot_volume_sentiment.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Get data for determining the best time of day to post (by hour)</p>
+    <p>Plots volume overlayed with sentiment.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>time_of_day</span>(<span class='no'>account</span>, <span class='no'>filter</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>save</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>plot_volume_sentiment</span>(<span class='no'>code</span>, <span class='no'>filter</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='st'>"day"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>filter</th>
+      <td><p>A filter for data</p></td>
+    </tr>
+    <tr>
       <th>account</th>
       <td><p>An account code</p></td>
-    </tr>
-    <tr>
-      <th>filter</th>
-      <td><p>A filter to use</p></td>
-    </tr>
-    <tr>
-      <th>file</th>
-      <td><p>A filename to save the data to as a CSV</p></td>
-    </tr>
-    <tr>
-      <th>save</th>
-      <td><p>Set to true to be given a save file dialog.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble of data</p>
+    <p>the ggplot object</p>
     
 
   </div>

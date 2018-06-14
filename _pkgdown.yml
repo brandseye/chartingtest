@@ -1,0 +1,18 @@
+reference:
+  - title: "Getting data"
+    desc: >
+      These functions will give you data pulled from the API. The also make
+      it easy to save this data to CSV files, usually using a `save = TRUE`
+      argument.
+    contents:
+      - volume_sentiment
+      - time_of_day
+  - title: "Creating charts and metrics"
+    desc: >
+      These functions make it easy to plot specific charts / metrics.
+      They use the same data as the "Getting data" functions would provide.
+    contents:
+      - theme_brandseye
+      - plot_volume_sentiment
+      - plot_time_of_day
+

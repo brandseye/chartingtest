@@ -61,6 +61,13 @@ volume_sentiment <- function(code, filter, group = "day", file = NULL, save = FA
   data
 }
 
+#' Plots volume overlayed with sentiment.
+#'
+#' @param account An account code
+#' @param filter A filter for data
+#'
+#' @return the ggplot object
+#' @export
 plot_volume_sentiment <- function(code, filter, group = "day") {
   published <- NULL
 
