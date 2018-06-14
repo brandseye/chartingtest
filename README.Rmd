@@ -24,6 +24,24 @@ install_github("brandseye/chartingtest")
 library(chartingtest)
 ```
 
+# Example
+
+```{r eval=FALSE}
+# load the library
+library(chartingtest)
+
+# Ask for data. Tell it that you want to save to file as well
+volume_sentiment("QUIR01BA", "published inthelast week", save = TRUE)
+```
+
+And this is what the data would look like in R itself (there will be similar columns in the CSV).
+
+```{r echo=FALSE}
+
+library(chartingtest)
+volume_sentiment("QUIR01BA", "published inthelast week")
+```
+
 
 ## License
 
