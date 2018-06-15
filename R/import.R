@@ -3,4 +3,5 @@
 #' @importFrom assertthat assert_that
 #' @importFrom assertthat is.string
 #' @importFrom glue glue
+#' @importFrom utils tail
 NULL

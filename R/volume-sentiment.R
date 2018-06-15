@@ -82,7 +82,8 @@ volume_sentiment <- function(code, filter, group = "day", file = NULL, save = FA
 #' @return the ggplot object
 #' @export
 plot_volume_sentiment <- function(account, filter, group = "day") {
-  published <- NULL
+  # For devtools::check
+  published <- NULL; positivePercent <- NULL; negativePercent <- NULL;
 
   data <- volume_sentiment(account, filter, group)
 
