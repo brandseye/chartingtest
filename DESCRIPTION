@@ -25,7 +25,8 @@ Imports:
     readr,
     crayon,
     clisymbols,
-    rstudioapi
+    rstudioapi,
+    scales
 Remotes: 
     brandseye/brandseyer
 Roxygen: list(markdown = TRUE)

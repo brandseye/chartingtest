@@ -22,6 +22,12 @@ LIGHT_GREY  <- "#e9e9e9"  # gridlines, bars and columns, neutral sentiment
 MID_GREY    <- "#c0c0c0"  # table borders, bars and columns if light grey is too lightGrey
 DARK_GREY   <- "#444444"  # All text
 
+POS_SENTIMENT  <-  "#00b0b9"  # blue
+NEUT_SENTIMENT <-  "#e9e9e9"  # light grey
+NEG_SENTIMENT  <-  "#ee2737"  # Red
+NET_SENTIMENT  <-  "#1c1f2a"  # Elite
+
+
 #' Provides a BrandsEye ggplot2 theme.
 #'
 #' This is still a work in progress, but should provide a ggplot2 theme
@@ -38,7 +44,8 @@ theme_brandseye <- function() {
                         panel.grid = element_line(colour = LIGHT_GREY),
                         panel.grid.major = element_line(color = LIGHT_GREY),
                         panel.grid.major.x = element_blank(),
-                        panel.grid.minor = element_blank())
+                        panel.grid.minor = element_blank(),
+                        legend.title = element_blank())
 }
 
 

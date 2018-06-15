@@ -39,14 +39,22 @@ volume_sentiment <- function(code, filter, group = "day", file = NULL, save = FA
   assert_that(is.null(file) || is.string(file), msg = "File name must be a string")
 
   # For devtools::check
-  published <- NULL; positiveCount <- NULL; negativeCount <- NULL; net <- NULL;
+  published <- NULL; positiveCount <- NULL; negativeCount <- NULL; neutralCount <- NULL; net <- NULL;
+  positivePercent <- NULL; negativePercent <- NULL; neutralPercent <- NULL;
 
   data <- brandseyer::account_count(code, filter = filter,
                                     groupby = glue("published[{group}]"),
                                     include="sentiment-count") %>%
     mutate(net = positiveCount - negativeCount,
-           published = lubridate::force_tz(published, brandseyer::account_timezone(code))) %>%
-    select(published, count, net, everything())
+           published = lubridate::force_tz(published, brandseyer::account_timezone(code)),
+           positivePercent = positiveCount / count,
+           negativePercent = negativeCount / count,
+           neutralPercent = neutralCount / count) %>%
+    select(published, count, net,
+           positiveCount, positivePercent,
+           negativeCount, negativePercent,
+           neutralCount, neutralPercent,
+           everything())
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",
                                           filter = "CSV Files (*.csv)",
@@ -78,8 +86,20 @@ plot_volume_sentiment <- function(account, filter, group = "day") {
 
   data <- volume_sentiment(account, filter, group)
 
-  ggplot(data, aes(x = published, y = count)) +
-    geom_bar(stat = "identity", fill = MID_GREY) +
+  bars <- ggplot(data, aes(x = published)) +
+    geom_bar(aes(y = count), stat = "identity", fill = MID_GREY) +
     theme_brandseye()
+
+  maxCount <- tail(ggplot_build(bars)$layout$panel_ranges[[1]]$y.major_source, n = 1)
+
+  bars +
+    geom_line(aes(y = positivePercent * maxCount, colour = "positive")) +
+    geom_line(aes(y = negativePercent * maxCount, colour = "negative")) +
+    scale_y_continuous(sec.axis = sec_axis(~. / maxCount, name = "Sentiment", labels = scales::percent)) +
+    scale_colour_manual(breaks = c("positive", "negative", "volume"),
+                        labels = c("Pos %", "Neg %", "Vol"),
+                        values = c(POS_SENTIMENT, NEG_SENTIMENT, MID_GREY)) +
+    labs(y = "Volume of mentions",
+         x = "Date published")
 
 }
