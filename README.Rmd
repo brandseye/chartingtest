@@ -20,6 +20,10 @@ library(devtools)
 # Install the library
 install_github("brandseye/chartingtest")
 
+# If you have never used brandseyer before, you probably need to authenticate
+# the first time you install this library. 
+brandseyer::authenticate(key = "<my api key>", save = TRUE)
+
 # Load the library
 library(chartingtest)
 ```
@@ -45,6 +49,18 @@ volume_sentiment("QUIR01BA", "published inthelast week")
 # What data is available so far?
 
 You can find a list of functions that can provide data for you online, [here](reference/index.html).
+
+# The first time you use this
+
+The first time that you use this library, you'll probably have to authenticate yourself
+so that it knows who you are and what accounts you have access to. You can do that by getting
+your API key from mash, and running
+
+```{r, eval=FALSE}
+brandseyer::authenticate(key = "<my api key>", save = TRUE)
+```
+
+You only have to do this once. It will save your API key to reuse it again in the future.
 
 ## License
 
