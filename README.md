@@ -48,8 +48,8 @@ And this is what the data would look like in R itself (there will be similar col
     ## 4 2018-06-11 00:00:00  1547   384           406            22         1120
     ## 5 2018-06-12 00:00:00  1699   394           452            58         1190
     ## 6 2018-06-13 00:00:00  2426   451           491            40         1895
-    ## 7 2018-06-14 00:00:00  2267   356           455            99         1713
-    ## 8 2018-06-15 00:00:00   499   141           156            15          328
+    ## 7 2018-06-14 00:00:00  2268   356           455            99         1714
+    ## 8 2018-06-15 00:00:00   528   148           163            15          350
     ## # ... with 1 more variable: unknownCount <int>
 
 What data is available so far?
@@ -67,6 +67,11 @@ brandseyer::authenticate(key = "<my api key>", save = TRUE)
 ```
 
 You only have to do this once. It will save your API key to reuse it again in the future.
+
+Code of Conduct
+===============
+
+Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 License
 -------
