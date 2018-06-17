@@ -10,6 +10,14 @@ Provides charting libraries for BrandsEye.
 
 # Installing
 
+You need to have both [R](https://cran.rstudio.com/) and 
+[RStudio](https://www.rstudio.com/products/rstudio/download/) installed.
+
+This library, when plotting things, also uses the [Open Sans](https://fonts.google.com/specimen/Open+Sans) 
+and [Nunito Sans](https://fonts.google.com/specimen/Nunito+Sans) fonts, 
+which if you don't have installed, you can
+get from Google Fonts.
+
 You can install the this library using the `devtools` package:
 
 ```{r eval=FALSE}

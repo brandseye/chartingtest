@@ -8,6 +8,10 @@ Provides charting libraries for BrandsEye.
 Installing
 ==========
 
+You need to have both [R](https://cran.rstudio.com/) and [RStudio](https://www.rstudio.com/products/rstudio/download/) installed.
+
+This library, when plotting things, also uses the [Open Sans](https://fonts.google.com/specimen/Open+Sans) and [Nunito Sans](https://fonts.google.com/specimen/Nunito+Sans) fonts, which if you don't have installed, you can get from Google Fonts.
+
 You can install the this library using the `devtools` package:
 
 ``` r
@@ -42,14 +46,14 @@ And this is what the data would look like in R itself (there will be similar col
     ## # A tibble: 8 x 7
     ##   published           count   net positiveCount negativeCount neutralCount
     ##   <dttm>              <int> <int>         <int>         <int>        <int>
-    ## 1 2018-06-08 00:00:00  1467   456           494            38          935
-    ## 2 2018-06-09 00:00:00  1033   339           355            16          662
-    ## 3 2018-06-10 00:00:00   947   280           292            12          643
-    ## 4 2018-06-11 00:00:00  1547   384           406            22         1120
-    ## 5 2018-06-12 00:00:00  1699   394           452            58         1190
-    ## 6 2018-06-13 00:00:00  2426   451           491            40         1895
-    ## 7 2018-06-14 00:00:00  2268   356           455            99         1714
-    ## 8 2018-06-15 00:00:00   528   148           163            15          350
+    ## 1 2018-06-10 00:00:00   948   280           292            12          644
+    ## 2 2018-06-11 00:00:00  1549   384           406            22         1122
+    ## 3 2018-06-12 00:00:00  1703   393           452            59         1193
+    ## 4 2018-06-13 00:00:00  2433   450           491            41         1901
+    ## 5 2018-06-14 00:00:00  2289   357           457           100         1732
+    ## 6 2018-06-15 00:00:00  1320   345           384            39          897
+    ## 7 2018-06-16 00:00:00   974   190           212            22          740
+    ## 8 2018-06-17 00:00:00   287    73            73             0          214
     ## # ... with 1 more variable: unknownCount <int>
 
 What data is available so far?
