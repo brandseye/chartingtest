@@ -2,6 +2,7 @@
 
 export("%>%")
 export(day_of_week)
+export(get_stats)
 export(plot_time_of_day)
 export(plot_volume_sentiment)
 export(theme_brandseye)

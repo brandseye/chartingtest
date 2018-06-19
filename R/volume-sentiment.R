@@ -77,7 +77,7 @@ volume_sentiment <- function(code, filter, group = "day", file = NULL, save = FA
 #'
 #' @param account An account code
 #' @param filter A filter for data
-#' @param group A string indicating how you want your data gruoped.
+#' @param group A string indicating how you want your data grouped.
 #'
 #' @return the ggplot object
 #' @export

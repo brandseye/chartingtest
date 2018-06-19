@@ -11,7 +11,7 @@ plot_volume_sentiment(account, filter, group = "day")
 
 \item{filter}{A filter for data}
 
-\item{group}{A string indicating how you want your data gruoped.}
+\item{group}{A string indicating how you want your data grouped.}
 }
 \value{
 the ggplot object
