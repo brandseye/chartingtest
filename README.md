@@ -5,14 +5,14 @@ Charting Test
 
 Provides charting libraries for BrandsEye.
 
-Installing
-==========
+Installing chartingtest
+======================
 
 You need to have both [R](https://cran.rstudio.com/) and [RStudio](https://www.rstudio.com/products/rstudio/download/) installed.
 
-This library, when plotting things, also uses the [Open Sans](https://fonts.google.com/specimen/Open+Sans) and [Nunito Sans](https://fonts.google.com/specimen/Nunito+Sans) fonts, which if you don't have installed, you can get from Google Fonts.
+This library, when plotting things, also uses the [Open Sans](https://fonts.google.com/specimen/Open+Sans) and [Nunito Sans](https://fonts.google.com/specimen/Nunito+Sans) fonts, which if you don't have installed, you can get from Google Fonts. See below for instructions on loading fonts in R.
 
-You can install the this library using the `devtools` package:
+You can install the chartingtest library using the `devtools` package:
 
 ``` r
 # Install the devtools package
@@ -29,6 +29,7 @@ brandseyer::authenticate(key = "<my api key>", save = TRUE)
 # Load the library
 library(chartingtest)
 ```
+
 
 Example
 =======
@@ -70,7 +71,32 @@ The first time that you use this library, you'll probably have to authenticate y
 brandseyer::authenticate(key = "<my api key>", save = TRUE)
 ```
 
-You only have to do this once. It will save your API key to reuse it again in the future.
+You only have to do this once. It will save your API key to reuse it again in the future
+
+Installing fonts
+================
+
+You should only need to set up fonts once. If you haven't already, install the following:
+
+- [Open Sans](https://fonts.google.com/specimen/Open+Sans)
+- [Nunito Sans](https://fonts.google.com/specimen/Nunito+Sans)
+
+Then load fonts in R using the `extrafont` package:
+
+``` r
+# Install extrafont
+install.packages("extrafont")
+library(extrafont)
+
+# Import the fonts
+font_import(pattern="NunitoSans")
+font_import(pattern="OpenSans")
+
+# Load fonts for current session
+loadfonts()
+
+```
+
 
 Code of Conduct
 ===============
