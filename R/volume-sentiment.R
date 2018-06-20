@@ -75,17 +75,17 @@ volume_sentiment <- function(code, filter, group = "day", file = NULL, save = FA
 
 #' Plots volume overlayed with sentiment.
 #'
-#' @param account An account code
+#' @param code An account code
 #' @param filter A filter for data
 #' @param group A string indicating how you want your data grouped.
 #'
 #' @return the ggplot object
 #' @export
-plot_volume_sentiment <- function(account, filter, group = "day") {
+plot_volume_sentiment <- function(code, filter, group = "day") {
   # For devtools::check
   published <- NULL; positivePercent <- NULL; negativePercent <- NULL;
 
-  data <- volume_sentiment(account, filter, group)
+  data <- volume_sentiment(code, filter, group)
 
   bars <- ggplot(data, aes(x = published)) +
     geom_bar(aes(y = count), stat = "identity", fill = MID_GREY) +

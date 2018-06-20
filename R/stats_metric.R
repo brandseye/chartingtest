@@ -30,6 +30,11 @@
 
 get_stats <- function(code, filter) {
 
+  # For devtools::check
+  authorNameCount <- NULL; mentionCount <- NULL; negativePercent <- NULL; neutralPercent <- NULL; positivePercent <- NULL;
+  siteCount <- NULL; totalEngagement <- NULL; totalNegative <- NULL; totalNeutral <- NULL; totalOTS <- NULL;
+  totalPositive <- NULL; verifiedCount <- NULL; Metric <- NULL; Value <- NULL;
+
   ac <- brandseyer2::account(code)
 
   sentiment_stats <- brandseyer2::count_mentions(ac,
