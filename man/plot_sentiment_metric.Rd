@@ -15,5 +15,5 @@ plot_sentiment_metric(code, filter)
 Plot the sentiment chart
 }
 \examples{
-plot_sentimment_metric("QUIR01BA", "published inthelast week")
+plot_sentiment_metric("QUIR01BA", "published inthelast week")
 }

@@ -65,7 +65,7 @@ sentiment_metric <- function(code, filter, file = NULL, save = FALSE) {
 #'
 #' @export
 #'
-#' @examples plot_sentimment_metric("QUIR01BA", "published inthelast week")
+#' @examples plot_sentiment_metric("QUIR01BA", "published inthelast week")
 
 plot_sentiment_metric <- function(code, filter) {
 
