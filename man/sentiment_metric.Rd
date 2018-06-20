@@ -2,7 +2,7 @@
 % Please edit documentation in R/sentiment_metric.R
 \name{sentiment_metric}
 \alias{sentiment_metric}
-\title{Title}
+\title{Returns the data for sentiment chart}
 \usage{
 sentiment_metric(code, filter, file = NULL, save = FALSE)
 }
@@ -19,7 +19,7 @@ sentiment_metric(code, filter, file = NULL, save = FALSE)
 A tibble of your data
 }
 \description{
-Title
+Returns the data for sentiment chart
 }
 \examples{
 sentiment_metric("QUIR01BA", "published inthelast week")

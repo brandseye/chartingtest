@@ -18,7 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-#' Title
+#' Returns the data for sentiment chart
 #'
 #' @param code account code
 #' @param filter A filter for data
@@ -57,3 +57,33 @@ sentiment_metric <- function(code, filter, file = NULL, save = FALSE) {
 
   data
 }
+
+#' Plot the sentiment chart
+#'
+#' @param code account code
+#' @param filter A filter for data
+#'
+#' @export
+#'
+#' @examples plot_sentimment_metric("QUIR01BA", "published inthelast week")
+
+plot_sentiment_metric <- function(code, filter) {
+
+  # ac <- account(code)
+
+  # For devtools::check
+  Percentage <- NULL; Sentiment <- NULL; negativeCount <- NULL; neutralCount <- NULL; positiveCount <- NULL; value <- NULL;
+
+  brandseyer::account_count(code, filter, include="sentiment-count") %>%
+    dplyr::transmute("Positive"=positiveCount/count, "Neutral"=neutralCount/count, "Negative"=negativeCount/count) %>%
+    tidyr::gather(Sentiment, value) %>%
+    ggplot(aes(x=Sentiment, y=value, fill=Sentiment)) +
+    geom_bar(stat="identity") +
+    scale_fill_manual(values=c("Negative"="#ee2737", "Neutral"=chartingtest:::MID_GREY, "Positive"="#00b0b9"), name="Sentiment") +
+    scale_y_continuous(expand=c(0,0), labels=scales::percent, limits = c(0, 1)) +
+    geom_text(aes(label=scales::percent(value)), vjust=-0.5, family="Open Sans Light") +
+    theme_brandseye() +
+    theme(legend.position = "none") +
+    labs(title="Sentiment breakdown", x="Sentiment", y="Percentage of mentions")
+}
+

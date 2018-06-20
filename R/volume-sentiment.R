@@ -32,6 +32,7 @@
 #' @examples
 #'
 #' volume_sentiment("QUIR01BA", "published inthelast week")
+
 volume_sentiment <- function(code, filter, group = "day", file = NULL, save = FALSE) {
   assert_that(is.string(code))
   assert_that(is.string(filter))
@@ -73,7 +74,7 @@ volume_sentiment <- function(code, filter, group = "day", file = NULL, save = FA
   data
 }
 
-#' Plots volume overlayed with sentiment.
+#' Plots volume overlaid with sentiment.
 #'
 #' @param code An account code
 #' @param filter A filter for data
@@ -81,6 +82,7 @@ volume_sentiment <- function(code, filter, group = "day", file = NULL, save = FA
 #'
 #' @return the ggplot object
 #' @export
+
 plot_volume_sentiment <- function(code, filter, group = "day") {
   # For devtools::check
   published <- NULL; positivePercent <- NULL; negativePercent <- NULL;
