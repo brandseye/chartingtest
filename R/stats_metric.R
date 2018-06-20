@@ -22,13 +22,16 @@
 #'
 #' @param code account code
 #' @param filter A filter for data
+#' @param file   An optional file name to save a CSV file to.
+#' @param save   Set to TRUE if you'd like a dialog file to choose where to save your CSV.
 #'
 #' @return A tibble of your data
 #' @export
 #'
 #' @examples #' get_stats("QUIR01BA", "published inthelast week")
 
-get_stats <- function(code, filter) {
+
+get_stats <- function(code, filter, file = NULL, save = FALSE) {
 
   # For devtools::check
   authorNameCount <- NULL; mentionCount <- NULL; negativePercent <- NULL; neutralPercent <- NULL; positivePercent <- NULL;
@@ -45,10 +48,25 @@ get_stats <- function(code, filter) {
            negativePercent=scales::percent(totalNegative/mentionCount)) %>%
     dplyr::rename(verifiedCount=mentionCount)
 
-  brandseyer2::count_mentions(ac,
+  data <- brandseyer2::count_mentions(ac,
                              filter,
                              select="mentionCount,authorNameCount,totalOTS,totalEngagement,siteCount") %>%
     cbind(sentiment_stats) %>%
     dplyr::rename(Volume=mentionCount, Authors=authorNameCount, Sites=siteCount, OTS=totalOTS, Engagement=totalEngagement, "Verified Sample"=verifiedCount, Positive=totalPositive, Neutral=totalNeutral, Negative=totalNegative, "Positive %"=positivePercent, "Neutral %"=neutralPercent, "Negative %"=negativePercent) %>%
     tidyr::gather(Metric, Value)
+
+  if (save) file = rstudioapi::selectFile(caption = "Save as",
+                                          filter = "CSV Files (*.csv)",
+                                          existing = FALSE)
+  if (save && is.null(file)) {
+    warn("Saving of file cancelled")
+  }
+
+  if (!is.null(file)) {
+    data %>%
+      readr::write_excel_csv(file, na = "")
+    done(glue("Written your CSV to {file}"))
+  }
+
+  data
 }

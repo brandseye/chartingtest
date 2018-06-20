@@ -4,12 +4,16 @@
 \alias{get_stats}
 \title{Gets the 'stats metric' for a given filter}
 \usage{
-get_stats(code, filter)
+get_stats(code, filter, file = NULL, save = FALSE)
 }
 \arguments{
 \item{code}{account code}
 
 \item{filter}{A filter for data}
+
+\item{file}{An optional file name to save a CSV file to.}
+
+\item{save}{Set to TRUE if you'd like a dialog file to choose where to save your CSV.}
 }
 \value{
 A tibble of your data
