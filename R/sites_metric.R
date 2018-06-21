@@ -20,7 +20,7 @@
 
 #' Gets the 'stats metric' for a given filter
 #'
-#' @param code account code
+#' @param code An account code
 #' @param filter A filter for data
 #' @param file   An optional file name to save a CSV file to.
 #' @param save   Set to TRUE if you'd like a dialog file to choose where to save your CSV.
@@ -29,7 +29,7 @@
 #' @return A tibble of your data
 #' @export
 #'
-#' @examples #' get_stats("QUIR01BA", "published inthelast week")
+#' @examples sites_metric("QUIR01BA", "published inthelast week")
 
 
 sites_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = NULL) {
