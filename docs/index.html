@@ -121,6 +121,26 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">brandseyer<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/brandseyer/topics/authentication">authenticate</a></span>(<span class="dt">key =</span> <span class="st">"&lt;my api key&gt;"</span>, <span class="dt">save =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>You only have to do this once. It will save your API key to reuse it again in the future.</p>
 </div>
+<div id="adding-fonts-to-r" class="section level1">
+<h1 class="hasAnchor">
+<a href="#adding-fonts-to-r" class="anchor"></a>Adding fonts to R</h1>
+<p>If you’re using the library for the first time, you’ll need to add the required fonts. First download and install them on your machine:</p>
+<ul>
+<li><a href="https://fonts.google.com/specimen/Open+Sans">Open Sans</a></li>
+<li><a href="https://fonts.google.com/specimen/Nunito+Sans">Nunito Sans</a></li>
+</ul>
+<p>Then load them into R using the <code>extrafont</code> package:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># Install the extrafont package</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw">install.packages</span>(<span class="st">"extrafont"</span>)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">library</span>(extrafont)</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co"># Import fonts into R</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="kw"><a href="http://www.rdocumentation.org/packages/extrafont/topics/font_import">font_import</a></span>(<span class="dt">pattern=</span><span class="st">"OpenSans"</span>)</a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="kw"><a href="http://www.rdocumentation.org/packages/extrafont/topics/font_import">font_import</a></span>(<span class="dt">pattern=</span><span class="st">"NunitoSans"</span>)</a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co"># Load fonts</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="kw"><a href="http://www.rdocumentation.org/packages/extrafont/topics/loadfonts">loadfonts</a></span>()</a></code></pre></div>
+</div>
 <div id="code-of-conduct" class="section level1">
 <h1 class="hasAnchor">
 <a href="#code-of-conduct" class="anchor"></a>Code of Conduct</h1>

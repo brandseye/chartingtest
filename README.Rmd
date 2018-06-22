@@ -70,6 +70,29 @@ brandseyer::authenticate(key = "<my api key>", save = TRUE)
 
 You only have to do this once. It will save your API key to reuse it again in the future.
 
+# Adding fonts to R
+
+If you're using the library for the first time, you'll need to add the required fonts. First download and install them on your machine:
+
+- [Open Sans](https://fonts.google.com/specimen/Open+Sans) 
+- [Nunito Sans](https://fonts.google.com/specimen/Nunito+Sans)
+
+Then load them into R using the `extrafont` package:
+
+```{r, eval=FALSE}
+# Install the extrafont package
+install.packages("extrafont")
+library(extrafont)
+
+# Import fonts into R
+font_import(pattern="OpenSans")
+font_import(pattern="NunitoSans")
+
+# Load fonts
+loadfonts()
+```
+
+
 # Code of Conduct
 
 Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).

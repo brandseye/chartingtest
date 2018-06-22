@@ -89,7 +89,7 @@ volume_sentiment <- function(code, filter, group = "day", file = NULL, save = FA
 
 plot_volume_sentiment <- function(code, filter, group = "day") {
   # For devtools::check
-  published <- NULL; positivePercent <- NULL; negativePercent <- NULL;
+  published <- NULL; positivePercent <- NULL; negativePercent <- NULL; . <- NULL;
 
   data <- volume_sentiment(code, filter, group) %>%
     replace(is.na(.), 0)
