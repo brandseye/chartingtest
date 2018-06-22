@@ -33,14 +33,18 @@
 
 sentiment_metric <- function(code, filter, file = NULL, save = FALSE) {
 
+  ac <- account(code)
   # For devtools::check
-  Percentage <- NULL; Sentiment <- NULL; negativeCount <- NULL; neutralCount <- NULL; positiveCount <- NULL;
+  Percentage <- NULL; Sentiment <- NULL; totalNegative <- NULL; totalNeutral <- NULL; totalPositive <- NULL; Count <- NULL;
 
-  data <- brandseyer::account_count(code, filter, include="sentiment-count") %>%
-    transmute("Negative"=scales::percent(negativeCount/count),
-              "Neutral"=scales::percent(neutralCount/count),
-              "Positive"=scales::percent(positiveCount/count)) %>%
-    tidyr::gather(Sentiment, Percentage)
+  data <- brandseyer2::count_mentions(ac,
+                                      glue(filter, " AND PROCESS IS VERIFIED"),
+                                      select="mentionCount,totalPositive,totalNeutral,totalNegative") %>%
+    transmute("Negative"=totalNegative,
+              "Neutral"=totalNeutral,
+              "Positive"=totalPositive) %>%
+    tidyr::gather(Sentiment, Count) %>%
+    mutate(Percentage=scales::percent(Count/sum(Count)))
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",
                                           filter = "CSV Files (*.csv)",

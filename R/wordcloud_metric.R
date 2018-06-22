@@ -39,7 +39,7 @@ wordcloud_metric <- function(code, filter, exclude = NULL, save = FALSE, file = 
   extractWord <- NULL; mentionCount <- NULL;
 
   ac <- account(code)
-  data <- brandseyer2::count_mentions(ac, filter, groupBy = "extractWord") %>%
+  data <- count_mentions(ac, filter, groupBy = "extractWord") %>%
     filter(is.na(as.numeric(extractWord))) %>%
     transmute(Word=extractWord, Mentions=mentionCount)
 
