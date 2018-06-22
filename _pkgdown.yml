@@ -8,6 +8,11 @@ reference:
       - volume_sentiment
       - time_of_day
       - day_of_week
+      - stats_metric
+      - sites_metric
+      - sentiment_metric
+      - wordcloud_metric
+
   - title: "Creating charts and metrics"
     desc: >
       These functions make it easy to plot specific charts / metrics.
@@ -16,4 +21,5 @@ reference:
       - theme_brandseye
       - plot_volume_sentiment
       - plot_time_of_day
+      - plot_sentiment_metric
 

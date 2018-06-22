@@ -31,7 +31,7 @@
 #'
 #' @examples
 #'
-#' volume_sentiment("QUIR01BA", "published inthelast week")
+#' volume_sentiment("QUIR01BA", "published inthelast week and brand isorchildof 10006")
 
 volume_sentiment <- function(code, filter, group = "day", file = NULL, save = FALSE) {
   assert_that(is.string(code))
@@ -74,7 +74,7 @@ volume_sentiment <- function(code, filter, group = "day", file = NULL, save = FA
   data
 }
 
-#' Plots volume overlaid with sentiment.
+#' Plots volume overlaid with sentiment
 #'
 #' @param code An account code
 #' @param filter A filter for data
@@ -82,12 +82,17 @@ volume_sentiment <- function(code, filter, group = "day", file = NULL, save = FA
 #'
 #' @return the ggplot object
 #' @export
+#'
+#' @examples
+#'
+#' plot_volume_sentiment("QUIR01BA", "published inthelast week and brand isorchildof 10006")
 
 plot_volume_sentiment <- function(code, filter, group = "day") {
   # For devtools::check
   published <- NULL; positivePercent <- NULL; negativePercent <- NULL;
 
-  data <- volume_sentiment(code, filter, group)
+  data <- volume_sentiment(code, filter, group) %>%
+    replace(is.na(.), 0)
 
   bars <- ggplot(data, aes(x = published)) +
     geom_bar(aes(y = count), stat = "identity", fill = MID_GREY) +

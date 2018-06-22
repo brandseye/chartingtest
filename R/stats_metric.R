@@ -28,10 +28,10 @@
 #' @return A tibble of your data
 #' @export
 #'
-#' @examples #' get_stats("QUIR01BA", "published inthelast week")
+#' @examples stats_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006")
 
 
-get_stats <- function(code, filter, file = NULL, save = FALSE) {
+stats_metric <- function(code, filter, file = NULL, save = FALSE) {
 
   # For devtools::check
   authorNameCount <- NULL; mentionCount <- NULL; negativePercent <- NULL; neutralPercent <- NULL; positivePercent <- NULL;
@@ -41,7 +41,7 @@ get_stats <- function(code, filter, file = NULL, save = FALSE) {
   ac <- brandseyer2::account(code)
 
   sentiment_stats <- brandseyer2::count_mentions(ac,
-                                                 glue::glue(filter, " AND PROCESS IS VERIFIED"),
+                                                 glue(filter, " AND PROCESS IS VERIFIED"),
                                                  select="mentionCount,totalPositive,totalNeutral,totalNegative") %>%
     dplyr::mutate(positivePercent=scales::percent(totalPositive/mentionCount),
            neutralPercent=scales::percent(totalNeutral/mentionCount),

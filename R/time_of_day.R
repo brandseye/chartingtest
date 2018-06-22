@@ -30,7 +30,7 @@
 #'
 #' @examples
 #'
-#' time_of_day("QUIR01BA", "published inthelast week")
+#' time_of_day("QUIR01BA", "published inthelast week and brand isorchildof 10006")
 time_of_day <- function(account, filter, file = NULL, save = FALSE) {
   assert_that(!missing(filter) && is.string(filter), msg = "No filter has been provided")
 

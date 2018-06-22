@@ -25,5 +25,5 @@ Returns the data for creating volume/sentiment charts
 }
 \examples{
 
-volume_sentiment("QUIR01BA", "published inthelast week")
+volume_sentiment("QUIR01BA", "published inthelast week and brand isorchildof 10006")
 }

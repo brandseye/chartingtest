@@ -7,7 +7,7 @@
 wordcloud_metric(code, filter, exclude = NULL, save = FALSE, file = NULL)
 }
 \arguments{
-\item{code}{account code}
+\item{code}{An account code}
 
 \item{filter}{A filter for data}
 
@@ -24,6 +24,7 @@ Return a list of words and volume of mentions
 Pulls breakdown of volume by keyword
 }
 \examples{
-wordcloud_metric("QUIR01BA", "published inthelast week")
+
+wordcloud_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006")
 
 }

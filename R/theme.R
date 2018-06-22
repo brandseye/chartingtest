@@ -28,7 +28,7 @@ NEG_SENTIMENT  <-  "#ee2737"  # Red
 NET_SENTIMENT  <-  "#1c1f2a"  # Elite
 
 
-#' Provides a BrandsEye ggplot2 theme.
+#' Provides a BrandsEye ggplot2 theme
 #'
 #' This is still a work in progress, but should provide a ggplot2 theme
 #' for charts.

@@ -7,7 +7,7 @@
 sites_metric(code, filter, file = NULL, save = FALSE, truncateAt = NULL)
 }
 \arguments{
-\item{code}{account code}
+\item{code}{An account code}
 
 \item{filter}{A filter for data}
 
@@ -24,5 +24,6 @@ A tibble of your data
 Gets the 'stats metric' for a given filter
 }
 \examples{
-#' get_stats("QUIR01BA", "published inthelast week")
+
+sites_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006")
 }

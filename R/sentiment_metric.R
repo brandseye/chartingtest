@@ -28,7 +28,7 @@
 #' @return A tibble of your data
 #' @export
 #'
-#' @examples sentiment_metric("QUIR01BA", "published inthelast week")
+#' @examples sentiment_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006")
 #'
 
 sentiment_metric <- function(code, filter, file = NULL, save = FALSE) {
@@ -60,15 +60,17 @@ sentiment_metric <- function(code, filter, file = NULL, save = FALSE) {
 
 #' Plot the sentiment chart
 #'
-#' @param code account code
+#' @param code An account code
 #' @param filter A filter for data
 #'
 #' @export
 #'
-#' @examples plot_sentiment_metric("QUIR01BA", "published inthelast week")
+#' @examples
+#'
+#' plot_sentiment_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006")
 
 plot_sentiment_metric <- function(code, filter) {
-
+  extrafont::loadfonts(quiet=TRUE)
   # ac <- account(code)
 
   # For devtools::check
@@ -79,7 +81,7 @@ plot_sentiment_metric <- function(code, filter) {
     tidyr::gather(Sentiment, value) %>%
     ggplot(aes(x=Sentiment, y=value, fill=Sentiment)) +
     geom_bar(stat="identity") +
-    scale_fill_manual(values=c("Negative"="#ee2737", "Neutral"=chartingtest:::MID_GREY, "Positive"="#00b0b9"), name="Sentiment") +
+    scale_fill_manual(values=c("Negative"="#ee2737", "Neutral"=LIGHT_GREY, "Positive"="#00b0b9"), name="Sentiment") +
     scale_y_continuous(expand=c(0,0), labels=scales::percent, limits = c(0, 1)) +
     geom_text(aes(label=scales::percent(value)), vjust=-0.5, family="Open Sans Light") +
     theme_brandseye() +

@@ -23,6 +23,6 @@ Get data for determining the best day of the week to post
 }
 \examples{
 
-day_of_week("QUIR01BA", "published inthelast week")
+day_of_week("QUIR01BA", "published inthelast week and brand isorchildof 10006")
 
 }

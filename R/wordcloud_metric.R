@@ -20,7 +20,7 @@
 
 #' Pulls breakdown of volume by keyword
 #'
-#' @param code account code
+#' @param code An account code
 #' @param filter A filter for data
 #' @param file   An optional file name to save a CSV file to
 #' @param save   Set to TRUE if you'd like a dialog file to choose where to save your CSV
@@ -29,7 +29,9 @@
 #' @return Return a list of words and volume of mentions
 #' @export
 #'
-#' @examples wordcloud_metric("QUIR01BA", "published inthelast week")
+#' @examples
+#'
+#' wordcloud_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006")
 #'
 wordcloud_metric <- function(code, filter, exclude = NULL, save = FALSE, file = NULL) {
 

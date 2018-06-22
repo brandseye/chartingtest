@@ -7,7 +7,7 @@
 plot_sentiment_metric(code, filter)
 }
 \arguments{
-\item{code}{account code}
+\item{code}{An account code}
 
 \item{filter}{A filter for data}
 }
@@ -15,5 +15,6 @@ plot_sentiment_metric(code, filter)
 Plot the sentiment chart
 }
 \examples{
-plot_sentiment_metric("QUIR01BA", "published inthelast week")
+
+plot_sentiment_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006")
 }

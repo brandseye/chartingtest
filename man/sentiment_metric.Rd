@@ -7,7 +7,7 @@
 sentiment_metric(code, filter, file = NULL, save = FALSE)
 }
 \arguments{
-\item{code}{account code}
+\item{code}{An account code}
 
 \item{filter}{A filter for data}
 
@@ -22,6 +22,6 @@ A tibble of your data
 Returns the data for sentiment chart
 }
 \examples{
-sentiment_metric("QUIR01BA", "published inthelast week")
+sentiment_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006")
 
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/volume-sentiment.R
 \name{plot_volume_sentiment}
 \alias{plot_volume_sentiment}
-\title{Plots volume overlaid with sentiment.}
+\title{Plots volume overlaid with sentiment}
 \usage{
 plot_volume_sentiment(code, filter, group = "day")
 }
@@ -17,5 +17,9 @@ plot_volume_sentiment(code, filter, group = "day")
 the ggplot object
 }
 \description{
-Plots volume overlaid with sentiment.
+Plots volume overlaid with sentiment
+}
+\examples{
+
+plot_volume_sentiment("QUIR01BA", "published inthelast week and brand isorchildof 10006")
 }
