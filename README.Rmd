@@ -77,7 +77,7 @@ If you're using the library for the first time, you'll need to add the required 
 - [Open Sans](https://fonts.google.com/specimen/Open+Sans) 
 - [Nunito Sans](https://fonts.google.com/specimen/Nunito+Sans)
 
-Then load them into R using the `extrafont` package:
+Then add them to R using the `extrafont` package:
 
 ```{r, eval=FALSE}
 # Install the extrafont package
@@ -87,9 +87,6 @@ library(extrafont)
 # Import fonts into R
 font_import(pattern="OpenSans")
 font_import(pattern="NunitoSans")
-
-# Load fonts
-loadfonts()
 ```
 
 
