@@ -29,7 +29,8 @@ Imports:
     crayon,
     clisymbols,
     rstudioapi,
-    scales
+    scales,
+    grDevices
 Remotes:
     brandseye/brandseyer,
     brandseye/brandseyer2
