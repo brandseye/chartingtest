@@ -1,5 +1,7 @@
 .onLoad <- function(libname, pkgname) {
+  pdfFonts <- grDevices::pdfFonts
   extrafont::loadfonts(quiet = TRUE)
+
   if (!"Open Sans Light" %in% extrafont::fonts()) {
     extrafont::font_import(pattern = "OpenSans")
     if (!"Open Sans Light" %in% extrafont::fonts()) {
