@@ -70,7 +70,6 @@ sentiment_metric <- function(code, filter, file = NULL, save = FALSE) {
 #' plot_sentiment_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006")
 
 plot_sentiment_metric <- function(code, filter) {
-  extrafont::loadfonts(quiet=TRUE)
   # ac <- account(code)
 
   # For devtools::check
