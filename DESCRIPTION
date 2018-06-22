@@ -1,7 +1,9 @@
 Package: chartingtest
 Version: 0.0.0.9000
-Title: What the Package Does (One Line, Title Case)
-Description: What the package does (one paragraph).
+Title: Data and Charting Functions for BrandsEye
+Description: This is a package for testing pulling data and creating BrandsEye themed charts using.
+  It makes use of the brandseyer2 library to pull data from the BrandsEye API, and formats
+  the data so that it's convenient for reporting purposes.
 Authors@R: c(
  person("Constance", "Neeser", email = "connie@brandseye.com", role = c("aut", "cre")),
  person("Lara", "Basson", email = "lara@brandseye.com", role = c("aut")),

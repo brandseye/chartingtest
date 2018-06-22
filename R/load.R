@@ -1,5 +1,5 @@
 .onLoad <- function(libname, pkgname) {
-  extrafont::loadfonts()
+  extrafont::loadfonts(quiet = TRUE)
   if (!"Open Sans Light" %in% extrafont::fonts()) {
     extrafont::font_import(pattern = "OpenSans")
     if (!"Open Sans Light" %in% extrafont::fonts()) {
