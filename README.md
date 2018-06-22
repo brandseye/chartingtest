@@ -8,35 +8,37 @@ Provides charting libraries for BrandsEye.
 Installing
 ==========
 
-You need to have both [R](https://cran.rstudio.com/) and [RStudio](https://www.rstudio.com/products/rstudio/download/) installed.
+Installing the library mostly is about making sure that you have R (the tool that all this runs in) and RStudio (an interface for interacting with all of this) installed, and then installing the library.
 
-This library, when plotting things, also uses the [Open Sans](https://fonts.google.com/specimen/Open+Sans) and [Nunito Sans](https://fonts.google.com/specimen/Nunito+Sans) fonts, which if you don't have installed, you can get from Google Fonts.
+1.  Download and install first [R](https://cran.rstudio.com/) and then [RStudio](https://www.rstudio.com/products/rstudio/download/) .
 
-You can install the this library using the `devtools` package. You can copy and paste the code below in to the RStudio console:
+2.  You need to install the fonts that the library uses when plotting. These are [Open Sans](https://fonts.google.com/specimen/Open+Sans) and [Nunito Sans](https://fonts.google.com/specimen/Nunito+Sans) fonts, which if you don't have installed, you can get from Google Fonts.
 
-``` r
-# Install the devtools package
-install.packages("devtools")
-library(devtools)
+3.  You can install the this library using the `devtools` package. You should do this from inside of RStudio, in the area called the Console. You can copy and paste the code below, and press enter to run it:
 
-# Install the library
-install_github("brandseye/chartingtest")
-```
+    ``` r
+    # Install the devtools package
+    install.packages("devtools")
+    library(devtools)
 
-The next step is to authenticate yourself. This lets the library know who you are and what accounts you have access to. You do that by supplying your API key, as in the code below. Your API key is like a password in to all of your accounts. Please do not share this with clients, since it would give them access to all of our accounts. You can find your API key by logging in to mash, and looking yourself up in the user list. Place your API key inbetween the quotes in the code below, and run it in the RStudio console.
+    # Install the library
+    install_github("brandseye/chartingtest")
+    ```
 
-``` r
-# If you have never used brandseyer before, you probably need to authenticate
-# the first time you install this library. 
-brandseyer2::authenticate(key = "<my api key>", save = TRUE)
-```
+4.  The next step is to authenticate yourself. This lets the library know who you are and what accounts you have access to. You do that by supplying your API key, as in the code below. Your API key is like a password in to all of your accounts. Please do not share this with clients, since it would give them access to all of our accounts. You can find your API key by logging in to mash, and looking yourself up in the user list. Place your API key inbetween the quotes in the code below, and run it in the RStudio console.
 
-Finally, you can load the charting library by copying and pasting the line below.
+    ``` r
+    # If you have never used brandseyer before, you probably need to authenticate
+    # the first time you install this library. 
+    brandseyer2::authenticate(key = "<my api key>", save = TRUE)
+    ```
 
-``` r
-# Load the library
-library(chartingtest)
-```
+5.  Finally, you can load the charting library by copying and pasting the line below.
+
+    ``` r
+    # Load the library
+    library(chartingtest)
+    ```
 
 Example
 =======
