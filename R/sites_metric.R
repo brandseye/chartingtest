@@ -44,9 +44,9 @@ sites_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = N
 
   if (!is.null(truncateAt)) {
     assert_that(is.number(truncateAt))
-    top <- data %>% top_n(n = truncateAt)
+    top <- data %>% top_n(n = truncateAt, wt=mentionCount)
     others <- data %>%
-      top_n(n=-(nrow(.))-truncateAt) %$%
+      top_n(n=-(nrow(.))-truncateAt, wt=mentionCount) %$%
       tibble(site="Others", mentionCount=sum(mentionCount))
     data <- bind_rows(top, others)
   }
