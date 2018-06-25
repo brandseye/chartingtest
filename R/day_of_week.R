@@ -30,9 +30,9 @@
 #'
 #' @examples
 #'
-#' day_of_week("QUIR01BA", "published inthelast week and brand isorchildof 10006")
+#' day_of_week_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006")
 #'
-day_of_week <- function(code, filter, file = NULL, save = FALSE) {
+day_of_week_metric <- function(code, filter, file = NULL, save = FALSE) {
   assert_that(!missing(filter) && is.string(filter), msg = "No filter has been provided")
 
   # For devtools::check
