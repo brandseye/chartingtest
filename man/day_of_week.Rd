@@ -13,7 +13,7 @@ day_of_week(account, filter, file = NULL, save = FALSE)
 
 \item{file}{A filename to save the data to as a CSV}
 
-\item{save}{Set to true to be given a save file dialog.}
+\item{save}{Set to true to be given a save file dialog}
 }
 \value{
 A tibble of data

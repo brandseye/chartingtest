@@ -22,8 +22,9 @@
 #'
 #' @param code An account code
 #' @param filter A filter for data
-#' @param file   An optional file name to save a CSV file to.
-#' @param save   Set to TRUE if you'd like a dialog file to choose where to save your CSV.
+#' @param file   An optional file name to save a CSV file to
+#' @param save   Set to TRUE if you'd like a dialog file to choose where to save your CSV
+#' @param useVerified Only use verified data for sentiment - set to TRUE by default
 #'
 #' @return A tibble of your data
 #' @export
@@ -31,20 +32,20 @@
 #' @examples sentiment_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006")
 #'
 
-sentiment_metric <- function(code, filter, file = NULL, save = FALSE) {
+sentiment_metric <- function(code, filter, file = NULL, save = FALSE, useVerified = TRUE) {
 
   ac <- account(code)
   # For devtools::check
   Percentage <- NULL; Sentiment <- NULL; totalNegative <- NULL; totalNeutral <- NULL; totalPositive <- NULL; Count <- NULL;
 
-  data <- brandseyer2::count_mentions(ac,
-                                      glue(filter, " AND PROCESS IS VERIFIED"),
-                                      select="mentionCount,totalPositive,totalNeutral,totalNegative") %>%
+  if (useVerified) filter <- glue("({filter}) AND PROCESS IS VERIFIED")
+
+  data <- count_mentions(ac, filter, select="mentionCount,totalPositive,totalNeutral,totalNegative") %>%
     transmute("Negative"=totalNegative,
               "Neutral"=totalNeutral,
               "Positive"=totalPositive) %>%
     tidyr::gather(Sentiment, Count) %>%
-    mutate(Percentage=scales::percent(Count/sum(Count)))
+    mutate(Percentage=Count/sum(Count))
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",
                                           filter = "CSV Files (*.csv)",
@@ -55,6 +56,7 @@ sentiment_metric <- function(code, filter, file = NULL, save = FALSE) {
 
   if (!is.null(file)) {
     data %>%
+      mutate(Percentage=scales::percent(Percentage)) %>%
       readr::write_excel_csv(file, na = "")
     done(glue("Written your CSV to {file}"))
   }
@@ -66,6 +68,7 @@ sentiment_metric <- function(code, filter, file = NULL, save = FALSE) {
 #'
 #' @param code An account code
 #' @param filter A filter for data
+#' @param useVerified Only use verified data for sentiment - set to TRUE by default
 #'
 #' @export
 #'
@@ -73,20 +76,17 @@ sentiment_metric <- function(code, filter, file = NULL, save = FALSE) {
 #'
 #' plot_sentiment_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006")
 
-plot_sentiment_metric <- function(code, filter) {
-  # ac <- account(code)
+plot_sentiment_metric <- function(code, filter, useVerified = TRUE) {
 
   # For devtools::check
   Percentage <- NULL; Sentiment <- NULL; negativeCount <- NULL; neutralCount <- NULL; positiveCount <- NULL; value <- NULL;
 
-  brandseyer::account_count(code, filter, include="sentiment-count") %>%
-    dplyr::transmute("Positive"=positiveCount/count, "Neutral"=neutralCount/count, "Negative"=negativeCount/count) %>%
-    tidyr::gather(Sentiment, value) %>%
-    ggplot(aes(x=Sentiment, y=value, fill=Sentiment)) +
+  sentiment_metric(code, filter, useVerified=useVerified) %>%
+    ggplot(aes(x=Sentiment, y=Percentage, fill=Sentiment)) +
     geom_bar(stat="identity") +
     scale_fill_manual(values=c("Negative"="#ee2737", "Neutral"=LIGHT_GREY, "Positive"="#00b0b9"), name="Sentiment") +
     scale_y_continuous(expand=c(0,0), labels=scales::percent, limits = c(0, 1)) +
-    geom_text(aes(label=scales::percent(value)), vjust=-0.5, family="Open Sans Light") +
+    geom_text(aes(label=scales::percent(Percentage)), vjust=-0.5, family="Open Sans Light") +
     theme_brandseye() +
     theme(legend.position = "none") +
     labs(title="Sentiment breakdown", x="Sentiment", y="Percentage of mentions")

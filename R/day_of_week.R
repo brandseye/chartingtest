@@ -23,7 +23,7 @@
 #' @param account An account code
 #' @param filter A filter to use
 #' @param file A filename to save the data to as a CSV
-#' @param save Set to true to be given a save file dialog.
+#' @param save Set to true to be given a save file dialog
 #'
 #' @return A tibble of data
 #' @export

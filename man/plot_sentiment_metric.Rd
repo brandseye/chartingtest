@@ -4,12 +4,14 @@
 \alias{plot_sentiment_metric}
 \title{Plot the sentiment chart}
 \usage{
-plot_sentiment_metric(code, filter)
+plot_sentiment_metric(code, filter, useVerified = TRUE)
 }
 \arguments{
 \item{code}{An account code}
 
 \item{filter}{A filter for data}
+
+\item{useVerified}{Only use verified data for sentiment - set to TRUE by default}
 }
 \description{
 Plot the sentiment chart

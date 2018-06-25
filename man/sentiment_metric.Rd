@@ -4,16 +4,19 @@
 \alias{sentiment_metric}
 \title{Returns the data for sentiment chart}
 \usage{
-sentiment_metric(code, filter, file = NULL, save = FALSE)
+sentiment_metric(code, filter, file = NULL, save = FALSE,
+  useVerified = TRUE)
 }
 \arguments{
 \item{code}{An account code}
 
 \item{filter}{A filter for data}
 
-\item{file}{An optional file name to save a CSV file to.}
+\item{file}{An optional file name to save a CSV file to}
 
-\item{save}{Set to TRUE if you'd like a dialog file to choose where to save your CSV.}
+\item{save}{Set to TRUE if you'd like a dialog file to choose where to save your CSV}
+
+\item{useVerified}{Only use verified data for sentiment - set to TRUE by default}
 }
 \value{
 A tibble of your data
