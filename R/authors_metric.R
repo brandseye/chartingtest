@@ -18,12 +18,12 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-#' Gets the 'stats metric' for a given filter
+#' Gets the 'authors metric' for a given filter
 #'
-#' @param code An account code
-#' @param filter A filter for data
-#' @param file   An optional file name to save a CSV file to.
-#' @param save   Set to TRUE if you'd like a dialog file to choose where to save your CSV.
+#' @param code   The account code to use
+#' @param filter The filter for the data
+#' @param file   An optional file name to save a CSV file to
+#' @param save   Set to TRUE if you'd like a dialog to choose where to save your CSV
 #' @param truncateAt Optional number of results - rest will become "Others"
 #'
 #' @return A tibble of your data
@@ -31,23 +31,22 @@
 #'
 #' @examples
 #'
-#' sites_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006")
+#' authors_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006")
 
-
-sites_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = NULL) {
+authors_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = NULL) {
 
   # For devtools::check
   mentionCount <- NULL; . <- NULL;
 
   ac <- account(code)
-  data <- count_mentions(ac, filter, groupBy="site")
+  data <- count_mentions(ac, filter, groupBy="authorId, authorHandle, authorName")
 
   if (!is.null(truncateAt)) {
     assert_that(is.number(truncateAt))
     top <- data %>% top_n(n = truncateAt, wt=mentionCount)
     others <- data %>%
       top_n(n=-(nrow(.))-truncateAt, wt=mentionCount) %$%
-      tibble(site="Others", mentionCount=sum(mentionCount))
+      tibble(authorId="Others", authorHandle="Others", authorName="Others", mentionCount=sum(mentionCount))
     data <- bind_rows(top, others)
   }
 

@@ -42,7 +42,7 @@ volume_sentiment_metric <- function(code, filter, group = "day", file = NULL, sa
   published <- NULL; positiveCount <- NULL; negativeCount <- NULL; neutralCount <- NULL; net <- NULL;
   positivePercent <- NULL; negativePercent <- NULL; neutralPercent <- NULL;
   positiveSentiment <- NULL; negativeSentiment <- NULL; neutralSentiment <- NULL;
-  netSentiment <- NULL;
+  netSentiment <- NULL; . <- NULL;
 
   data <- brandseyer::account_count(code, filter = filter,
                                     groupby = glue("published[{group}]"),
