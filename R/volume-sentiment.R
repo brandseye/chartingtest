@@ -41,17 +41,21 @@ volume_sentiment_metric <- function(code, filter, group = "day", file = NULL, sa
   # For devtools::check
   published <- NULL; positiveCount <- NULL; negativeCount <- NULL; neutralCount <- NULL; net <- NULL;
   positivePercent <- NULL; negativePercent <- NULL; neutralPercent <- NULL;
+  totalPositive <- NULL; totalNegative <- NULL; totalNeutral <- NULL;
+  netSentiment <- NULL; mentionCount <- NULL; totalSentiment <- NULL;
   positiveSentiment <- NULL; negativeSentiment <- NULL; neutralSentiment <- NULL;
-  netSentiment <- NULL; . <- NULL;
+ . <- NULL;
 
-  data <- brandseyer::account_count(code, filter = filter,
-                                    groupby = glue("published[{group}]"),
-                                    include="sentiment-count") %>%
-    mutate(netSentiment = positiveCount - negativeCount,
+  data <- account(code) %>%
+    count_mentions(filter = filter,
+                   groupBy = published[{toupper(group)}],
+                   select=c(mentionCount, totalSentiment, totalPositive, totalNegative, totalNeutral)) %>%
+    mutate(netSentiment = totalSentiment,
+           count = mentionCount,
            published = lubridate::force_tz(published, brandseyer::account_timezone(code)),
-           positiveSentiment = positiveCount,
-           negativeSentiment = negativeCount,
-           neutralSentiment = neutralCount,
+           positiveSentiment = totalPositive,
+           negativeSentiment = totalNegative,
+           neutralSentiment = totalNeutral,
            positivePercent = positiveSentiment / count,
            negativePercent = negativeSentiment / count,
            neutralPercent = neutralSentiment / count) %>%
