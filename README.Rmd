@@ -51,12 +51,17 @@ which if you don't have installed, you can get from Google Fonts.
     library(chartingtest)
     ```
 
-# Example
+# Getting data
+
+All data can be downloaded and saved as a CSV (or plotted) using a single line of R. For example,
+here we get data for plotting volume against sentiment for the `QUIR01BA` account, using a particular
+filter, and also asking to save the data. 
+
+```{r, echo=FALSE}
+library(chartingtest)
+```
 
 ```{r eval=FALSE}
-# load the library
-library(chartingtest)
-
 # Ask for data. Tell it that you want to save to file as well
 volume_sentiment("QUIR01BA", "published inthelast week and brand isorchildof 10006", save = TRUE)
 ```
