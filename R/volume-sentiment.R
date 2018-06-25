@@ -70,6 +70,7 @@ volume_sentiment_metric <- function(code, filter, group = "day", file = NULL, sa
   if (!is.null(file)) {
     data %>%
       dplyr::mutate(published = format(published, "%F %R")) %>%
+      replace(is.na(.), 0) %>%
       readr::write_excel_csv(file, na = "")
     done(glue("Written your CSV to {file}"))
   }
