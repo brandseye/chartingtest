@@ -38,6 +38,7 @@ day_of_week_metric <- function(code, filter, file = NULL, save = FALSE) {
   # For devtools::check
   published <- NULL; count <- NULL; day <- NULL;
   positiveCount <- NULL; negativeCount <- NULL; engagement <- NULL;
+  totalEngagement <- NULL; totalSentiment <- NULL;
 
   days <- c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
 

@@ -37,6 +37,7 @@ time_of_day_metric <- function(code, filter, file = NULL, save = FALSE) {
   # For devtools::check
   published <- NULL; hour <- NULL; count <- NULL;
   positiveCount <- NULL; negativeCount <- NULL; engagement <- NULL;
+  HOUR <- NULL; totalSentiment <- NULL; totalEngagement <- NULL;
 
   data <- account(code) %>%
     count_mentions(filter, groupBy=published[HOUR],

@@ -2,24 +2,24 @@
 % Please edit documentation in R/volume-sentiment.R
 \name{plot_volume_sentiment_metric}
 \alias{plot_volume_sentiment_metric}
-\title{Plots volume overlaid with sentiment}
+\title{Plots volume overlayed with sentiment.}
 \usage{
-plot_volume_sentiment_metric(code, filter, group = "day")
+plot_volume_sentiment_metric(account, filter, group = "day")
 }
 \arguments{
-\item{code}{An account code}
+\item{account}{An account code}
 
 \item{filter}{A filter for data}
 
-\item{group}{A string indicating how you want your data grouped.}
+\item{group}{A string indicating how you want your data gruoped.}
 }
 \value{
 the ggplot object
 }
 \description{
-Plots volume overlaid with sentiment
+Plots volume overlayed with sentiment.
 }
 \examples{
 
-plot_volume_sentiment_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006")
+plot_volume_sentiment_metric("QUIR01BA", "published inthelast week  and brand isorchildof 10006")
 }

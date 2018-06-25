@@ -31,7 +31,7 @@
 #'
 #' @examples
 #'
-#' volume_sentiment_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006")
+#' volume_sentiment_metric("QUIR01BA", "published inthelast week  and brand isorchildof 10006")
 volume_sentiment_metric <- function(code, filter, group = "day", file = NULL, save = FALSE) {
   assert_that(is.string(code))
   assert_that(is.string(filter))
@@ -41,20 +41,24 @@ volume_sentiment_metric <- function(code, filter, group = "day", file = NULL, sa
   # For devtools::check
   published <- NULL; positiveCount <- NULL; negativeCount <- NULL; neutralCount <- NULL; net <- NULL;
   positivePercent <- NULL; negativePercent <- NULL; neutralPercent <- NULL;
+  positiveSentiment <- NULL; negativeSentiment <- NULL; neutralSentiment <- NULL;
+  netSentiment <- NULL;
 
   data <- brandseyer::account_count(code, filter = filter,
                                     groupby = glue("published[{group}]"),
                                     include="sentiment-count") %>%
-    mutate(net = positiveCount - negativeCount,
+    mutate(netSentiment = positiveCount - negativeCount,
            published = lubridate::force_tz(published, brandseyer::account_timezone(code)),
-           positivePercent = positiveCount / count,
-           negativePercent = negativeCount / count,
-           neutralPercent = neutralCount / count) %>%
-    select(published, count, net,
-           positiveCount, positivePercent,
-           negativeCount, negativePercent,
-           neutralCount, neutralPercent,
-           everything())
+           positiveSentiment = positiveCount,
+           negativeSentiment = negativeCount,
+           neutralSentiment = neutralCount,
+           positivePercent = positiveSentiment / count,
+           negativePercent = negativeSentiment / count,
+           neutralPercent = neutralSentiment / count) %>%
+    select(published, count, netSentiment,
+           positiveSentiment, positivePercent,
+           negativeSentiment, negativePercent,
+           neutralSentiment, neutralPercent)
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",
                                           filter = "CSV Files (*.csv)",
@@ -73,25 +77,23 @@ volume_sentiment_metric <- function(code, filter, group = "day", file = NULL, sa
   data
 }
 
-#' Plots volume overlaid with sentiment
+#' Plots volume overlayed with sentiment.
 #'
-#' @param code An account code
+#' @param account An account code
 #' @param filter A filter for data
-#' @param group A string indicating how you want your data grouped.
+#' @param group A string indicating how you want your data gruoped.
 #'
 #' @return the ggplot object
 #' @export
 #'
 #' @examples
 #'
-#' plot_volume_sentiment_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006")
-
-plot_volume_sentiment_metric <- function(code, filter, group = "day") {
+#' plot_volume_sentiment_metric("QUIR01BA", "published inthelast week  and brand isorchildof 10006")
+plot_volume_sentiment_metric <- function(account, filter, group = "day") {
   # For devtools::check
-  published <- NULL; positivePercent <- NULL; negativePercent <- NULL; . <- NULL;
+  published <- NULL; positivePercent <- NULL; negativePercent <- NULL;
 
-  data <- volume_sentiment_metric(code, filter, group) %>%
-    replace(is.na(.), 0)
+  data <- volume_sentiment_metric(account, filter, group)
 
   bars <- ggplot(data, aes(x = published)) +
     geom_bar(aes(y = count), stat = "identity", fill = MID_GREY) +
