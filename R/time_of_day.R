@@ -20,7 +20,7 @@
 
 #' Get data for determining the best time of day to post (by hour)
 #'
-#' @param account An account code
+#' @param code An account code
 #' @param filter A filter to use
 #' @param file A filename to save the data to as a CSV
 #' @param save Set to true to be given a save file dialog.
@@ -30,21 +30,24 @@
 #'
 #' @examples
 #'
-#' time_of_day("QUIR01BA", "published inthelast week and brand isorchildof 10006")
-time_of_day <- function(account, filter, file = NULL, save = FALSE) {
+#' time_of_day_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006")
+time_of_day_metric <- function(code, filter, file = NULL, save = FALSE) {
   assert_that(!missing(filter) && is.string(filter), msg = "No filter has been provided")
 
   # For devtools::check
   published <- NULL; hour <- NULL; count <- NULL;
   positiveCount <- NULL; negativeCount <- NULL; engagement <- NULL;
 
-  data <- brandseyer::account_count(account, filter, groupby="published[hour]",
-                            include = c("sentiment-count", "engagement")) %>%
+  data <- account(code) %>%
+    count_mentions(filter, groupBy=published[HOUR],
+                   select = c(totalSentiment, engagement)) %>%
     mutate(hour = lubridate::hour(published)) %>%
     group_by(hour) %>%
     summarise(count = sum(count, na.rm = TRUE),
-              net = sum(positiveCount, na.rm = TRUE) - sum(negativeCount, na.rm = TRUE),
-              engagement = sum(engagement, na.rm = TRUE))
+              totalSentiment = sum(totalSentiment, na.rm = TRUE),
+              totalEngagement = sum(totalEngagement, na.rm = TRUE)) %>%
+    rename(netSentiment = totalSentiment,
+           engagement = totalEngagement)
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",
                                           filter = "CSV Files (*.csv)",
@@ -68,11 +71,11 @@ time_of_day <- function(account, filter, file = NULL, save = FALSE) {
 #'
 #' @return the ggplot object
 #' @export
-plot_time_of_day <- function(account, filter) {
+plot_time_of_day_metric <- function(account, filter) {
   # For devtools::check
   hour <- NULL; count <- NULL; net <- NULL;
 
-  time_of_day(account, filter) %>%
+  time_of_day_metric(account, filter) %>%
     ggplot(aes(x = hour)) +
     geom_line(aes(y = count, colour = "volume")) +
     geom_line(aes(y = net + 100, colour = "sentiment")) +

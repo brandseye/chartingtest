@@ -40,13 +40,12 @@ Installing the library mostly is about making sure that you have R (the tool tha
     library(chartingtest)
     ```
 
-Example
-=======
+Getting data
+============
+
+All data can be downloaded and saved as a CSV (or plotted) using a single line of R. For example, here we get data for plotting volume against sentiment for the `QUIR01BA` account, using a particular filter, and also asking to save the data.
 
 ``` r
-# load the library
-library(chartingtest)
-
 # Ask for data. Tell it that you want to save to file as well
 volume_sentiment("QUIR01BA", "published inthelast week and brand isorchildof 10006", save = TRUE)
 ```
@@ -56,14 +55,14 @@ And this is what the data would look like in R itself (there will be similar col
     ## # A tibble: 8 x 6
     ##   published           count   net positiveCount neutralCount negativeCount
     ##   <dttm>              <int> <int>         <int>        <int>         <int>
-    ## 1 2018-06-15 00:00:00     1    -1             0            0             1
-    ## 2 2018-06-16 00:00:00    NA    NA            NA           NA            NA
-    ## 3 2018-06-17 00:00:00    NA    NA            NA           NA            NA
-    ## 4 2018-06-18 00:00:00     1     0             0            1             0
-    ## 5 2018-06-19 00:00:00     5     2             2            3             0
-    ## 6 2018-06-20 00:00:00     2     0             0            2             0
-    ## 7 2018-06-21 00:00:00     3     0             0            3             0
-    ## 8 2018-06-22 00:00:00     8     5             5            3             0
+    ## 1 2018-06-18 00:00:00     1     0             0            1             0
+    ## 2 2018-06-19 00:00:00     5     2             2            3             0
+    ## 3 2018-06-20 00:00:00     2     0             0            2             0
+    ## 4 2018-06-21 00:00:00     3     0             0            3             0
+    ## 5 2018-06-22 00:00:00     8     5             5            3             0
+    ## 6 2018-06-23 00:00:00     2    -2             0            0             2
+    ## 7 2018-06-24 00:00:00     2     1             1            1             0
+    ## 8 2018-06-25 00:00:00    15     9            10            4             1
 
 What data is available so far?
 ==============================

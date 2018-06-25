@@ -20,7 +20,7 @@
 
 #' Get data for determining the best day of the week to post
 #'
-#' @param account An account code
+#' @param code An account code
 #' @param filter A filter to use
 #' @param file A filename to save the data to as a CSV
 #' @param save Set to true to be given a save file dialog
@@ -30,9 +30,9 @@
 #'
 #' @examples
 #'
-#' day_of_week("QUIR01BA", "published inthelast week and brand isorchildof 10006")
+#' day_of_week_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006")
 #'
-day_of_week <- function(account, filter, file = NULL, save = FALSE) {
+day_of_week_metric <- function(code, filter, file = NULL, save = FALSE) {
   assert_that(!missing(filter) && is.string(filter), msg = "No filter has been provided")
 
   # For devtools::check
@@ -41,14 +41,17 @@ day_of_week <- function(account, filter, file = NULL, save = FALSE) {
 
   days <- c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
 
-  data <- brandseyer::account_count(account, filter, groupby="published",
-                                    include = c("sentiment-count", "engagement")) %>%
+  data <- account(code) %>%
+    count_mentions(filter, groupBy=published,
+                   select = c(totalSentiment, engagement)) %>%
     mutate(day = factor(days[lubridate::wday(published, week_start = 1)],
                         levels = days, ordered = TRUE)) %>%
     group_by(day) %>%
     summarise(count = sum(count, na.rm = TRUE),
-              net = sum(positiveCount, na.rm = TRUE) - sum(negativeCount, na.rm = TRUE),
-              engagement = sum(engagement, na.rm = TRUE))
+              totalSentiment = sum(totalSentiment, na.rm = TRUE),
+              totalEngagement = sum(totalEngagement, na.rm = TRUE)) %>%
+    rename(netSentiment = totalSentiment,
+           engagement = totalEngagement)
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",
                                           filter = "CSV Files (*.csv)",
