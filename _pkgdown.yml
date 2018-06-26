@@ -12,6 +12,7 @@ reference:
       - sites_metric
       - sentiment_metric
       - wordcloud_metric
+      - gender_metric
 
   - title: "Creating charts and metrics"
     desc: >

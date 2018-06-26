@@ -30,7 +30,8 @@ Imports:
     clisymbols,
     rstudioapi,
     scales,
-    grDevices
+    grDevices,
+    stringr
 Remotes:
     brandseye/brandseyer,
     brandseye/brandseyer2
