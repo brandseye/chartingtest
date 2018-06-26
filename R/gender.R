@@ -34,12 +34,14 @@
 gender_metric <- function(code, filter, file = NULL, save = FALSE) {
   # for devtools::check
   gender <- NULL; gender.id <- NULL; mentionCount <- NULL;
+  engagement <- NULL; totalEngagement <- NULL; totalOTS <- NULL; totalSentiment <- NULL;
 
   data <- account(code) %>%
-    count_mentions(filter, groupBy = gender) %>%
+    count_mentions(filter, groupBy = gender, select = c(mentionCount, totalOTS, engagement, totalSentiment)) %>%
     select(-gender) %>%
-    rename(gender = gender.id, count = mentionCount) %>%
-    select(gender, count)
+    rename(gender = gender.id, count = mentionCount,
+           ots = totalOTS, engagement = totalEngagement, netSentiment = totalSentiment) %>%
+    select(gender, count, everything())
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",
                                           filter = "CSV Files (*.csv)",

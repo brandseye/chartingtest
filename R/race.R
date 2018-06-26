@@ -34,13 +34,15 @@
 race_metric <- function(code, filter, file = NULL, save = FALSE) {
   # for devtools::check
   race <- NULL; race.id <- NULL; mentionCount <- NULL; label <- NULL;
+  engagement <- NULL; totalEngagement <- NULL; totalOTS <- NULL; totalSentiment <- NULL;
 
   data <- account(code) %>%
-    count_mentions(filter, groupBy = race) %>%
+    count_mentions(filter, groupBy = race, select = c(mentionCount, totalOTS, engagement, totalSentiment)) %>%
     mutate(label = purrr::map_chr(race, ~(if (is.null(.x)) "Unknown" else .x$label))) %>%
     select(-race) %>%
-    rename(race = race.id, count = mentionCount) %>%
-    select(race, label, count)
+    rename(race = race.id, count = mentionCount,
+           ots = totalOTS, engagement = totalEngagement, netSentiment = totalSentiment) %>%
+    select(race, label, count, everything())
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",
                                           filter = "CSV Files (*.csv)",
