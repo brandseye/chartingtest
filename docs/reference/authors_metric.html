@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gets the 'stats metric' for a given filter — sites_metric • chartingtest</title>
+<title>Gets the 'authors metric' for a given filter — authors_metric • chartingtest</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Gets the 'stats metric' for a given filter — sites_metric" />
+<meta property="og:title" content="Gets the 'authors metric' for a given filter — authors_metric" />
 
-<meta property="og:description" content="Gets the 'stats metric' for a given filter" />
+<meta property="og:description" content="Gets the 'authors metric' for a given filter" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -92,37 +92,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Gets the 'stats metric' for a given filter</h1>
+    <h1>Gets the 'authors metric' for a given filter</h1>
     
-    <div class="hidden name"><code>sites_metric.Rd</code></div>
+    <div class="hidden name"><code>authors_metric.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Gets the 'stats metric' for a given filter</p>
+    <p>Gets the 'authors metric' for a given filter</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>sites_metric</span>(<span class='no'>code</span>, <span class='no'>filter</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>save</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>truncateAt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>authors_metric</span>(<span class='no'>code</span>, <span class='no'>filter</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>save</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>truncateAt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>code</th>
-      <td><p>An account code</p></td>
+      <td><p>The account code to use</p></td>
     </tr>
     <tr>
       <th>filter</th>
-      <td><p>A filter for data</p></td>
+      <td><p>The filter for the data</p></td>
     </tr>
     <tr>
       <th>file</th>
-      <td><p>An optional file name to save a CSV file to.</p></td>
+      <td><p>An optional file name to save a CSV file to</p></td>
     </tr>
     <tr>
       <th>save</th>
-      <td><p>Set to TRUE if you'd like a dialog file to choose where to save your CSV.</p></td>
+      <td><p>Set to TRUE if you'd like a dialog to choose where to save your CSV</p></td>
     </tr>
     <tr>
       <th>truncateAt</th>
@@ -137,14 +137,20 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>sites_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 2
-#&gt;   site                      mentionCount
-#&gt;   &lt;chr&gt;                            &lt;int&gt;
-#&gt; 1 twitter.com                         39
-#&gt; 2 www.facebook.com                     8
-#&gt; 3 www.linkedin.com                     3
-#&gt; 4 www.business-standard.com            1
-#&gt; 5 www.vavel.com                        1</div></pre>
+<span class='fu'>authors_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 35 x 4
+#&gt;    authorId           authorHandle    authorName          mentionCount
+#&gt;    &lt;chr&gt;              &lt;chr&gt;           &lt;chr&gt;                      &lt;int&gt;
+#&gt;  1 Tx14325176         brandseye       BrandsEye                      6
+#&gt;  2 Tx19485040         MunyaBloggo     Bloggo                         4
+#&gt;  3 Lxaeb04f414e060051 &lt;NA&gt;            BrandsEye                      3
+#&gt;  4 Fxaeb04f414e060051 &lt;NA&gt;            BrandsEye                      3
+#&gt;  5 Tx44733629         malawicoffee    Malawi Coffee                  2
+#&gt;  6 Tx80044165         ComradeFatsooo  #AfricaRoundUp                 2
+#&gt;  7 Tx3327123580       MotoRepublik    Moto Republik                  2
+#&gt;  8 Tx34623768         laraebasson     Lara Basson                    2
+#&gt;  9 Tx119517589        thefocusgroupuk #CustomerExperience            2
+#&gt; 10 Fxad9e13277acf2b69 &lt;NA&gt;            Greg Parkin                    1
+#&gt; # ... with 25 more rows</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

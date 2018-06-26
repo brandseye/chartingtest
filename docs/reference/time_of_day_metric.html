@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gets the 'stats metric' for a given filter — sites_metric • chartingtest</title>
+<title>Get data for determining the best time of day to post (by hour) — time_of_day_metric • chartingtest</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Gets the 'stats metric' for a given filter — sites_metric" />
+<meta property="og:title" content="Get data for determining the best time of day to post (by hour) — time_of_day_metric" />
 
-<meta property="og:description" content="Gets the 'stats metric' for a given filter" />
+<meta property="og:description" content="Get data for determining the best time of day to post (by hour)" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -92,18 +92,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Gets the 'stats metric' for a given filter</h1>
+    <h1>Get data for determining the best time of day to post (by hour)</h1>
     
-    <div class="hidden name"><code>sites_metric.Rd</code></div>
+    <div class="hidden name"><code>time_of_day_metric.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Gets the 'stats metric' for a given filter</p>
+    <p>Get data for determining the best time of day to post (by hour)</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>sites_metric</span>(<span class='no'>code</span>, <span class='no'>filter</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>save</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>truncateAt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>time_of_day_metric</span>(<span class='no'>code</span>, <span class='no'>filter</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>save</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -114,37 +114,39 @@
     </tr>
     <tr>
       <th>filter</th>
-      <td><p>A filter for data</p></td>
+      <td><p>A filter to use</p></td>
     </tr>
     <tr>
       <th>file</th>
-      <td><p>An optional file name to save a CSV file to.</p></td>
+      <td><p>A filename to save the data to as a CSV</p></td>
     </tr>
     <tr>
       <th>save</th>
-      <td><p>Set to TRUE if you'd like a dialog file to choose where to save your CSV.</p></td>
-    </tr>
-    <tr>
-      <th>truncateAt</th>
-      <td><p>Optional number of results - rest will become "Others"</p></td>
+      <td><p>Set to true to be given a save file dialog.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A tibble of your data</p>
+    <p>A tibble of data</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>sites_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 2
-#&gt;   site                      mentionCount
-#&gt;   &lt;chr&gt;                            &lt;int&gt;
-#&gt; 1 twitter.com                         39
-#&gt; 2 www.facebook.com                     8
-#&gt; 3 www.linkedin.com                     3
-#&gt; 4 www.business-standard.com            1
-#&gt; 5 www.vavel.com                        1</div></pre>
+<span class='fu'>time_of_day_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 24 x 4
+#&gt;     hour count netSentiment engagement
+#&gt;    &lt;int&gt; &lt;int&gt;        &lt;int&gt;      &lt;int&gt;
+#&gt;  1     0     0            0          0
+#&gt;  2     1     0            0          0
+#&gt;  3     2     0            0          0
+#&gt;  4     3     0            0          0
+#&gt;  5     4     0            0          0
+#&gt;  6     5     0            0          0
+#&gt;  7     6     0            0          0
+#&gt;  8     7     0            1          0
+#&gt;  9     8     0            0          0
+#&gt; 10     9     0            1          0
+#&gt; # ... with 14 more rows</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
