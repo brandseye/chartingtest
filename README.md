@@ -47,7 +47,7 @@ All data can be downloaded and saved as a CSV (or plotted) using a single line o
 
 ``` r
 # Ask for data. Tell it that you want to save to file as well
-volume_sentiment("QUIR01BA", "published inthelast week and brand isorchildof 10006", save = TRUE)
+volume_sentiment_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006", save = TRUE)
 ```
 
 And this is what the data would look like in R itself (there will be similar columns in the CSV).
