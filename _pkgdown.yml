@@ -13,6 +13,7 @@ reference:
       - sentiment_metric
       - wordcloud_metric
       - gender_metric
+      - race_metric
 
   - title: "Creating charts and metrics"
     desc: >

@@ -31,7 +31,8 @@ Imports:
     rstudioapi,
     scales,
     grDevices,
-    stringr
+    stringr,
+    purrr
 Remotes:
     brandseye/brandseyer,
     brandseye/brandseyer2
