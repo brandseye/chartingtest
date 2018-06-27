@@ -40,6 +40,8 @@ Installing the library mostly is about making sure that you have R (the tool tha
     library(chartingtest)
     ```
 
+You only have to do this once. It will save your API key to reuse it again in the future.
+
 Getting data
 ============
 
@@ -62,7 +64,7 @@ And this is what the data would look like in R itself (there will be similar col
     ## 5 2018-06-24 00:00:00     2            1                 1           0.5  
     ## 6 2018-06-25 00:00:00    18           10                11           0.611
     ## 7 2018-06-26 00:00:00    22            9                 9           0.409
-    ## 8 2018-06-27 00:00:00     3            2                 2           0.667
+    ## 8 2018-06-27 00:00:00     6            3                 3           0.5  
     ## # ... with 4 more variables: negativeSentiment <int>,
     ## #   negativePercent <dbl>, neutralSentiment <int>, neutralPercent <dbl>
 
@@ -70,17 +72,6 @@ What data is available so far?
 ==============================
 
 You can find a list of functions that can provide data for you online, [here](reference/index.html).
-
-The first time you use this
-===========================
-
-The first time that you use this library, you'll probably have to authenticate yourself so that it knows who you are and what accounts you have access to. You can do that by getting your API key from mash, and running
-
-``` r
-brandseyer2::authenticate(key = "<my api key>", save = TRUE)
-```
-
-You only have to do this once. It will save your API key to reuse it again in the future.
 
 Adding fonts to R
 =================
@@ -100,6 +91,18 @@ library(extrafont)
 # Import fonts into R
 font_import(pattern="OpenSans")
 font_import(pattern="NunitoSans")
+```
+
+Keeping R up to date
+====================
+
+If you're using R on windows, one convenient way to keep things up to date is to use the [InstallR](https://github.com/talgalili/installr) library.
+
+When a new version of R is out, you can update R by installing `InstallR` and running:
+
+``` r
+library("installr")
+updateR()
 ```
 
 Code of Conduct

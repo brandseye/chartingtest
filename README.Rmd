@@ -51,6 +51,8 @@ which if you don't have installed, you can get from Google Fonts.
     library(chartingtest)
     ```
 
+You only have to do this once. It will save your API key to reuse it again in the future.
+
 # Getting data
 
 All data can be downloaded and saved as a CSV (or plotted) using a single line of R. For example,
@@ -78,18 +80,6 @@ volume_sentiment_metric("QUIR01BA", "published inthelast week and brand isorchil
 
 You can find a list of functions that can provide data for you online, [here](reference/index.html).
 
-# The first time you use this
-
-The first time that you use this library, you'll probably have to authenticate yourself
-so that it knows who you are and what accounts you have access to. You can do that by getting
-your API key from mash, and running
-
-```{r, eval=FALSE}
-brandseyer2::authenticate(key = "<my api key>", save = TRUE)
-```
-
-You only have to do this once. It will save your API key to reuse it again in the future.
-
 # Adding fonts to R
 
 If you're using the library for the first time, you'll need to add the required fonts. First download and install them on your machine:
@@ -107,6 +97,19 @@ library(extrafont)
 # Import fonts into R
 font_import(pattern="OpenSans")
 font_import(pattern="NunitoSans")
+```
+
+# Keeping R up to date
+
+If you're using R on windows, one convenient way to keep things up to date is
+to use the [InstallR](https://github.com/talgalili/installr) library. 
+
+When a new version of R is out, you can update R by installing `InstallR`
+and running:
+
+```{r eval=FALSE}
+library("installr")
+updateR()
 ```
 
 
