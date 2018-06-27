@@ -47,22 +47,24 @@ All data can be downloaded and saved as a CSV (or plotted) using a single line o
 
 ``` r
 # Ask for data. Tell it that you want to save to file as well
-volume_sentiment("QUIR01BA", "published inthelast week and brand isorchildof 10006", save = TRUE)
+volume_sentiment_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006", save = TRUE)
 ```
 
 And this is what the data would look like in R itself (there will be similar columns in the CSV).
 
-    ## # A tibble: 8 x 6
-    ##   published           count   net positiveCount neutralCount negativeCount
-    ##   <dttm>              <int> <int>         <int>        <int>         <int>
-    ## 1 2018-06-18 00:00:00     1     0             0            1             0
-    ## 2 2018-06-19 00:00:00     5     2             2            3             0
-    ## 3 2018-06-20 00:00:00     2     0             0            2             0
-    ## 4 2018-06-21 00:00:00     3     0             0            3             0
-    ## 5 2018-06-22 00:00:00     8     5             5            3             0
-    ## 6 2018-06-23 00:00:00     2    -2             0            0             2
-    ## 7 2018-06-24 00:00:00     2     1             1            1             0
-    ## 8 2018-06-25 00:00:00    15     9            10            4             1
+    ## # A tibble: 8 x 9
+    ##   published           count netSentiment positiveSentiment positivePercent
+    ##   <dttm>              <int>        <int>             <int>           <dbl>
+    ## 1 2018-06-20 00:00:00     2            0                 0           0    
+    ## 2 2018-06-21 00:00:00     3            0                 0           0    
+    ## 3 2018-06-22 00:00:00     8            5                 5           0.625
+    ## 4 2018-06-23 00:00:00     2           -2                 0           0    
+    ## 5 2018-06-24 00:00:00     2            1                 1           0.5  
+    ## 6 2018-06-25 00:00:00    18           10                11           0.611
+    ## 7 2018-06-26 00:00:00    22            9                 9           0.409
+    ## 8 2018-06-27 00:00:00     3            2                 2           0.667
+    ## # ... with 4 more variables: negativeSentiment <int>,
+    ## #   negativePercent <dbl>, neutralSentiment <int>, neutralPercent <dbl>
 
 What data is available so far?
 ==============================
