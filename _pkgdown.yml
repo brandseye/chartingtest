@@ -14,6 +14,7 @@ reference:
       - wordcloud_metric
       - gender_metric
       - race_metric
+      - authors_metric
 
   - title: "Creating charts and metrics"
     desc: >
