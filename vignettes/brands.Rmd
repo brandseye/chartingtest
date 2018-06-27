@@ -1,0 +1,27 @@
+---
+title: "Finding Brand IDs"
+author: "Connie"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Finding Brand IDs}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+V4 accounts almost always need brand IDs in their filters. 
+
+```{r}
+library(brandseyer2)
+
+account("TEST01AA") %>% 
+  root_brands()
+```
+
