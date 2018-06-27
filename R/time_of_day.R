@@ -41,10 +41,10 @@ time_of_day_metric <- function(code, filter, file = NULL, save = FALSE) {
 
   data <- account(code) %>%
     count_mentions(filter, groupBy=published[HOUR],
-                   select = c(totalSentiment, engagement)) %>%
+                   select = c(mentionCount, totalSentiment, engagement)) %>%
     mutate(hour = lubridate::hour(published)) %>%
     group_by(hour) %>%
-    summarise(count = sum(count, na.rm = TRUE),
+    summarise(count = sum(mentionCount, na.rm = TRUE),
               totalSentiment = sum(totalSentiment, na.rm = TRUE),
               totalEngagement = sum(totalEngagement, na.rm = TRUE)) %>%
     rename(netSentiment = totalSentiment,
