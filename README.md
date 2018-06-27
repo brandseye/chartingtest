@@ -3,18 +3,22 @@
 Charting Test
 =============
 
-Provides charting libraries for BrandsEye.
+Provides CSV data export and charting libraries for BrandsEye.
+
+This library is currently under development, and bits of it may change. It's built on top of [brandseyer2](https://brandseye.github.io/brandseyer2) (which allows arbitrary data to be pulled from the BrandsEye APIs), but provides easy means for exporting CSV data in a friendly manner.
 
 Installing
 ==========
 
-Installing the library mostly is about making sure that you have R (the tool that all this runs in) and RStudio (an interface for interacting with all of this) installed, and then installing the library.
+The first steps to installing the library is to make sure that you have R and RStudio installed, along with the various fonts used in the charts. Finally, install this charting library itself. You can work your way through the following steps:
 
-1.  Download and install first [R](https://cran.rstudio.com/) and then [RStudio](https://www.rstudio.com/products/rstudio/download/) .
+1.  Download and install [R](https://cran.rstudio.com/).
 
-2.  You need to install the fonts that the library uses when plotting. These are [Open Sans](https://fonts.google.com/specimen/Open+Sans) and [Nunito Sans](https://fonts.google.com/specimen/Nunito+Sans) fonts, which if you don't have installed, you can get from Google Fonts.
+2.  Download and install [RStudio](https://www.rstudio.com/products/rstudio/download/).
 
-3.  You can install the this library using the `devtools` package. You should do this from inside of RStudio, in the area called the Console. You can copy and paste the code below, and press enter to run it:
+3.  You need to install the fonts that the library uses when plotting. These are [Open Sans](https://fonts.google.com/specimen/Open+Sans) and [Nunito Sans](https://fonts.google.com/specimen/Nunito+Sans) fonts, which if you don't have installed, you can get from Google Fonts.
+
+4.  You can install the this library using the `devtools` package. You should do this from inside of RStudio, in the area called the Console. You can copy and paste the code below, and press enter to run it:
 
     ``` r
     # Install the devtools package
@@ -25,7 +29,7 @@ Installing the library mostly is about making sure that you have R (the tool tha
     install_github("brandseye/chartingtest")
     ```
 
-4.  The next step is to authenticate yourself. This lets the library know who you are and what accounts you have access to. You do that by supplying your API key, as in the code below. Your API key is like a password in to all of your accounts. Please do not share this with clients, since it would give them access to all of our accounts. You can find your API key by logging in to mash, and looking yourself up in the user list. Place your API key inbetween the quotes in the code below, and run it in the RStudio console.
+5.  The next step is to authenticate yourself. This lets the library know who you are and what accounts you have access to. You do that by supplying your API key, as in the code below. Your API key is like a password to all of your accounts. Please do not share this with clients, since it would give them access to all of our accounts. You can find your API key by logging in to mash, and looking yourself up in the user list. Place your API key inbetween the quotes in the code below, and run it in the RStudio console.
 
     ``` r
     # If you have never used brandseyer before, you probably need to authenticate
@@ -33,14 +37,14 @@ Installing the library mostly is about making sure that you have R (the tool tha
     brandseyer2::authenticate(key = "<my api key>", save = TRUE)
     ```
 
-5.  Finally, you can load the charting library by copying and pasting the line below.
+    You only have to do this once. It will save your API key to reuse it again in the future.
+
+6.  Finally, you can load the charting library by copying and pasting the line below.
 
     ``` r
     # Load the library
     library(chartingtest)
     ```
-
-You only have to do this once. It will save your API key to reuse it again in the future.
 
 Getting data
 ============
