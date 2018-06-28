@@ -45,7 +45,7 @@ volume_sentiment_metric(code, filter)
 
 ```{r, echo=FALSE}
 library(chartingtest)
-knitr::kable(volume_sentiment_metric(code, filter), digits=2, format = "html") %>%
+knitr::kable(volume_sentiment_metric(code, filter) %>% dplyr::mutate(positivePercent=scales::percent(positivePercent), neutralPercent=scales::percent(neutralPercent), negativePercent=scales::percent(negativePercent)), digits=2, format = "html") %>%
   kableExtra::kable_styling(bootstrap_options = c("striped", "responsive", "condensed"), full_width = F, font_size = 11)
 ```
 
@@ -58,7 +58,7 @@ volume_sentiment_metric(code, filter, group = "week")
 ```
 
 ```{r, echo=FALSE}
-knitr::kable(volume_sentiment_metric(code, filter), digits=2) %>%
+knitr::kable(volume_sentiment_metric(code, filter) %>% dplyr::mutate(positivePercent=scales::percent(positivePercent), neutralPercent=scales::percent(neutralPercent), negativePercent=scales::percent(negativePercent)), digits=2) %>% 
   kableExtra::kable_styling(bootstrap_options = c("striped", "responsive", "condensed"), full_width = F, font_size = 11)
 ```
 
@@ -97,4 +97,6 @@ knitr::kable(stats_metric(code, filter)) %>%
   kableExtra::kable_styling(bootstrap_options = c("striped", "responsive", "condensed"), full_width = F, font_size = 11)
 ```
 
-For an 
+## Putting it all together
+
+To 
