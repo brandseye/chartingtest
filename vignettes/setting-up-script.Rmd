@@ -85,7 +85,6 @@ knitr::kable(sentiment_metric(code, filter) %>% dplyr::mutate(Percentage=scales:
   kableExtra::kable_styling(bootstrap_options = c("striped", "responsive", "condensed"), full_width = F, font_size = 11)
 ```
 
-
 ### Stats metric
 ```{r, eval=FALSE}
 # Get data for the stats metric
@@ -99,4 +98,60 @@ knitr::kable(stats_metric(code, filter)) %>%
 
 ## Putting it all together
 
-To 
+Here is an example of a script you might run to get all the CSVs for a particular report. In this example we will set the filter only once, but you could use multiple filters if you like, or add additional filtering to a particular metric.
+
+*How to run the example:*
+
+- Copy this code into a new file (File -> New File -> R Script) 
+- Replace `PATH_TO_YOUR_FOLDER` with the folder where you'd like to save the CSVs, e.g. C:/Users/You/YourReport
+- Give it a try by hitting _Run_
+
+```{r, eval=FALSE}
+library(chartingtest)
+
+# Loading 'glue' so we can set the folder name once and then stick it together with the filename
+library(glue)
+
+# Set account code to use
+code <- "QUIR01BA" 
+
+# Set the filter to use
+filter <- "published inthelast week and relevancy is relevant and brand isorchildof 10006"
+
+folder <- "PATH_TO_YOUR_FOLDER"
+
+# Get the volume breakdown
+volume_sentiment_metric(code, 
+                        filter, 
+                        file = glue(folder, "/volume-metric.csv")) # join the folder name onto the file name
+
+# Get the hourly breakdown
+time_of_day_metric(code, 
+                   filter, 
+                   file = glue(folder, "/time-of-day.csv"))
+
+# Top 10 authors
+authors_metric(code, 
+               filter, 
+               truncateAt = 10, #Only give me the first 10 authors
+               glue(folder, "/authors-metric.csv"))
+
+# Top 10 sites
+sites_metric(code, 
+             filter, 
+             truncateAt = 10, #Only give me the first 10 sites
+             file = glue(folder, "/sites-metric.csv"))
+
+# Sentiment breakdown
+sentiment_metric(code, 
+                 filter, 
+                 file = glue(folder, "/sentiment-metric.csv"))
+
+# Top 10 words
+wordcloud_metric(code, 
+                 filter, 
+                 file = glue(folder, "/wordcloud-metric.csv"))
+```
+
+
+
