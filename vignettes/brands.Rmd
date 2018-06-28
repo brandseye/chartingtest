@@ -16,25 +16,34 @@ knitr::opts_chunk$set(
 )
 ```
 
-V4 accounts almost always need brand IDs in their filters. 
+V4 accounts almost always need brand IDs in their filters. There are two ways to go about 
+finding Brand IDs, one in Analyse, and one in RStudio.
+
+1. In the Filter Panel, create a filter using the brands that you want to use. When you
+   ask to see the _Advanced Filter_, you'll be able to see the IDs. 
+1. Look up the IDs in RStudio using _brandseyer2_. 
+
+Both of these options are described below. 
 
 # Using the Advanced Filter panel
 
-One of the simplest ways of finding brand IDs is to use the filter panel in the app.
-Create a filter selecting the brand that you want, and then ask to see the _Advanced Filter_. 
-The brand ids will be in the filter, in sections that look like
+One way of finding brand IDs is to use the filter panel in the app.
+Create a filter selecting the brands that you want, and then ask to see the _Advanced Filter_. 
+The brand ids will be in the filter, in sections that look like:
 
 `brand isorchildof 1234`
 
-Where 1234 will be your specific brand id. 
+Where _1234_ will be a brand ID. 
 
 # Using brandseyer2
 
-There is a simpler way to find brand IDs, using brandseyer2. brandseyer2 should already
-be installed. Using brandseyer2, you would ask for a specific account, and then for its
-root brands, using the [root_brand()](https://brandseye.github.io/brandseyer2/reference/root_brands.html)
-function.
+There is a simpler way to find brand IDs, using [brandseyer2](https://brandseye.github.io/brandseyer2). 
+brandseyer2 was automatically installed if you're using this charting library. 
+The process of using brandseyer2 is to first specify which account you're interested in, and then to ask it
+to look up either the account's root brands, or all of the account's brands if you want a sub-brand. 
 
+Here is an example that uses [root_brand()](https://brandseye.github.io/brandseyer2/reference/root_brands.html)
+to list root brands for a simple test account, `TEST01AA`. 
 
 ```{r}
 library(brandseyer2)         # Load the library
@@ -43,7 +52,7 @@ account("TEST01AA") %>%      # Choose the account that you want
   root_brands()              # Ask for root brands
 ```
 
-This gives a table of root brand information for the account `TEST01AA`. The `id` column gives the brand ID
+The `id` column gives the brand ID
 for you to use in your filter. The `parent` column gives the ID of the brand's parent brand (for root brands this
 will always be `NA`, or "Not Applicable"). `deleted` will indicate whether the brand has been deleted or not,
 and `archived` will give a date that the brand was archived, or `NA` if it is unarchived.
@@ -79,6 +88,4 @@ account("TEST01AA") %>%
   brands() %>% 
   View()   # See in a table view.
 ```
-
-
 
