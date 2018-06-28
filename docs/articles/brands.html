@@ -102,6 +102,7 @@
 <a href="#using-brandseyer2" class="anchor"></a>Using brandseyer2</h1>
 <p>There is a simpler way to find brand IDs, using <a href="https://brandseye.github.io/brandseyer2">brandseyer2</a>. brandseyer2 was automatically installed if you’re using this charting library. The process of using brandseyer2 is to first specify which account you’re interested in, and then to ask it to look up either the account’s root brands, or all of the account’s brands if you want a sub-brand.</p>
 <p>Here is an example that uses <a href="https://brandseye.github.io/brandseyer2/reference/root_brands.html">root_brand()</a> to list root brands for a simple test account, <code>TEST01AA</code>.</p>
+<p>(You can copy and paste this code in to RStudio to play with it. Try using an account that you’re familiar with.)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(brandseyer2)         <span class="co"># Load the library</span>
 
 <span class="kw"><a href="https://brandseye.github.io/brandseyer2//reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st">      </span><span class="co"># Choose the account that you want </span>

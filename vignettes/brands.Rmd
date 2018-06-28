@@ -43,7 +43,9 @@ The process of using brandseyer2 is to first specify which account you're intere
 to look up either the account's root brands, or all of the account's brands if you want a sub-brand. 
 
 Here is an example that uses [root_brand()](https://brandseye.github.io/brandseyer2/reference/root_brands.html)
-to list root brands for a simple test account, `TEST01AA`. 
+to list root brands for a simple test account, `TEST01AA`.
+
+(You can copy and paste this code in to RStudio to play with it. Try using an account that you're familiar with.)
 
 ```{r}
 library(brandseyer2)         # Load the library
