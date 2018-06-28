@@ -1,0 +1,100 @@
+---
+title: "Setting up a script"
+author: "Lara Basson"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Setting up a script}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Here is an example script you can run to get a feel for how you might set up CSVs for a report.
+
+## Set up your account code & filter
+
+Once you've set up an account code and filter, you can use this in your various metrics:
+
+```{r }
+# First you'll want to set an account code
+code <- "QUIR01BA" 
+
+# Then set a filter - remember to add a brand
+filter <- "published inthelast week and relevancy is relevant and brand isorchildof 10006"
+```
+
+If you want to find brand IDs from an account, look at the article on finding [brands](brands.html) using R.
+
+
+## Getting volume and sentiment
+
+```{r, eval=FALSE}
+# To use a function from chartingtest, you'll first need to load the library
+library(chartingtest)
+
+# Now you can get a breakdown of volume and sentiment (including net sentiment) by date
+volume_sentiment_metric(code, filter)
+```
+
+```{r, echo=FALSE}
+library(chartingtest)
+knitr::kable(volume_sentiment_metric(code, filter), digits=2, format = "html") %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped", "responsive", "condensed"), full_width = F, font_size = 11)
+```
+
+
+### Grouping by day, week or month
+
+```{r, eval=FALSE}
+# You can group by day, week or month
+volume_sentiment_metric(code, filter, group = "week")
+```
+
+```{r, echo=FALSE}
+knitr::kable(volume_sentiment_metric(code, filter), digits=2) %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped", "responsive", "condensed"), full_width = F, font_size = 11)
+```
+
+## Saving to CSV
+``` {r, eval=FALSE}
+# To save to CSV, set save=TRUE - you'll be asked to enter a filename
+volume_sentiment_metric(code, filter, group = "day", save=TRUE)
+
+# If you want to run the code as part of a script, you can specify the file upfront and it will save automatically
+volume_sentiment_metric(code, filter, group = "day", file="C:/Users/brandseye/Documents/volume_sentiment.csv")
+
+```
+
+## More examples
+
+### Sentiment metric
+```{r, eval=FALSE}
+# Get data for the sentiment metric
+sentiment_metric(code, filter)
+```
+
+``` {r, echo=FALSE}
+knitr::kable(sentiment_metric(code, filter) %>% dplyr::mutate(Percentage=scales::percent(Percentage))) %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped", "responsive", "condensed"), full_width = F, font_size = 11)
+```
+
+
+### Stats metric
+```{r, eval=FALSE}
+# Get data for the stats metric
+stats_metric(code, filter)
+```
+
+```{r, echo=FALSE}
+knitr::kable(stats_metric(code, filter)) %>%
+  kableExtra::kable_styling(bootstrap_options = c("striped", "responsive", "condensed"), full_width = F, font_size = 11)
+```
+
+For an 
