@@ -75,7 +75,7 @@
       <h1>Example script</h1>
                         <h4 class="author">Lara Basson</h4>
             
-            <h4 class="date">2018-06-27</h4>
+            <h4 class="date">2018-06-28</h4>
       
       
       <div class="hidden name"><code>example-script.Rmd</code></div>
@@ -88,50 +88,50 @@
 <div id="set-up-your-account-code-filter" class="section level2">
 <h2 class="hasAnchor">
 <a href="#set-up-your-account-code-filter" class="anchor"></a>Set up your account code &amp; filter</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># First you'll want to set an account code</span></a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">code &lt;-<span class="st"> "QUIR01BA"</span> </a>
-<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># Then set a filter - remember to add a brand</span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">filter &lt;-<span class="st"> "published inthelast week and relevancy is relevant and brand isorchildof 10006"</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># First you'll want to set an account code</span>
+code &lt;-<span class="st"> "QUIR01BA"</span> 
+
+<span class="co"># Then set a filter - remember to add a brand</span>
+filter &lt;-<span class="st"> "published inthelast week and relevancy is relevant and brand isorchildof 10006"</span></code></pre></div>
 <p>If you want to find brand IDs from an account, look at our article on finding <a href="brands.html">brands</a> using R!</p>
 </div>
 <div id="getting-volume-and-sentiment-breakdown-volume" class="section level2">
 <h2 class="hasAnchor">
 <a href="#getting-volume-and-sentiment-breakdown-volume" class="anchor"></a>Getting volume and sentiment breakdown (volume )</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(chartingtest)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co"># Now you can get a breakdown of volume and sentiment (including net sentiment) by date</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw"><a href="../reference/volume_sentiment_metric.html">volume_sentiment_metric</a></span>(code, filter)</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; # A tibble: 8 x 9</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt;   published           count netSentiment positiveSentiment positivePercent</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt;   &lt;dttm&gt;              &lt;int&gt;        &lt;int&gt;             &lt;int&gt;           &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; 1 2018-06-20 00:00:00     1            0                 0           0    </span></a>
-<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; 2 2018-06-21 00:00:00     1            0                 0           0    </span></a>
-<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; 3 2018-06-22 00:00:00     8            5                 5           0.625</span></a>
-<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; 4 2018-06-23 00:00:00     2           -2                 0           0    </span></a>
-<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; 5 2018-06-24 00:00:00     1            0                 0           0    </span></a>
-<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; 6 2018-06-25 00:00:00    17           10                11           0.647</span></a>
-<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt; 7 2018-06-26 00:00:00    22            9                 9           0.409</span></a>
-<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; 8 2018-06-27 00:00:00     8            4                 4           0.5  </span></a>
-<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt; # ... with 4 more variables: negativeSentiment &lt;int&gt;,</span></a>
-<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt; #   negativePercent &lt;dbl&gt;, neutralSentiment &lt;int&gt;, neutralPercent &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb2-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co"># You can tell the function what to group by</span></a>
-<a class="sourceLine" id="cb2-20" data-line-number="20"><span class="kw"><a href="../reference/volume_sentiment_metric.html">volume_sentiment_metric</a></span>(code, filter, <span class="dt">group =</span> <span class="st">"week"</span>)</a>
-<a class="sourceLine" id="cb2-21" data-line-number="21"><span class="co">#&gt; # A tibble: 2 x 9</span></a>
-<a class="sourceLine" id="cb2-22" data-line-number="22"><span class="co">#&gt;   published           count netSentiment positiveSentiment positivePercent</span></a>
-<a class="sourceLine" id="cb2-23" data-line-number="23"><span class="co">#&gt;   &lt;dttm&gt;              &lt;int&gt;        &lt;int&gt;             &lt;int&gt;           &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb2-24" data-line-number="24"><span class="co">#&gt; 1 2018-06-18 00:00:00    13            3                 5           0.385</span></a>
-<a class="sourceLine" id="cb2-25" data-line-number="25"><span class="co">#&gt; 2 2018-06-25 00:00:00    47           23                24           0.511</span></a>
-<a class="sourceLine" id="cb2-26" data-line-number="26"><span class="co">#&gt; # ... with 4 more variables: negativeSentiment &lt;int&gt;,</span></a>
-<a class="sourceLine" id="cb2-27" data-line-number="27"><span class="co">#&gt; #   negativePercent &lt;dbl&gt;, neutralSentiment &lt;int&gt;, neutralPercent &lt;dbl&gt;</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(chartingtest)
+
+<span class="co"># Now you can get a breakdown of volume and sentiment (including net sentiment) by date</span>
+<span class="kw"><a href="../reference/volume_sentiment_metric.html">volume_sentiment_metric</a></span>(code, filter)
+<span class="co">#&gt; # A tibble: 8 x 9</span>
+<span class="co">#&gt;   published           count netSentiment positiveSentiment positivePercent</span>
+<span class="co">#&gt;   &lt;dttm&gt;              &lt;int&gt;        &lt;int&gt;             &lt;int&gt;           &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 2018-06-21 00:00:00     1            0                 0           0    </span>
+<span class="co">#&gt; 2 2018-06-22 00:00:00     8            5                 5           0.625</span>
+<span class="co">#&gt; 3 2018-06-23 00:00:00     2           -2                 0           0    </span>
+<span class="co">#&gt; 4 2018-06-24 00:00:00     1            0                 0           0    </span>
+<span class="co">#&gt; 5 2018-06-25 00:00:00    17           10                11           0.647</span>
+<span class="co">#&gt; 6 2018-06-26 00:00:00    22            9                 9           0.409</span>
+<span class="co">#&gt; 7 2018-06-27 00:00:00    12            6                 6           0.5  </span>
+<span class="co">#&gt; 8 2018-06-28 00:00:00     1            0                 0           0    </span>
+<span class="co">#&gt; # ... with 4 more variables: negativeSentiment &lt;int&gt;,</span>
+<span class="co">#&gt; #   negativePercent &lt;dbl&gt;, neutralSentiment &lt;int&gt;, neutralPercent &lt;dbl&gt;</span>
+
+<span class="co"># You can tell the function what to group by</span>
+<span class="kw"><a href="../reference/volume_sentiment_metric.html">volume_sentiment_metric</a></span>(code, filter, <span class="dt">group =</span> <span class="st">"week"</span>)
+<span class="co">#&gt; # A tibble: 2 x 9</span>
+<span class="co">#&gt;   published           count netSentiment positiveSentiment positivePercent</span>
+<span class="co">#&gt;   &lt;dttm&gt;              &lt;int&gt;        &lt;int&gt;             &lt;int&gt;           &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 2018-06-18 00:00:00    12            3                 5           0.417</span>
+<span class="co">#&gt; 2 2018-06-25 00:00:00    52           25                26           0.5  </span>
+<span class="co">#&gt; # ... with 4 more variables: negativeSentiment &lt;int&gt;,</span>
+<span class="co">#&gt; #   negativePercent &lt;dbl&gt;, neutralSentiment &lt;int&gt;, neutralPercent &lt;dbl&gt;</span></code></pre></div>
 </div>
 <div id="figures" class="section level2">
 <h2 class="hasAnchor">
 <a href="#figures" class="anchor"></a>Figures</h2>
 <p>The figure sizes have been customised so that you can easily put two images side-by-side.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">plot</span>(<span class="dv">10</span><span class="op">:</span><span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)
+<span class="kw">plot</span>(<span class="dv">10</span><span class="op">:</span><span class="dv">1</span>)</code></pre></div>
 <p><img src="example-script_files/figure-html/unnamed-chunk-3-1.png" width="700"><img src="example-script_files/figure-html/unnamed-chunk-3-2.png" width="700"></p>
 <p>You can enable figure captions by <code>fig_caption: yes</code> in YAML:</p>
 <pre><code>output:
@@ -142,7 +142,7 @@
 <div id="more-examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#more-examples" class="anchor"></a>More Examples</h2>
-<p>You can write math expressions, e.g. <span class="math inline">\(Y = X\beta + \epsilon\)</span>, footnotes<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, and tables, e.g. using <code><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">knitr::kable()</a></code>.</p>
+<p>You can write math expressions, e.g. <span class="math inline">\(Y = X\beta + \epsilon\)</span>, footnotes<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, and tables, e.g. using <code><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">knitr::kable()</a></code>.</p>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -309,7 +309,7 @@
 <div class="footnotes">
 <hr>
 <ol>
-<li id="fn1"><p>A footnote here.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>A footnote here.<a href="#fnref1">↩</a></p></li>
 </ol>
 </div>
   </div>
