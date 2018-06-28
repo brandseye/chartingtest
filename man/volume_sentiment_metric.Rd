@@ -10,13 +10,13 @@ volume_sentiment_metric(code, filter, group = "day", file = NULL,
 \arguments{
 \item{code}{The account code to use}
 
-\item{filter}{The filter for the data.}
+\item{filter}{The filter for the data}
 
 \item{group}{An optional string to group data by. Can be "day", "week", "month"}
 
-\item{file}{An optional file name to save a CSV file to.}
+\item{file}{An optional file name to save a CSV file to}
 
-\item{save}{Set to TRUE if you'd like a dialog file to choose where to save your CSV.}
+\item{save}{Set to TRUE if you'd like a dialog file to choose where to save your CSV}
 }
 \value{
 A tibble of your data

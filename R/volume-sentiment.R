@@ -21,10 +21,10 @@
 #' Returns the data for creating volume/sentiment charts
 #'
 #' @param code   The account code to use
-#' @param filter The filter for the data.
+#' @param filter The filter for the data
 #' @param group  An optional string to group data by. Can be "day", "week", "month"
-#' @param file   An optional file name to save a CSV file to.
-#' @param save   Set to TRUE if you'd like a dialog file to choose where to save your CSV.
+#' @param file   An optional file name to save a CSV file to
+#' @param save   Set to TRUE if you'd like a dialog file to choose where to save your CSV
 #'
 #' @return A tibble of your data
 #' @export
@@ -73,7 +73,10 @@ volume_sentiment_metric <- function(code, filter, group = "day", file = NULL, sa
 
   if (!is.null(file)) {
     data %>%
-      dplyr::mutate(published = format(published, "%F %R")) %>%
+      dplyr::mutate(published = format(published, "%F %R"),
+                    positivePercent=scales::percent(positivePercent),
+                    neutralPercent=scales::percent(neutralPercent),
+                    negativePercent=scales::percent(negativePercent)) %>%
       replace(is.na(.), 0) %>%
       readr::write_excel_csv(file, na = "")
     done(glue("Written your CSV to {file}"))
@@ -86,7 +89,7 @@ volume_sentiment_metric <- function(code, filter, group = "day", file = NULL, sa
 #'
 #' @param account An account code
 #' @param filter A filter for data
-#' @param group A string indicating how you want your data gruoped.
+#' @param group A string indicating how you want your data grouped
 #'
 #' @return the ggplot object
 #' @export
