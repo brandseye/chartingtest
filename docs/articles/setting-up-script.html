@@ -89,21 +89,21 @@
 <h2 class="hasAnchor">
 <a href="#set-up-your-account-code-filter" class="anchor"></a>Set up your account code &amp; filter</h2>
 <p>Once you’ve set up an account code and filter, you can use this in your various metrics:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># First you'll want to set an account code</span>
-code &lt;-<span class="st"> "QUIR01BA"</span> 
-
-<span class="co"># Then set a filter - remember to add a brand</span>
-filter &lt;-<span class="st"> "published inthelast week and relevancy is relevant and brand isorchildof 10006"</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># First you'll want to set an account code</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">code &lt;-<span class="st"> "QUIR01BA"</span> </a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># Then set a filter - remember to add a brand</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">filter &lt;-<span class="st"> "published inthelast week and relevancy is relevant and brand isorchildof 10006"</span></a></code></pre></div>
 <p>If you want to find brand IDs from an account, look at the article on finding <a href="brands.html">brands</a> using R.</p>
 </div>
 <div id="getting-volume-and-sentiment" class="section level2">
 <h2 class="hasAnchor">
 <a href="#getting-volume-and-sentiment" class="anchor"></a>Getting volume and sentiment</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># To use a function from chartingtest, you'll first need to load the library</span>
-<span class="kw">library</span>(chartingtest)
-
-<span class="co"># Now you can get a breakdown of volume and sentiment (including net sentiment) by date</span>
-<span class="kw"><a href="../reference/volume_sentiment_metric.html">volume_sentiment_metric</a></span>(code, filter)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># To use a function from chartingtest, you'll first need to load the library</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">library</span>(chartingtest)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># Now you can get a breakdown of volume and sentiment (including net sentiment) by date</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw"><a href="../reference/volume_sentiment_metric.html">volume_sentiment_metric</a></span>(code, filter)</a></code></pre></div>
 <table class="table" style="font-size: 11px; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
@@ -118,19 +118,19 @@ netSentiment
 <th style="text-align:right;">
 positiveSentiment
 </th>
-<th style="text-align:right;">
+<th style="text-align:left;">
 positivePercent
 </th>
 <th style="text-align:right;">
 negativeSentiment
 </th>
-<th style="text-align:right;">
+<th style="text-align:left;">
 negativePercent
 </th>
 <th style="text-align:right;">
 neutralSentiment
 </th>
-<th style="text-align:right;">
+<th style="text-align:left;">
 neutralPercent
 </th>
 </tr></thead>
@@ -148,20 +148,20 @@ neutralPercent
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0.0%
 </td>
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0%
 </td>
 <td style="text-align:right;">
 1
 </td>
-<td style="text-align:right;">
-1.00
+<td style="text-align:left;">
+100%
 </td>
 </tr>
 <tr>
@@ -177,20 +177,20 @@ neutralPercent
 <td style="text-align:right;">
 5
 </td>
-<td style="text-align:right;">
-0.62
+<td style="text-align:left;">
+62.5%
 </td>
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0%
 </td>
 <td style="text-align:right;">
 3
 </td>
-<td style="text-align:right;">
-0.38
+<td style="text-align:left;">
+38%
 </td>
 </tr>
 <tr>
@@ -206,20 +206,20 @@ neutralPercent
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0.0%
 </td>
 <td style="text-align:right;">
 2
 </td>
-<td style="text-align:right;">
-1.00
+<td style="text-align:left;">
+100%
 </td>
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0%
 </td>
 </tr>
 <tr>
@@ -235,20 +235,20 @@ neutralPercent
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0.0%
 </td>
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0%
 </td>
 <td style="text-align:right;">
 1
 </td>
-<td style="text-align:right;">
-1.00
+<td style="text-align:left;">
+100%
 </td>
 </tr>
 <tr>
@@ -264,20 +264,20 @@ neutralPercent
 <td style="text-align:right;">
 11
 </td>
-<td style="text-align:right;">
-0.65
+<td style="text-align:left;">
+64.7%
 </td>
 <td style="text-align:right;">
 1
 </td>
-<td style="text-align:right;">
-0.06
+<td style="text-align:left;">
+6%
 </td>
 <td style="text-align:right;">
 5
 </td>
-<td style="text-align:right;">
-0.29
+<td style="text-align:left;">
+29%
 </td>
 </tr>
 <tr>
@@ -293,20 +293,20 @@ neutralPercent
 <td style="text-align:right;">
 9
 </td>
-<td style="text-align:right;">
-0.41
+<td style="text-align:left;">
+40.9%
 </td>
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0%
 </td>
 <td style="text-align:right;">
 13
 </td>
-<td style="text-align:right;">
-0.59
+<td style="text-align:left;">
+59%
 </td>
 </tr>
 <tr>
@@ -322,20 +322,20 @@ neutralPercent
 <td style="text-align:right;">
 6
 </td>
-<td style="text-align:right;">
-0.50
+<td style="text-align:left;">
+50.0%
 </td>
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0%
 </td>
 <td style="text-align:right;">
 6
 </td>
-<td style="text-align:right;">
-0.50
+<td style="text-align:left;">
+50%
 </td>
 </tr>
 <tr>
@@ -351,20 +351,20 @@ neutralPercent
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0.0%
 </td>
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0%
 </td>
 <td style="text-align:right;">
 1
 </td>
-<td style="text-align:right;">
-1.00
+<td style="text-align:left;">
+100%
 </td>
 </tr>
 </tbody>
@@ -372,8 +372,8 @@ neutralPercent
 <div id="grouping-by-day-week-or-month" class="section level3">
 <h3 class="hasAnchor">
 <a href="#grouping-by-day-week-or-month" class="anchor"></a>Grouping by day, week or month</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># You can group by day, week or month</span>
-<span class="kw"><a href="../reference/volume_sentiment_metric.html">volume_sentiment_metric</a></span>(code, filter, <span class="dt">group =</span> <span class="st">"week"</span>)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># You can group by day, week or month</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="../reference/volume_sentiment_metric.html">volume_sentiment_metric</a></span>(code, filter, <span class="dt">group =</span> <span class="st">"week"</span>)</a></code></pre></div>
 <table class="table" style="font-size: 11px; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
@@ -388,19 +388,19 @@ netSentiment
 <th style="text-align:right;">
 positiveSentiment
 </th>
-<th style="text-align:right;">
+<th style="text-align:left;">
 positivePercent
 </th>
 <th style="text-align:right;">
 negativeSentiment
 </th>
-<th style="text-align:right;">
+<th style="text-align:left;">
 negativePercent
 </th>
 <th style="text-align:right;">
 neutralSentiment
 </th>
-<th style="text-align:right;">
+<th style="text-align:left;">
 neutralPercent
 </th>
 </tr></thead>
@@ -418,20 +418,20 @@ neutralPercent
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0.0%
 </td>
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0%
 </td>
 <td style="text-align:right;">
 1
 </td>
-<td style="text-align:right;">
-1.00
+<td style="text-align:left;">
+100%
 </td>
 </tr>
 <tr>
@@ -447,20 +447,20 @@ neutralPercent
 <td style="text-align:right;">
 5
 </td>
-<td style="text-align:right;">
-0.62
+<td style="text-align:left;">
+62.5%
 </td>
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0%
 </td>
 <td style="text-align:right;">
 3
 </td>
-<td style="text-align:right;">
-0.38
+<td style="text-align:left;">
+38%
 </td>
 </tr>
 <tr>
@@ -476,20 +476,20 @@ neutralPercent
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0.0%
 </td>
 <td style="text-align:right;">
 2
 </td>
-<td style="text-align:right;">
-1.00
+<td style="text-align:left;">
+100%
 </td>
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0%
 </td>
 </tr>
 <tr>
@@ -505,20 +505,20 @@ neutralPercent
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0.0%
 </td>
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0%
 </td>
 <td style="text-align:right;">
 1
 </td>
-<td style="text-align:right;">
-1.00
+<td style="text-align:left;">
+100%
 </td>
 </tr>
 <tr>
@@ -534,20 +534,20 @@ neutralPercent
 <td style="text-align:right;">
 11
 </td>
-<td style="text-align:right;">
-0.65
+<td style="text-align:left;">
+64.7%
 </td>
 <td style="text-align:right;">
 1
 </td>
-<td style="text-align:right;">
-0.06
+<td style="text-align:left;">
+6%
 </td>
 <td style="text-align:right;">
 5
 </td>
-<td style="text-align:right;">
-0.29
+<td style="text-align:left;">
+29%
 </td>
 </tr>
 <tr>
@@ -563,20 +563,20 @@ neutralPercent
 <td style="text-align:right;">
 9
 </td>
-<td style="text-align:right;">
-0.41
+<td style="text-align:left;">
+40.9%
 </td>
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0%
 </td>
 <td style="text-align:right;">
 13
 </td>
-<td style="text-align:right;">
-0.59
+<td style="text-align:left;">
+59%
 </td>
 </tr>
 <tr>
@@ -592,20 +592,20 @@ neutralPercent
 <td style="text-align:right;">
 6
 </td>
-<td style="text-align:right;">
-0.50
+<td style="text-align:left;">
+50.0%
 </td>
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0%
 </td>
 <td style="text-align:right;">
 6
 </td>
-<td style="text-align:right;">
-0.50
+<td style="text-align:left;">
+50%
 </td>
 </tr>
 <tr>
@@ -621,20 +621,20 @@ neutralPercent
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0.0%
 </td>
 <td style="text-align:right;">
 0
 </td>
-<td style="text-align:right;">
-0.00
+<td style="text-align:left;">
+0%
 </td>
 <td style="text-align:right;">
 1
 </td>
-<td style="text-align:right;">
-1.00
+<td style="text-align:left;">
+100%
 </td>
 </tr>
 </tbody>
@@ -644,11 +644,11 @@ neutralPercent
 <div id="saving-to-csv" class="section level2">
 <h2 class="hasAnchor">
 <a href="#saving-to-csv" class="anchor"></a>Saving to CSV</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># To save to CSV, set save=TRUE - you'll be asked to enter a filename</span>
-<span class="kw"><a href="../reference/volume_sentiment_metric.html">volume_sentiment_metric</a></span>(code, filter, <span class="dt">group =</span> <span class="st">"day"</span>, <span class="dt">save=</span><span class="ot">TRUE</span>)
-
-<span class="co"># If you want to run the code as part of a script, you can specify the file upfront and it will save automatically</span>
-<span class="kw"><a href="../reference/volume_sentiment_metric.html">volume_sentiment_metric</a></span>(code, filter, <span class="dt">group =</span> <span class="st">"day"</span>, <span class="dt">file=</span><span class="st">"C:/Users/brandseye/Documents/volume_sentiment.csv"</span>)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="co"># To save to CSV, set save=TRUE - you'll be asked to enter a filename</span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw"><a href="../reference/volume_sentiment_metric.html">volume_sentiment_metric</a></span>(code, filter, <span class="dt">group =</span> <span class="st">"day"</span>, <span class="dt">save=</span><span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co"># If you want to run the code as part of a script, you can specify the file upfront and it will save automatically</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="kw"><a href="../reference/volume_sentiment_metric.html">volume_sentiment_metric</a></span>(code, filter, <span class="dt">group =</span> <span class="st">"day"</span>, <span class="dt">file=</span><span class="st">"C:/Users/brandseye/Documents/volume_sentiment.csv"</span>)</a></code></pre></div>
 </div>
 <div id="more-examples" class="section level2">
 <h2 class="hasAnchor">
@@ -656,8 +656,8 @@ neutralPercent
 <div id="sentiment-metric" class="section level3">
 <h3 class="hasAnchor">
 <a href="#sentiment-metric" class="anchor"></a>Sentiment metric</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get data for the sentiment metric</span>
-<span class="kw"><a href="../reference/sentiment_metric.html">sentiment_metric</a></span>(code, filter)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># Get data for the sentiment metric</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="../reference/sentiment_metric.html">sentiment_metric</a></span>(code, filter)</a></code></pre></div>
 <table class="table" style="font-size: 11px; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
@@ -710,8 +710,8 @@ Positive
 <div id="stats-metric" class="section level3">
 <h3 class="hasAnchor">
 <a href="#stats-metric" class="anchor"></a>Stats metric</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Get data for the stats metric</span>
-<span class="kw"><a href="../reference/stats_metric.html">stats_metric</a></span>(code, filter)</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># Get data for the stats metric</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw"><a href="../reference/stats_metric.html">stats_metric</a></span>(code, filter)</a></code></pre></div>
 <table class="table" style="font-size: 11px; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead><tr>
 <th style="text-align:left;">
@@ -820,8 +820,12 @@ Negative %
 </tr>
 </tbody>
 </table>
-<p>For an</p>
 </div>
+</div>
+<div id="putting-it-all-together" class="section level2">
+<h2 class="hasAnchor">
+<a href="#putting-it-all-together" class="anchor"></a>Putting it all together</h2>
+<p>To</p>
 </div>
   </div>
 
@@ -834,6 +838,7 @@ Negative %
       <li><a href="#getting-volume-and-sentiment">Getting volume and sentiment</a></li>
       <li><a href="#saving-to-csv">Saving to CSV</a></li>
       <li><a href="#more-examples">More examples</a></li>
+      <li><a href="#putting-it-all-together">Putting it all together</a></li>
       </ul>
 </div>
       </div>
