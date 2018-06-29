@@ -7,3 +7,4 @@
 ## Other fixes
 * Added a `NEWS.md` file to track changes to the package.
 * Fixed bugs using `truncateAt` in various functions.
+* Added instructions to README.Rmd on how to update this library.
