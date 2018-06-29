@@ -24,7 +24,8 @@
 #' @param filter A filter for data
 #' @param file   An optional file name to save a CSV file to.
 #' @param save   Set to TRUE if you'd like a dialog file to choose where to save your CSV.
-#' @param truncateAt Optional number of results - rest will become "Others"
+#' @param truncateAt Optional number of results - rest will become "Others". This takes the
+#'                   top sites based on the volume of mentions from the site.
 #'
 #' @return A tibble of your data
 #' @export
@@ -37,19 +38,30 @@
 sites_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = NULL) {
 
   # For devtools::check
-  mentionCount <- NULL; . <- NULL;
+  mentionCount <- NULL; . <- NULL; site <- NULL; engagement <- NULL;
+  totalSentiment <- NULL; totalOTS <- NULL; totalEngagement <- NULL;
 
   ac <- account(code)
-  data <- count_mentions(ac, filter, groupBy="site")
+  data <- count_mentions(ac, filter, groupBy = site, select = c(mentionCount, engagement, totalSentiment, totalOTS))
 
   if (!is.null(truncateAt)) {
     assert_that(is.number(truncateAt))
     top <- data %>% top_n(n = truncateAt, wt=mentionCount)
     others <- data %>%
-      top_n(n=-(nrow(.))-truncateAt, wt=mentionCount) %$%
-      tibble(site="Others", mentionCount=sum(mentionCount))
+      top_n(n=-(nrow(.)-truncateAt), wt=mentionCount) %$%
+      tibble(site="Others",
+             mentionCount = sum(mentionCount, na.rm = TRUE),
+             totalEngagement = sum(totalEngagement, na.rm = TRUE),
+             totalSentiment = sum(totalSentiment, na.rm = TRUE),
+             totalOTS = sum(totalOTS, na.rm = TRUE))
     data <- bind_rows(top, others)
   }
+
+  data %<>%
+    rename(count = mentionCount,
+           engagement = totalEngagement,
+           netSentiment = totalSentiment,
+           ots = totalOTS)
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",
                                           filter = "CSV Files (*.csv)",
@@ -60,7 +72,7 @@ sites_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = N
 
   if (!is.null(file)) {
     data %>%
-      readr::write_excel_csv(file, na = "")
+      readr::write_excel_csv(file, na = "0")
     done(glue("Written your CSV to {file}"))
   }
 

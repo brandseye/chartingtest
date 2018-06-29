@@ -15,7 +15,8 @@ sites_metric(code, filter, file = NULL, save = FALSE, truncateAt = NULL)
 
 \item{save}{Set to TRUE if you'd like a dialog file to choose where to save your CSV.}
 
-\item{truncateAt}{Optional number of results - rest will become "Others"}
+\item{truncateAt}{Optional number of results - rest will become "Others". This takes the
+top sites based on the volume of mentions from the site.}
 }
 \value{
 A tibble of your data
