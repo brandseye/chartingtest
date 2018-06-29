@@ -36,19 +36,33 @@
 authors_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = NULL) {
 
   # For devtools::check
-  mentionCount <- NULL; . <- NULL;
+  mentionCount <- NULL; . <- NULL; authorHandle <- NULL; authorId <- NULL; authorName <- NULL;
+  engagement <- NULL; totalEngagement <- NULL; totalOTS <- NULL; totalSentiment <- NULL;
 
   ac <- account(code)
-  data <- count_mentions(ac, filter, groupBy="authorId, authorHandle, authorName")
+  data <- count_mentions(ac, filter,
+                         groupBy = c(authorId, authorHandle, authorName),
+                         select = c(mentionCount, totalSentiment, totalOTS, engagement))
 
   if (!is.null(truncateAt)) {
     assert_that(is.number(truncateAt))
     top <- data %>% top_n(n = truncateAt, wt=mentionCount)
     others <- data %>%
       top_n(n=-(nrow(.)-truncateAt), wt=mentionCount) %$%
-      tibble(authorId="Others", authorHandle="Others", authorName="Others", mentionCount=sum(mentionCount))
+      tibble(authorId="Others", authorHandle="Others", authorName="Others",
+             mentionCount = sum(mentionCount, na.rm = TRUE),
+             totalSentiment = sum(totalSentiment, na.rm = TRUE),
+             totalOTS = sum(totalOTS, na.rm = TRUE),
+             totalEngagement = sum(totalEngagement, na.rm = TRUE))
     data <- bind_rows(top, others)
   }
+
+  data %<>%
+    rename(count = mentionCount,
+           netSentiment = totalSentiment,
+           ots = totalOTS,
+           engagement = totalEngagement) %>%
+    select(authorId, authorHandle, authorName, count, everything())
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",
                                           filter = "CSV Files (*.csv)",
@@ -59,6 +73,7 @@ authors_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt =
 
   if (!is.null(file)) {
     data %>%
+      tidyr::replace_na(list(engagement = 0, ots = 0, sentiment = 0)) %>%
       readr::write_excel_csv(file, na = "")
     done(glue("Written your CSV to {file}"))
   }

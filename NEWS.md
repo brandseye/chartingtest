@@ -2,6 +2,7 @@
 
 ## Chart updates
 * `sites_metric()` now has netSentiment, engagement, and OTS. 
+* `authors_metric()` now provides netSentiment, engagement, and OTS.
 
 ## Other fixes
 * Added a `NEWS.md` file to track changes to the package.
