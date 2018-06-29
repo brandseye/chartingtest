@@ -21,7 +21,9 @@ You can work your way through the following steps:
 
 1. Download and install [R](https://cran.rstudio.com/). 
 
-1. Download and install [RStudio](https://www.rstudio.com/products/rstudio/download/).
+1. Download and install [RStudio](https://www.rstudio.com/products/rstudio/download/). If you already
+   have a version of RStudio installed, please make sure it's more recent than version 1.1.287. 
+   If you're unsure, you can update RStudio from it's _Help_ menu.
 
 1. You need to install the fonts that the library uses when plotting. These are [Open Sans](https://fonts.google.com/specimen/Open+Sans) 
 and [Nunito Sans](https://fonts.google.com/specimen/Nunito+Sans) fonts, 
