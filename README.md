@@ -101,6 +101,16 @@ library("installr")
 updateR()
 ```
 
+Updating chartingtest
+=====================
+
+If you would like to get a new version of `chartingtest` installed, run the following from your RStudio Console.
+
+``` r
+devtools::install_github("brandseye/brandseyer2")     # Update brandseyer2
+devtools::install_github("brandseye/chartingtest")    # Update chartingtest
+```
+
 Recent Changes
 ==============
 
