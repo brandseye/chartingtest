@@ -45,7 +45,7 @@ authors_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt =
     assert_that(is.number(truncateAt))
     top <- data %>% top_n(n = truncateAt, wt=mentionCount)
     others <- data %>%
-      top_n(n=-(nrow(.))-truncateAt, wt=mentionCount) %$%
+      top_n(n=-(nrow(.)-truncateAt), wt=mentionCount) %$%
       tibble(authorId="Others", authorHandle="Others", authorName="Others", mentionCount=sum(mentionCount))
     data <- bind_rows(top, others)
   }
