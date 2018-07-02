@@ -18,52 +18,32 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-#' Gets the Topics for a given filter
+#' Gives information grouped by country
 #'
-#' @param code An account code
-#' @param filter A filter for data
-#' @param file   An optional file name to save a CSV file to.
-#' @param save   Set to TRUE if you'd like a dialog file to choose where to save your CSV.
+#' @param code   The account code to use
+#' @param filter The filter for the data
+#' @param file   An optional file name to save a CSV file to
+#' @param save   Set to TRUE if you'd like a dialog file to choose where to save your CSV
 #' @param truncateAt Optional number of results - rest will become "Others". This takes the
-#'                   top topics based on the volume of mentions from the site.
-#' @param showParents Set this to FALSE if you don't want any parent topics included in the
-#'                    results.
-#' @param showChildren Set this to FALSE if you don't want any child topics included in the
-#'                    results.
+#'                   top countries based on the volume of mentions from the site.
 #'
 #' @return A tibble of your data
 #' @export
 #'
 #' @examples
 #'
-#' \dontrun{
-#' topics_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006")
-#' }
-
-
-topics_metric <- function(code, filter, file = NULL,
-                          save = FALSE, truncateAt = NULL,
-                          showParents = TRUE,
-                          showChildren = TRUE) {
+#' location_metric("QUIR01BA", "published inthelast week  and brand isorchildof 10006")
+location_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = NULL) {
   assert_that(is.string(code))
   assert_that(is.string(filter))
   assert_that(is.null(file) || is.string(file), msg = "File name must be a string")
 
-  if (!showParents && !showChildren) {
-    error("showParents and showChildren are both set to FALSE, so no data will be returned")
-  }
-
   # For devtools::check
-  engagement <- NULL; is_parent <- NULL; mentionCount <- NULL;
-  tag <- NULL; tag.id <- NULL; tag.name <- NULL;
-  totalEngagement <- NULL; totalOTS <- NULL; totalSentiment <- NULL; . <- NULL;
+  country <- NULL; country.id <- NULL; country.name <- NULL; engagement <- NULL; . <- NULL;
+  mentionCount <- NULL; totalEngagement <- NULL; totalOTS <- NULL; totalSentiment <- NULL;
 
-  ac <- account(code)
-
-  data <- ac %>%
-    count_mentions(filter,
-                   groupBy = tag,
-                   tagNamespace = "topic",
+  data <- account(code) %>%
+    count_mentions(filter, groupBy = country,
                    select = c(mentionCount, engagement, totalSentiment, totalOTS))
 
   if (!is.null(truncateAt)) {
@@ -71,8 +51,8 @@ topics_metric <- function(code, filter, file = NULL,
     top <- data %>% top_n(n = truncateAt, wt=mentionCount)
     others <- data %>%
       top_n(n=-(nrow(.)-truncateAt), wt=mentionCount) %$%
-      tibble(tag.id=as.integer(0),
-             tag.name = "Others",
+      tibble(country.id = "OTHER",
+             country.name = "Others",
              mentionCount = sum(mentionCount, na.rm = TRUE),
              totalEngagement = sum(totalEngagement, na.rm = TRUE),
              totalSentiment = sum(totalSentiment, na.rm = TRUE),
@@ -81,27 +61,13 @@ topics_metric <- function(code, filter, file = NULL,
   }
 
   data %<>%
-    rename(id = tag.id,
-           topic = tag.name,
+    rename(id = country.id,
+           country = country.name,
            count = mentionCount,
            engagement = totalEngagement,
            netSentiment = totalSentiment,
            ots = totalOTS) %>%
-    tidyr::replace_na(list(count = 0, engagement = 0, netSentiment = 0, ots = 0)) %>%
-    dplyr::left_join(ac %>% topics() %>% select(id, is_parent))
-
-
-  if (!showParents) {
-    data %<>%
-      filter(is_parent == FALSE)
-  }
-
-  if (!showChildren) {
-    data %<>%
-      filter(is_parent == TRUE)
-  }
-
-  data %<>% select(-tag, -is_parent)
+    tidyr::replace_na(list(count = 0, engagement = 0, netSentiment = 0, ots = 0))
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",
                                           filter = "CSV Files (*.csv)",
@@ -118,3 +84,4 @@ topics_metric <- function(code, filter, file = NULL,
 
   data
 }
+

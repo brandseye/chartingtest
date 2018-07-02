@@ -36,6 +36,9 @@
 
 
 sites_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = NULL) {
+  assert_that(is.string(code))
+  assert_that(is.string(filter))
+  assert_that(is.null(file) || is.string(file), msg = "File name must be a string")
 
   # For devtools::check
   mentionCount <- NULL; . <- NULL; site <- NULL; engagement <- NULL;
