@@ -16,6 +16,9 @@ reference:
       - race_metric
       - authors_metric
       - topics_metric
+      - location_metric
+      - region_metric
+      - cities_metric
 
   - title: "Creating charts and metrics"
     desc: >

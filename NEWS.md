@@ -2,6 +2,8 @@
 
 * There is a new `topics_metric()` function supplying topics data.
 * There is a new `location_metric()` function supplying country data.
+* There is a new `regions_metric()` function supplying region data.
+* There is a new `cities_metric()` function supplying city data.
 * Version bump to release development changes for analysts.
 
 # chartingtest 1.0.0.9000

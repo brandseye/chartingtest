@@ -18,32 +18,32 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-#' Gives information grouped by country
+#' Gives information grouped by city
 #'
 #' @param code   The account code to use
 #' @param filter The filter for the data
 #' @param file   An optional file name to save a CSV file to
 #' @param save   Set to TRUE if you'd like a dialog file to choose where to save your CSV
 #' @param truncateAt Optional number of results - rest will become "Others". This takes the
-#'                   top countries based on the volume of mentions from the site.
+#'                   top cities based on the volume of mentions from the site.
 #'
 #' @return A tibble of your data
 #' @export
 #'
 #' @examples
 #'
-#' location_metric("QUIR01BA", "published inthelast week  and brand isorchildof 10006")
-location_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = NULL) {
+#' cities_metric("QUIR01BA", "published inthelast week  and brand isorchildof 10006")
+cities_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = NULL) {
   assert_that(is.string(code))
   assert_that(is.string(filter))
   assert_that(is.null(file) || is.string(file), msg = "File name must be a string")
 
   # For devtools::check
-  country <- NULL; country.id <- NULL; country.name <- NULL; engagement <- NULL; . <- NULL;
+  city <- NULL; city.id <- NULL; city.name <- NULL; engagement <- NULL; . <- NULL;
   mentionCount <- NULL; totalEngagement <- NULL; totalOTS <- NULL; totalSentiment <- NULL;
 
   data <- account(code) %>%
-    count_mentions(filter, groupBy = country,
+    count_mentions(filter, groupBy = city,
                    select = c(mentionCount, engagement, totalSentiment, totalOTS))
 
   if (!is.null(truncateAt)) {
@@ -51,8 +51,8 @@ location_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt 
     top <- data %>% top_n(n = truncateAt, wt=mentionCount)
     others <- data %>%
       top_n(n=-(nrow(.)-truncateAt), wt=mentionCount) %$%
-      tibble(country.id = "OTHER",
-             country.name = "Others",
+      tibble(city.id = as.integer(0),
+             city.name = "Others",
              mentionCount = sum(mentionCount, na.rm = TRUE),
              totalEngagement = sum(totalEngagement, na.rm = TRUE),
              totalSentiment = sum(totalSentiment, na.rm = TRUE),
@@ -61,13 +61,15 @@ location_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt 
   }
 
   data %<>%
-    rename(id = country.id,
-           country = country.name,
+    select(-city) %>%
+    rename(id = city.id,
+           city = city.name,
            count = mentionCount,
            engagement = totalEngagement,
            netSentiment = totalSentiment,
            ots = totalOTS) %>%
-    tidyr::replace_na(list(country = "Unknown", count = 0, engagement = 0, netSentiment = 0, ots = 0))
+    tidyr::replace_na(list(city = "Unknown", count = 0, engagement = 0, netSentiment = 0, ots = 0)) %>%
+    select(id, city, everything())
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",
                                           filter = "CSV Files (*.csv)",
