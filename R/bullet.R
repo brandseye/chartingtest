@@ -12,3 +12,7 @@ done <- function (...) {
 warn <- function(...) {
   rlang::warn(paste(crayon::red(clisymbols::symbol$warning), paste0(...)))
 }
+
+error <- function(...) {
+  rlang::abort(paste(crayon::red(clisymbols::symbol$cross), paste0(...)))
+}

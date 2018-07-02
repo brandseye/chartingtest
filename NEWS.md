@@ -1,5 +1,6 @@
 # chartingtest 1.1.0
 
+* There is a new `topics_metric()` function supplying topics data.
 * Version bump to release development changes for analysts.
 
 # chartingtest 1.0.0.9000
