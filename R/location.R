@@ -32,8 +32,8 @@
 #'
 #' @examples
 #'
-#' location_metric("QUIR01BA", "published inthelast week  and brand isorchildof 10006")
-location_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = NULL) {
+#' locations_metric("QUIR01BA", "published inthelast week  and brand isorchildof 10006")
+locations_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = NULL) {
   assert_that(is.string(code))
   assert_that(is.string(filter))
   assert_that(is.null(file) || is.string(file), msg = "File name must be a string")
