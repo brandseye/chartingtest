@@ -15,6 +15,7 @@ reference:
       - gender_metric
       - race_metric
       - authors_metric
+      - topics_metric
 
   - title: "Creating charts and metrics"
     desc: >
