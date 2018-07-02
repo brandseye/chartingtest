@@ -1,5 +1,7 @@
 # chartingtest 1.1.0
 
+* Version bump to release development changes for analysts.
+
 # chartingtest 1.0.0.9000
 
 ## Chart updates
