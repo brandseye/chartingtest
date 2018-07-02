@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • chartingtest</title>
+<title>Gives information grouped by region — regions_metric • chartingtest</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,7 +30,10 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Gives information grouped by region — regions_metric" />
+
+<meta property="og:description" content="Gives information grouped by region" />
+<meta name="twitter:card" content="summary" />
 
 
 
@@ -46,7 +49,7 @@
   </head>
 
   <body>
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -107,56 +110,80 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
-      
+    <h1>Gives information grouped by region</h1>
+    
+    <div class="hidden name"><code>regions_metric.Rd</code></div>
     </div>
 
-    <div id="chartingtest-1-1-0" class="section level1">
-<h1 class="page-header">
-<a href="#chartingtest-1-1-0" class="anchor"></a>chartingtest 1.1.0</h1>
-<ul>
-<li>There is a new <code><a href="../reference/topics_metric.html">topics_metric()</a></code> function supplying topics data.</li>
-<li>There is a new <code><a href="../reference/location_metric.html">location_metric()</a></code> function supplying country data.</li>
-<li>There is a new <code><a href="../reference/regions_metric.html">regions_metric()</a></code> function supplying region data.</li>
-<li>There is a new <code><a href="../reference/cities_metric.html">cities_metric()</a></code> function supplying city data.</li>
-<li>Version bump to release development changes for analysts.</li>
-</ul>
-</div>
-    <div id="chartingtest-1-0-0-9000" class="section level1">
-<h1 class="page-header">
-<a href="#chartingtest-1-0-0-9000" class="anchor"></a>chartingtest 1.0.0.9000</h1>
-<div id="chart-updates" class="section level2">
-<h2 class="hasAnchor">
-<a href="#chart-updates" class="anchor"></a>Chart updates</h2>
-<ul>
-<li>
-<code><a href="../reference/sites_metric.html">sites_metric()</a></code> now has netSentiment, engagement, and OTS.</li>
-<li>
-<code><a href="../reference/authors_metric.html">authors_metric()</a></code> now provides netSentiment, engagement, and OTS.</li>
-</ul>
-</div>
-<div id="other-fixes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#other-fixes" class="anchor"></a>Other fixes</h2>
-<ul>
-<li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
-<li>Fixed bugs using <code>truncateAt</code> in various functions.</li>
-<li>Added instructions to README.Rmd on how to update this library.</li>
-</ul>
-</div>
-</div>
-  </div>
+    <div class="ref-description">
+    
+    <p>Gives information grouped by region</p>
+    
+    </div>
 
+    <pre class="usage"><span class='fu'>regions_metric</span>(<span class='no'>code</span>, <span class='no'>filter</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>save</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>truncateAt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>code</th>
+      <td><p>The account code to use</p></td>
+    </tr>
+    <tr>
+      <th>filter</th>
+      <td><p>The filter for the data</p></td>
+    </tr>
+    <tr>
+      <th>file</th>
+      <td><p>An optional file name to save a CSV file to</p></td>
+    </tr>
+    <tr>
+      <th>save</th>
+      <td><p>Set to TRUE if you'd like a dialog file to choose where to save your CSV</p></td>
+    </tr>
+    <tr>
+      <th>truncateAt</th>
+      <td><p>Optional number of results - rest will become "Others". This takes the
+top regions based on the volume of mentions from the site.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A tibble of your data</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='fu'>regions_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week  and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 13 x 6
+#&gt;    id     region             count engagement netSentiment     ots
+#&gt;    &lt;chr&gt;  &lt;chr&gt;              &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;
+#&gt;  1 &lt;NA&gt;   Unknown              133         99           22 1629227
+#&gt;  2 ZW.10  Harare Province       48         28           14  147468
+#&gt;  3 ZA.11  Western Cape           9          1            3   45430
+#&gt;  4 ZW.09  Bulawayo               3          0            0    1708
+#&gt;  5 ZA.06  Gauteng                2          3            0    1005
+#&gt;  6 US.OH  Ohio                   1          0            1    5547
+#&gt;  7 DE.16  Berlin                 1          0            1     348
+#&gt;  8 IN.07  NCT                    1          0            1      30
+#&gt;  9 PH.06  Western Visayas        1          0            0    2179
+#&gt; 10 KE.05  Nairobi Area           1          0            0    1839
+#&gt; 11 GB.ENG England                1          0            0    1211
+#&gt; 12 AE.03  Dubayy                 1          0            0     305
+#&gt; 13 ZW.06  Matabeleland North     1          0            0      99</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#chartingtest-1-1-0">1.1.0</a></li>
-        <li><a href="#chartingtest-1-0-0-9000">1.0.0.9000</a></li>
-      </ul>
-    </div>
-  </div>
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
+  </div>
 </div>
 
       <footer>
