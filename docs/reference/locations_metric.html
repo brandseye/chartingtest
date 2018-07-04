@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chartingtest</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.1.0.9000</span>
       </span>
     </div>
 
@@ -157,21 +157,19 @@ top countries based on the volume of mentions from the site.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>locations_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week  and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 12 x 6
-#&gt;    id    country              count engagement netSentiment     ots
-#&gt;    &lt;chr&gt; &lt;chr&gt;                &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;
-#&gt;  1 ZW    Zimbabwe               125         88           25 1408051
-#&gt;  2 &lt;NA&gt;  Unknown                 49         39            8  341276
-#&gt;  3 ZA    South Africa            12          4            3   56925
-#&gt;  4 GB    United Kingdom           8          0            0   18538
-#&gt;  5 IN    India                    2          0            2     122
-#&gt;  6 US    United States            1          0            1    5547
-#&gt;  7 ES    Spain                    1          0            1     713
-#&gt;  8 AD    Andorra                  1          0            1     553
-#&gt;  9 DE    Germany                  1          0            1     348
-#&gt; 10 PH    Philippines              1          0            0    2179
-#&gt; 11 KE    Kenya                    1          0            0    1839
-#&gt; 12 AE    United Arab Emirates     1          0            0     305</div></pre>
+<span class='fu'>locations_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week  and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 10 x 6
+#&gt;    id    country        count engagement netSentiment     ots
+#&gt;    &lt;chr&gt; &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;
+#&gt;  1 ZW    Zimbabwe         103         64           13 1255756
+#&gt;  2 &lt;NA&gt;  Unknown           44         38            8  339850
+#&gt;  3 GB    United Kingdom     8          0            0   18538
+#&gt;  4 ZA    South Africa       7          3            1   32526
+#&gt;  5 IN    India              2          0            2     122
+#&gt;  6 US    United States      1          0            1    5547
+#&gt;  7 AD    Andorra            1          0            1     553
+#&gt;  8 DE    Germany            1          0            1     348
+#&gt;  9 PH    Philippines        1          0            0    2179
+#&gt; 10 KE    Kenya              1          0            0    1839</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

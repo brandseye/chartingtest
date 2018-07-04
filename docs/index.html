@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">chartingtest</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.1.0.9000</span>
       </span>
     </div>
 
@@ -97,24 +97,24 @@
 <li><p>You need to install the fonts that the library uses when plotting. These are <a href="https://fonts.google.com/specimen/Open+Sans">Open Sans</a> and <a href="https://fonts.google.com/specimen/Nunito+Sans">Nunito Sans</a> fonts, which if you don’t have installed, you can get from Google Fonts.</p></li>
 <li>
 <p>You can install the this library using the <code>devtools</code> package. You should do this from inside of RStudio, in the area called the Console. You can copy and paste the code below, and press enter to run it:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Install the devtools package</span>
-<span class="kw">install.packages</span>(<span class="st">"devtools"</span>)
-<span class="kw">library</span>(devtools)
-
-<span class="co"># Install the library</span>
-<span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"brandseye/chartingtest"</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># Install the devtools package</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">install.packages</span>(<span class="st">"devtools"</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(devtools)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co"># Install the library</span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"brandseye/chartingtest"</span>)</a></code></pre></div>
 </li>
 <li>
 <p>The next step is to authenticate yourself. This lets the library know who you are and what accounts you have access to. You do that by supplying your API key, as in the code below. Your API key is like a password to all of your accounts. Please do not share this with clients, since it would give them access to all of our accounts. You can find your API key by logging in to mash, and looking yourself up in the user list. Place your API key inbetween the quotes in the code below, and run it in the RStudio console.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># If you have never used brandseyer before, you probably need to authenticate</span>
-<span class="co"># the first time you install this library. </span>
-brandseyer2<span class="op">::</span><span class="kw"><a href="https://brandseye.github.io/brandseyer2//reference/authenticate.html">authenticate</a></span>(<span class="dt">key =</span> <span class="st">"&lt;my api key&gt;"</span>, <span class="dt">save =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># If you have never used brandseyer before, you probably need to authenticate</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co"># the first time you install this library. </span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">brandseyer2<span class="op">::</span><span class="kw"><a href="https://brandseye.github.io/brandseyer2//reference/authenticate.html">authenticate</a></span>(<span class="dt">key =</span> <span class="st">"&lt;my api key&gt;"</span>, <span class="dt">save =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>You only have to do this once. It will save your API key to reuse it again in the future.</p>
 </li>
 <li>
 <p>Finally, you can load the charting library by copying and pasting the line below.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load the library</span>
-<span class="kw">library</span>(chartingtest)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="co"># Load the library</span></a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">library</span>(chartingtest)</a></code></pre></div>
 </li>
 </ol>
 </div>
@@ -122,12 +122,12 @@ brandseyer2<span class="op">::</span><span class="kw"><a href="https://brandseye
 <h1 class="hasAnchor">
 <a href="#getting-data" class="anchor"></a>Getting data</h1>
 <p>All data can be downloaded and saved as a CSV (or plotted) using a single line of R. For example, here we get data for plotting volume against sentiment for the <code>QUIR01BA</code> account, using a particular filter, and also asking to save the data.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(chartingtest)
-<span class="co"># Ask for data. Tell it that you want to save to file as well</span>
-<span class="kw"><a href="reference/volume_sentiment_metric.html">volume_sentiment_metric</a></span>(<span class="st">"QUIR01BA"</span>, <span class="st">"published inthelast week and brand isorchildof 10006"</span>, <span class="dt">save =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">library</span>(chartingtest)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co"># Ask for data. Tell it that you want to save to file as well</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw"><a href="reference/volume_sentiment_metric.html">volume_sentiment_metric</a></span>(<span class="st">"QUIR01BA"</span>, <span class="st">"published inthelast week and brand isorchildof 10006"</span>, <span class="dt">save =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>And this is what the data would look like in R itself (there will be similar columns in the CSV).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(chartingtest)
-<span class="kw"><a href="reference/volume_sentiment_metric.html">volume_sentiment_metric</a></span>(<span class="st">"QUIR01BA"</span>, <span class="st">"published inthelast week and brand isorchildof 10006"</span>)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(chartingtest)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="kw"><a href="reference/volume_sentiment_metric.html">volume_sentiment_metric</a></span>(<span class="st">"QUIR01BA"</span>, <span class="st">"published inthelast week and brand isorchildof 10006"</span>)</a></code></pre></div>
 </div>
 <div id="what-data-is-available-so-far" class="section level1">
 <h1 class="hasAnchor">
@@ -143,28 +143,28 @@ brandseyer2<span class="op">::</span><span class="kw"><a href="https://brandseye
 <li><a href="https://fonts.google.com/specimen/Nunito+Sans">Nunito Sans</a></li>
 </ul>
 <p>Then add them to R using the <code>extrafont</code> package:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Install the extrafont package</span>
-<span class="kw">install.packages</span>(<span class="st">"extrafont"</span>)
-<span class="kw">library</span>(extrafont)
-
-<span class="co"># Import fonts into R</span>
-<span class="kw"><a href="http://www.rdocumentation.org/packages/extrafont/topics/font_import">font_import</a></span>(<span class="dt">pattern=</span><span class="st">"OpenSans"</span>)
-<span class="kw"><a href="http://www.rdocumentation.org/packages/extrafont/topics/font_import">font_import</a></span>(<span class="dt">pattern=</span><span class="st">"NunitoSans"</span>)</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># Install the extrafont package</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">install.packages</span>(<span class="st">"extrafont"</span>)</a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">library</span>(extrafont)</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co"># Import fonts into R</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="kw"><a href="http://www.rdocumentation.org/packages/extrafont/topics/font_import">font_import</a></span>(<span class="dt">pattern=</span><span class="st">"OpenSans"</span>)</a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="kw"><a href="http://www.rdocumentation.org/packages/extrafont/topics/font_import">font_import</a></span>(<span class="dt">pattern=</span><span class="st">"NunitoSans"</span>)</a></code></pre></div>
 </div>
 <div id="keeping-r-up-to-date" class="section level1">
 <h1 class="hasAnchor">
 <a href="#keeping-r-up-to-date" class="anchor"></a>Keeping R up to date</h1>
 <p>If you’re using R on windows, one convenient way to keep things up to date is to use the <a href="https://github.com/talgalili/installr">InstallR</a> library.</p>
 <p>When a new version of R is out, you can update R by installing <code>InstallR</code> and running:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"installr"</span>)
-<span class="kw">updateR</span>()</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">library</span>(<span class="st">"installr"</span>)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="kw">updateR</span>()</a></code></pre></div>
 </div>
 <div id="updating-chartingtest" class="section level1">
 <h1 class="hasAnchor">
 <a href="#updating-chartingtest" class="anchor"></a>Updating chartingtest</h1>
 <p>If you would like to get a new version of <code>chartingtest</code> installed, run the following from your RStudio Console.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"brandseye/brandseyer2"</span>)     <span class="co"># Update brandseyer2</span>
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"brandseye/chartingtest"</span>)    <span class="co"># Update chartingtest</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"brandseye/brandseyer2"</span>)     <span class="co"># Update brandseyer2</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"brandseye/chartingtest"</span>)    <span class="co"># Update chartingtest</span></a></code></pre></div>
 </div>
 <div id="recent-changes" class="section level1">
 <h1 class="hasAnchor">

@@ -15,6 +15,8 @@ reference:
       - gender_metric
       - race_metric
       - authors_metric
+      - returning_authors
+      - returning_authors_metric
       - topics_metric
       - locations_metric
       - regions_metric

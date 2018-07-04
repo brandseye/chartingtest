@@ -43,6 +43,7 @@ sites_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = N
   # For devtools::check
   mentionCount <- NULL; . <- NULL; site <- NULL; engagement <- NULL;
   totalSentiment <- NULL; totalOTS <- NULL; totalEngagement <- NULL;
+  percentage <- NULL;
 
   ac <- account(code)
   data <- count_mentions(ac, filter, groupBy = site, select = c(mentionCount, engagement, totalSentiment, totalOTS)) %>%

@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chartingtest</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.1.0.9000</span>
       </span>
     </div>
 
@@ -150,13 +150,12 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>race_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week  and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 6
-#&gt;   race        label    count     ots engagement netSentiment
-#&gt;   &lt;chr&gt;       &lt;chr&gt;    &lt;int&gt;   &lt;int&gt;      &lt;int&gt;        &lt;int&gt;
-#&gt; 1 &lt;NA&gt;        Unknown    179 1597147        112           33
-#&gt; 2 ZA_WHITE    White       13    9520         19            4
-#&gt; 3 ZA_BLACK    Black       10  229558         NA            5
-#&gt; 4 ZA_COLOURED Coloured     1     171         NA            0</div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>race_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week  and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 6
+#&gt;   race     label   count     ots engagement netSentiment
+#&gt;   &lt;chr&gt;    &lt;chr&gt;   &lt;int&gt;   &lt;int&gt;      &lt;int&gt;        &lt;int&gt;
+#&gt; 1 &lt;NA&gt;     Unknown   152 1421168         91           21
+#&gt; 2 ZA_BLACK Black       9  229187         NA            4
+#&gt; 3 ZA_WHITE White       8    6903         14            2</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

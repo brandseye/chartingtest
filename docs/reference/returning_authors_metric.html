@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Gives information grouped by country — location_metric • chartingtest</title>
+<title>Returns a breakdown of new vs returning authors — returning_authors_metric • chartingtest</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Gives information grouped by country — location_metric" />
+<meta property="og:title" content="Returns a breakdown of new vs returning authors — returning_authors_metric" />
 
-<meta property="og:description" content="Gives information grouped by country" />
+<meta property="og:description" content="Returns a breakdown of new vs returning authors" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chartingtest</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.1.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.1.0.9000</span>
       </span>
     </div>
 
@@ -110,19 +110,19 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Gives information grouped by country</h1>
+    <h1>Returns a breakdown of new vs returning authors</h1>
     
-    <div class="hidden name"><code>location_metric.Rd</code></div>
+    <div class="hidden name"><code>returning_authors_metric.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Gives information grouped by country</p>
+    <p>Returns a breakdown of new vs returning authors</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>location_metric</span>(<span class='no'>code</span>, <span class='no'>filter</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>save</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>truncateAt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>returning_authors_metric</span>(<span class='no'>code</span>, <span class='no'>previousFilter</span>, <span class='no'>currentFilter</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>save</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -132,8 +132,12 @@
       <td><p>The account code to use</p></td>
     </tr>
     <tr>
-      <th>filter</th>
-      <td><p>The filter for the data</p></td>
+      <th>previousFilter</th>
+      <td><p>Filter for the time period you want to compare your authors against</p></td>
+    </tr>
+    <tr>
+      <th>currentFilter</th>
+      <td><p>Filter for the current time period whose authors you want to check</p></td>
     </tr>
     <tr>
       <th>file</th>
@@ -142,11 +146,6 @@
     <tr>
       <th>save</th>
       <td><p>Set to TRUE if you'd like a dialog file to choose where to save your CSV</p></td>
-    </tr>
-    <tr>
-      <th>truncateAt</th>
-      <td><p>Optional number of results - rest will become "Others". This takes the
-top countries based on the volume of mentions from the site.</p></td>
     </tr>
     </table>
     
@@ -157,21 +156,13 @@ top countries based on the volume of mentions from the site.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>location_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week  and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 12 x 6
-#&gt;    id    country              count engagement netSentiment     ots
-#&gt;    &lt;chr&gt; &lt;chr&gt;                &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;   &lt;dbl&gt;
-#&gt;  1 ZW    Zimbabwe               125         88           25 1408051
-#&gt;  2 &lt;NA&gt;  Unknown                 49         39            8  341276
-#&gt;  3 ZA    South Africa            12          4            3   56925
-#&gt;  4 GB    United Kingdom           8          0            0   18538
-#&gt;  5 IN    India                    2          0            2     122
-#&gt;  6 US    United States            1          0            1    5547
-#&gt;  7 ES    Spain                    1          0            1     713
-#&gt;  8 AD    Andorra                  1          0            1     553
-#&gt;  9 DE    Germany                  1          0            1     348
-#&gt; 10 PH    Philippines              1          0            0    2179
-#&gt; 11 KE    Kenya                    1          0            0    1839
-#&gt; 12 AE    United Arab Emirates     1          0            0     305</div></pre>
+<span class='fu'>returning_authors_metric</span>(<span class='st'>"QUIR01BA"</span>,
+<span class='st'>"published after '2018/05/01' and published before '2018/06/01' and brand isorchildof 10006"</span>,
+<span class='st'>"published after '2018/06/01' and published before '2018/07/01' and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 2 x 3
+#&gt;   authorStatus count percentage
+#&gt;   &lt;chr&gt;        &lt;int&gt;      &lt;dbl&gt;
+#&gt; 1 new            101     0.902 
+#&gt; 2 returning       11     0.0982</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -55,7 +55,7 @@ topics_metric <- function(code, filter, file = NULL,
 
   # For devtools::check
   engagement <- NULL; is_parent <- NULL; mentionCount <- NULL;
-  tag <- NULL; tag.id <- NULL; tag.name <- NULL;
+  tag <- NULL; tag.id <- NULL; tag.name <- NULL; percentage <- NULL;
   totalEngagement <- NULL; totalOTS <- NULL; totalSentiment <- NULL; . <- NULL;
 
   ac <- account(code)
