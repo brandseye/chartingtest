@@ -1,5 +1,7 @@
 # chartingtest 1.1.0.9000
 
+* Added percentages to `topics_metric()` and `sites_metric()`
+
 # chartingtest 1.1.0
 
 * There is a new `topics_metric()` function supplying topics data.
