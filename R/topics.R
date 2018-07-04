@@ -64,7 +64,8 @@ topics_metric <- function(code, filter, file = NULL,
     count_mentions(filter,
                    groupBy = tag,
                    tagNamespace = "topic",
-                   select = c(mentionCount, engagement, totalSentiment, totalOTS))
+                   select = c(mentionCount, engagement, totalSentiment, totalOTS)) %>%
+    mutate(percentage=mentionCount/sum(mentionCount))
 
   if (!is.null(truncateAt)) {
     assert_that(is.number(truncateAt))
@@ -76,7 +77,8 @@ topics_metric <- function(code, filter, file = NULL,
              mentionCount = sum(mentionCount, na.rm = TRUE),
              totalEngagement = sum(totalEngagement, na.rm = TRUE),
              totalSentiment = sum(totalSentiment, na.rm = TRUE),
-             totalOTS = sum(totalOTS, na.rm = TRUE))
+             totalOTS = sum(totalOTS, na.rm = TRUE),
+             percentage = sum(percentage, na.rm=TRUE))
     data <- bind_rows(top, others)
   }
 
@@ -112,6 +114,7 @@ topics_metric <- function(code, filter, file = NULL,
 
   if (!is.null(file)) {
     data %>%
+      mutate(percentage=scales::percent(percentage)) %>%
       readr::write_excel_csv(file, na = "")
     done(glue("Written your CSV to {file}"))
   }

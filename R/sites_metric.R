@@ -45,7 +45,8 @@ sites_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = N
   totalSentiment <- NULL; totalOTS <- NULL; totalEngagement <- NULL;
 
   ac <- account(code)
-  data <- count_mentions(ac, filter, groupBy = site, select = c(mentionCount, engagement, totalSentiment, totalOTS))
+  data <- count_mentions(ac, filter, groupBy = site, select = c(mentionCount, engagement, totalSentiment, totalOTS)) %>%
+    mutate(percentage=mentionCount/sum(mentionCount))
 
   if (!is.null(truncateAt)) {
     assert_that(is.number(truncateAt))
@@ -56,7 +57,8 @@ sites_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = N
              mentionCount = sum(mentionCount, na.rm = TRUE),
              totalEngagement = sum(totalEngagement, na.rm = TRUE),
              totalSentiment = sum(totalSentiment, na.rm = TRUE),
-             totalOTS = sum(totalOTS, na.rm = TRUE))
+             totalOTS = sum(totalOTS, na.rm = TRUE),
+             percentage = sum(percentage, na.rm = TRUE))
     data <- bind_rows(top, others)
   }
 
@@ -75,6 +77,7 @@ sites_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = N
 
   if (!is.null(file)) {
     data %>%
+      mutate(percentage=scales::percent(percentage)) %>%
       readr::write_excel_csv(file, na = "0")
     done(glue("Written your CSV to {file}"))
   }
