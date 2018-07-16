@@ -1,3 +1,5 @@
+# chartingtest 1.2.0.9000
+
 # chartingtest 1.2.0
 * There is a new `returning_authors()` function supplying returning authors.
 * There is a new `returning_authors_metric()` function counting new and returning authors.
