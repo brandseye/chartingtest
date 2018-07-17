@@ -22,5 +22,7 @@ A tibble of race data
 Fetch race data
 }
 \examples{
+\dontrun{
 race_metric("QUIR01BA", "published inthelast week  and brand isorchildof 10006")
+}
 }

@@ -44,7 +44,7 @@ volume_sentiment_metric <- function(code, filter, group = "day", file = NULL, sa
   totalPositive <- NULL; totalNegative <- NULL; totalNeutral <- NULL;
   netSentiment <- NULL; mentionCount <- NULL; totalSentiment <- NULL;
   positiveSentiment <- NULL; negativeSentiment <- NULL; neutralSentiment <- NULL;
- . <- NULL;
+  . <- NULL;
 
   data <- account(code) %>%
     count_mentions(filter = filter,
@@ -56,9 +56,9 @@ volume_sentiment_metric <- function(code, filter, group = "day", file = NULL, sa
            positiveSentiment = totalPositive,
            negativeSentiment = totalNegative,
            neutralSentiment = totalNeutral,
-           positivePercent = positiveSentiment / count,
-           negativePercent = negativeSentiment / count,
-           neutralPercent = neutralSentiment / count) %>%
+           positivePercent = positiveSentiment / ifelse(count == 0, 1, count),
+           negativePercent = negativeSentiment / ifelse(count == 0, 1, count),
+           neutralPercent = neutralSentiment / ifelse(count == 0, 1, count)) %>%
     select(published, count, netSentiment,
            positiveSentiment, positivePercent,
            negativeSentiment, negativePercent,
@@ -107,7 +107,7 @@ plot_volume_sentiment_metric <- function(account, filter, group = "day") {
     geom_bar(aes(y = count), stat = "identity", fill = MID_GREY) +
     theme_brandseye()
 
-  maxCount <- tail(ggplot_build(bars)$layout$panel_ranges[[1]]$y.major_source, n = 1)
+  maxCount <- ggplot_build(bars)$layout$panel_scales_y[[1]]$range$range[[2]] #layout$panel_params[[1]]$y.range[[2]]
 
   bars +
     geom_line(aes(y = positivePercent * maxCount, colour = "positive")) +
@@ -115,7 +115,7 @@ plot_volume_sentiment_metric <- function(account, filter, group = "day") {
     scale_y_continuous(sec.axis = sec_axis(~. / maxCount, name = "Sentiment", labels = scales::percent)) +
     scale_colour_manual(breaks = c("positive", "negative", "volume"),
                         labels = c("Pos %", "Neg %", "Vol"),
-                        values = c(POS_SENTIMENT, NEG_SENTIMENT, MID_GREY)) +
+                        values = c(NEG_SENTIMENT, POS_SENTIMENT, MID_GREY)) +
     labs(y = "Volume of mentions",
          x = "Date published")
 

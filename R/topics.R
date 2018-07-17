@@ -20,6 +20,8 @@
 
 #' Gets the Topics for a given filter
 #'
+#' Returns topic data fora given filter. The filter must filter on the brand's topic_tree.
+#'
 #' @param code An account code
 #' @param filter A filter for data
 #' @param file   An optional file name to save a CSV file to.
@@ -30,6 +32,8 @@
 #'                    results.
 #' @param showChildren Set this to FALSE if you don't want any child topics included in the
 #'                    results.
+#' @param forParent An ID of a parent topic that you want data specifically for. Adds an extra
+#'                  column of percentage values specifically against that parent.
 #'
 #' @return A tibble of your data
 #' @export
@@ -44,18 +48,21 @@
 topics_metric <- function(code, filter, file = NULL,
                           save = FALSE, truncateAt = NULL,
                           showParents = TRUE,
-                          showChildren = TRUE) {
+                          showChildren = TRUE,
+                          forParent = NULL) {
   assert_that(is.string(code))
   assert_that(is.string(filter))
   assert_that(is.null(file) || is.string(file), msg = "File name must be a string")
+  assert_that(is.null(forParent) || assertthat::is.number(forParent),
+              msg = "`forParent` must be a single integer")
 
   if (!showParents && !showChildren) {
     error("showParents and showChildren are both set to FALSE, so no data will be returned")
   }
 
   # For devtools::check
-  engagement <- NULL; is_parent <- NULL; mentionCount <- NULL;
-  tag <- NULL; tag.id <- NULL; tag.name <- NULL; percentage <- NULL;
+  engagement <- NULL; is_parent <- NULL; mentionCount <- NULL; parent_percentage <- NULL;
+  tag <- NULL; tag.id <- NULL; tag.name <- NULL; percentage <- NULL; namespace <- NULL;
   totalEngagement <- NULL; totalOTS <- NULL; totalSentiment <- NULL; . <- NULL;
 
   ac <- account(code)
@@ -65,7 +72,30 @@ topics_metric <- function(code, filter, file = NULL,
                    groupBy = tag,
                    tagNamespace = "topic",
                    select = c(mentionCount, engagement, totalSentiment, totalOTS)) %>%
-    mutate(percentage=mentionCount/sum(mentionCount))
+    mutate(namespace = purrr::map_chr(tag, ~ .x[[1, "namespace"]]))
+
+  trees <- data %>% dplyr::filter(namespace == "topic_tree")
+  if (nrow(trees) == 0) {
+    rlang::warn("No topic tree used in the filter for `topic_metric`. Unable to calculate percentages.")
+  }
+
+  if (nrow(trees) > 1) {
+    rlang::warn("Multiple topic trees returned for `topic_metric`. Unsure which to use. A possible fix is to use a more exact filter. Unable to calculate percentages.")
+  }
+
+  data %<>% filter(namespace == "topic")
+
+  if (nrow(trees) == 1) {
+    mentions <- trees[[1, "mentionCount"]]
+
+    data %<>%
+      mutate(percentage=mentionCount/mentions) %>%
+      select(-namespace)
+  } else {
+    data %<>%
+      mutate(percentage = NA) %>%
+      select(-namespace)
+  }
 
   if (!is.null(truncateAt)) {
     assert_that(is.number(truncateAt))
@@ -82,6 +112,8 @@ topics_metric <- function(code, filter, file = NULL,
     data <- bind_rows(top, others)
   }
 
+  ac_topics <- ac %>% topics()
+
   data %<>%
     rename(id = tag.id,
            topic = tag.name,
@@ -90,7 +122,26 @@ topics_metric <- function(code, filter, file = NULL,
            netSentiment = totalSentiment,
            ots = totalOTS) %>%
     tidyr::replace_na(list(count = 0, engagement = 0, netSentiment = 0, ots = 0)) %>%
-    dplyr::left_join(ac %>% topics() %>% select(id, is_parent))
+    dplyr::left_join(ac_topics %>% select(id, is_parent), by = c("id" = "id"))
+
+  if (!is.null(forParent)) {
+    topic <- ac_topics %>% filter(id == forParent)
+    if (nrow(topic) == 0) error("No topic found for topic id ", forParent)
+    tname <- topic %>% select("name") %>% pull()
+    if (topic %>% filter(is_parent) %>% nrow() == 0) error("Topic is not a parent topic")
+    done("Found parent topic '", tname, "'")
+    children <- topic %>% purrr::pluck("children", 1)
+    parent <- data %>% dplyr::filter(id == forParent)
+
+    data %<>%
+      filter(id %in% children)
+
+    if (nrow(parent) == 1) {
+      parent_count <- parent %>% purrr::pluck("count", 1)
+      data %<>%
+        mutate(parent_percentage = count / parent_count)
+    }
+  }
 
 
   if (!showParents) {
@@ -113,8 +164,15 @@ topics_metric <- function(code, filter, file = NULL,
   }
 
   if (!is.null(file)) {
-    data %>%
-      mutate(percentage=scales::percent(percentage)) %>%
+    write <- data %>%
+      mutate(percentage=scales::percent(percentage))
+
+    if ('parent_percentage' %in% names(write)) {
+      write %<>%
+        mutate(parent_percentage = scales::percent(parent_percentage))
+    }
+
+    write %>%
       readr::write_excel_csv(file, na = "")
     done(glue("Written your CSV to {file}"))
   }

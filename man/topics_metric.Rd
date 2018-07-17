@@ -5,7 +5,7 @@
 \title{Gets the Topics for a given filter}
 \usage{
 topics_metric(code, filter, file = NULL, save = FALSE, truncateAt = NULL,
-  showParents = TRUE, showChildren = TRUE)
+  showParents = TRUE, showChildren = TRUE, forParent = NULL)
 }
 \arguments{
 \item{code}{An account code}
@@ -24,12 +24,15 @@ results.}
 
 \item{showChildren}{Set this to FALSE if you don't want any child topics included in the
 results.}
+
+\item{forParent}{An ID of a parent topic that you want data specifically for. Adds an extra
+column of percentage values specifically against that parent.}
 }
 \value{
 A tibble of your data
 }
 \description{
-Gets the Topics for a given filter
+Returns topic data fora given filter. The filter must filter on the brand's topic_tree.
 }
 \examples{
 

@@ -30,7 +30,9 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' race_metric("QUIR01BA", "published inthelast week  and brand isorchildof 10006")
+#' }
 race_metric <- function(code, filter, file = NULL, save = FALSE) {
   # for devtools::check
   race <- NULL; race.id <- NULL; mentionCount <- NULL; label <- NULL;

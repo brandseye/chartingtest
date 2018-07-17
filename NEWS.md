@@ -1,4 +1,6 @@
 # chartingtest 1.2.0.9000
+* `topics_metric()` now supports getting data for a particular parent only.
+* `topics_metric()` now agrees with the app.
 
 # chartingtest 1.2.0
 * There is a new `returning_authors()` function supplying returning authors.
