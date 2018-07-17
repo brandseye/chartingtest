@@ -1,3 +1,5 @@
+# chartingtest 1.3.0
+
 # chartingtest 1.2.0.9000
 * `topics_metric()` now supports getting data for a particular parent only.
 * `topics_metric()` now agrees with the app.
