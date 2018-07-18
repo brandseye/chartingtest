@@ -221,7 +221,10 @@ topics_metric <- function(code, filter, file = NULL,
 
     if ('parent_percentage' %in% names(write)) {
       write %<>%
-        mutate(parent_percentage = scales::percent(parent_percentage))
+        mutate(parent_percentage = scales::percent(parent_percentage),
+               parent_pos_percent = scales::percent(parent_pos_percent),
+               parent_neg_percent = scales::percent(parent_neg_percent),
+               parent_neut_percent = scales::percent(parent_neut_percent))
     }
 
     write %>%
