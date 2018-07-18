@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chartingtest</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.3.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.4.0</span>
       </span>
     </div>
 
@@ -169,11 +169,36 @@ column of percentage values specifically against that parent.</p></td>
 
     <p>A tibble of your data</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This can pull data in various ways related to topics. Using the <code>showParents</code> and
+<code>showChildren</code> parameters, its easy to only show parent and child topics, respectively.</p>
+<p>The major difficulty in using this function is that your filter must contain a <em>topic tree</em>
+id. This is a tag ID that identifies the topics that have been assigned to the brand(s)
+that you're querying.</p>
+<p>There are two ways to find the ID, both using brandseyer2. The first is to ask for all root
+brand information, like so:</p><pre>library(brandseyer2)
+account("BEUB03AA") <!-- %&gt;% -->
+  root_brands(short = FALSE)
+</pre>
+    <p>The column <code>topic_tree_id</code> will give the topic tree ID for the brand that you are interested in.</p>
+<p>Another way is to ask for the topic trees in an account:</p><pre>library(brandseyer2)
+account("BEUB03AA") <!-- %&gt;% -->
+  topic_trees()
+</pre>
+    <p>This returns regular tag information (since topic trees are only tags).</p>
+<p>Assuming the topic tree that you're interested in has an ID of 1001, and your
+filter is "published inthelast month and relevancy isnt irrelevant", your new filter should be
+"(published inthelast month and relevancy isnt irrelevant) and tag is 1001".</p>
+<p>It is also possible to show only a single parent and its children. See the <code>forParent</code> parameter.
+Essentially, you should pass it the ID of the parent topic whose children you
+are interested in.</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 </div><span class='co'># NOT RUN {</span>
-<span class='fu'>topics_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week and brand isorchildof 10006"</span>)
+<span class='fu'>topics_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week and brand isorchildof 10006 and tag is 1001"</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -182,6 +207,8 @@ column of percentage values specifically against that parent.</p></td>
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

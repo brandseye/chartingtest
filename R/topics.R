@@ -22,6 +22,42 @@
 #'
 #' Returns topic data fora given filter. The filter must filter on the brand's topic_tree.
 #'
+#' This can pull data in various ways related to topics. Using the `showParents` and
+#' `showChildren` parameters, its easy to only show parent and child topics, respectively.
+#'
+#' The major difficulty in using this function is that your filter must contain a _topic tree_
+#' id. This is a tag ID that identifies the topics that have been assigned to the brand(s)
+#' that you're querying.
+#'
+#' There are two ways to find the ID, both using brandseyer2. The first is to ask for all root
+#' brand information, like so:
+#'
+#' ```
+#' library(brandseyer2)
+#' account("BEUB03AA") %>%
+#'   root_brands(short = FALSE)
+#' ```
+#'
+#' The column `topic_tree_id` will give the topic tree ID for the brand that you are interested in.
+#'
+#' Another way is to ask for the topic trees in an account:
+#'
+#' ```
+#' library(brandseyer2)
+#' account("BEUB03AA") %>%
+#'   topic_trees()
+#' ```
+#'
+#' This returns regular tag information (since topic trees are only tags).
+#'
+#' Assuming the topic tree that you're interested in has an ID of 1001, and your
+#' filter is "published inthelast month and relevancy isnt irrelevant", your new filter should be
+#' "(published inthelast month and relevancy isnt irrelevant) and tag is 1001".
+#'
+#' It is also possible to show only a single parent and its children. See the `forParent` parameter.
+#' Essentially, you should pass it the ID of the parent topic whose children you
+#' are interested in.
+#'
 #' @param code An account code
 #' @param filter A filter for data
 #' @param file   An optional file name to save a CSV file to.
@@ -41,7 +77,7 @@
 #' @examples
 #'
 #' \dontrun{
-#' topics_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006")
+#' topics_metric("QUIR01BA", "published inthelast week and brand isorchildof 10006 and tag is 1001")
 #' }
 
 
