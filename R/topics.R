@@ -134,7 +134,7 @@ topics_metric <- function(code, filter, file = NULL,
     parent <- data %>% dplyr::filter(id == forParent)
 
     data %<>%
-      filter(id %in% children)
+      filter(id %in% c(forParent, children))
 
     if (nrow(parent) == 1) {
       parent_count <- parent %>% purrr::pluck("count", 1)
