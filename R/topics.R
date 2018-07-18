@@ -64,6 +64,9 @@ topics_metric <- function(code, filter, file = NULL,
   engagement <- NULL; is_parent <- NULL; mentionCount <- NULL; parent_percentage <- NULL;
   tag <- NULL; tag.id <- NULL; tag.name <- NULL; percentage <- NULL; namespace <- NULL;
   totalEngagement <- NULL; totalOTS <- NULL; totalSentiment <- NULL; . <- NULL;
+  totalPositive <- NULL; totalNegative <- NULL; totalNeutral <- NULL;
+  ots <- NULL; netSentiment <- NULL; positivePercent <- NULL; negativePercent <- NULL;
+  neutralPercent <- NULL;
 
   ac <- account(code)
 
@@ -71,7 +74,8 @@ topics_metric <- function(code, filter, file = NULL,
     count_mentions(filter,
                    groupBy = tag,
                    tagNamespace = "topic",
-                   select = c(mentionCount, engagement, totalSentiment, totalOTS)) %>%
+                   select = c(mentionCount, engagement, totalSentiment,
+                              totalOTS, totalPositive, totalNegative, totalNeutral)) %>%
     mutate(namespace = purrr::map_chr(tag, ~ .x[[1, "namespace"]]))
 
   trees <- data %>% dplyr::filter(namespace == "topic_tree")
@@ -107,6 +111,9 @@ topics_metric <- function(code, filter, file = NULL,
              mentionCount = sum(mentionCount, na.rm = TRUE),
              totalEngagement = sum(totalEngagement, na.rm = TRUE),
              totalSentiment = sum(totalSentiment, na.rm = TRUE),
+             totalPositive = sum(totalPositive, na.rm = TRUE),
+             totalNegative = sum(totalNegative, na.rm = TRUE),
+             totalNeutral = sum(totalNeutral, na.rm = TRUE),
              totalOTS = sum(totalOTS, na.rm = TRUE),
              percentage = sum(percentage, na.rm=TRUE))
     data <- bind_rows(top, others)
@@ -121,6 +128,12 @@ topics_metric <- function(code, filter, file = NULL,
            engagement = totalEngagement,
            netSentiment = totalSentiment,
            ots = totalOTS) %>%
+    mutate(positivePercent = ifelse(count == 0, 0, totalPositive / count),
+           negativePercent = ifelse(count == 0, 0, totalNegative / count),
+           neutralPercent = ifelse(count == 0, 0, totalPositive / count)) %>%
+    select(id, topic, count, percentage, engagement, ots,
+           netSentiment, totalPositive, positivePercent, totalNegative, negativePercent,
+           totalNeutral, neutralPercent, everything()) %>%
     tidyr::replace_na(list(count = 0, engagement = 0, netSentiment = 0, ots = 0)) %>%
     dplyr::left_join(ac_topics %>% select(id, is_parent), by = c("id" = "id"))
 
@@ -139,7 +152,10 @@ topics_metric <- function(code, filter, file = NULL,
     if (nrow(parent) == 1) {
       parent_count <- parent %>% purrr::pluck("count", 1)
       data %<>%
-        mutate(parent_percentage = count / parent_count)
+        mutate(parent_percentage = count / parent_count,
+               parent_pos_percent = totalPositive / parent_count,
+               parent_neg_percent = totalNegative / parent_count,
+               parent_neut_percent = totalNeutral / parent_count)
     }
   }
 
