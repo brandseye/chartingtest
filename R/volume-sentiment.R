@@ -44,14 +44,15 @@ volume_sentiment_metric <- function(code, filter, group = "day", file = NULL, sa
   totalPositive <- NULL; totalNegative <- NULL; totalNeutral <- NULL;
   netSentiment <- NULL; mentionCount <- NULL; totalSentiment <- NULL;
   positiveSentiment <- NULL; negativeSentiment <- NULL; neutralSentiment <- NULL;
-  . <- NULL;
+  . <- NULL; unique_authors <- NULL; authorIdCount <- NULL; authorId <- NULL;
 
   data <- account(code) %>%
     count_mentions(filter = filter,
                    groupBy = published[{toupper(group)}],
-                   select=c(mentionCount, totalSentiment, totalPositive, totalNegative, totalNeutral)) %>%
+                   select=c(mentionCount, totalSentiment, totalPositive, totalNegative, totalNeutral, authorId)) %>%
     mutate(netSentiment = totalSentiment,
            count = mentionCount,
+           unique_authors = authorIdCount,
            published = lubridate::force_tz(published, brandseyer::account_timezone(code)),
            positiveSentiment = totalPositive,
            negativeSentiment = totalNegative,
@@ -59,7 +60,7 @@ volume_sentiment_metric <- function(code, filter, group = "day", file = NULL, sa
            positivePercent = positiveSentiment / ifelse(count == 0, 1, count),
            negativePercent = negativeSentiment / ifelse(count == 0, 1, count),
            neutralPercent = neutralSentiment / ifelse(count == 0, 1, count)) %>%
-    select(published, count, netSentiment,
+    select(published, count, netSentiment, unique_authors,
            positiveSentiment, positivePercent,
            negativeSentiment, negativePercent,
            neutralSentiment, neutralPercent)

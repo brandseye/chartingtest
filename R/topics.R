@@ -102,7 +102,8 @@ topics_metric <- function(code, filter, file = NULL,
   totalEngagement <- NULL; totalOTS <- NULL; totalSentiment <- NULL; . <- NULL;
   totalPositive <- NULL; totalNegative <- NULL; totalNeutral <- NULL;
   ots <- NULL; netSentiment <- NULL; positivePercent <- NULL; negativePercent <- NULL;
-  neutralPercent <- NULL;
+  neutralPercent <- NULL; parent_neg_percent <- NULL; parent_neut_percent <- NULL;
+  parent_pos_percent <- NULL;
 
   ac <- account(code)
 
