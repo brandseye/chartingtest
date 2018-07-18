@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chartingtest</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.4.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.5.0</span>
       </span>
     </div>
 
@@ -156,13 +156,14 @@ top cities based on the volume of mentions from the site.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cities_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week  and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 4 x 6
-#&gt;        id city    count engagement netSentiment    ots
-#&gt;     &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;  &lt;dbl&gt;
-#&gt; 1      NA Unknown    18          4            1 208704
-#&gt; 2 2643743 London      2          1            0   1968
-#&gt; 3 4930956 Boston      1          0            1    362
-#&gt; 4 3936456 Lima        1          0            0    129</div></pre>
+<span class='fu'>cities_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week  and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 6
+#&gt;        id city      count engagement netSentiment    ots
+#&gt;     &lt;int&gt; &lt;chr&gt;     &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;  &lt;dbl&gt;
+#&gt; 1      NA Unknown      25         12            3 265288
+#&gt; 2 2643743 London        3          1            1   9030
+#&gt; 3 3369157 Cape Town     2          0            2   7207
+#&gt; 4 4930956 Boston        1          0            1    362
+#&gt; 5 3936456 Lima          1          0            0    129</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
