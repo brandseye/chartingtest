@@ -97,13 +97,13 @@ topics_metric <- function(code, filter, file = NULL,
   }
 
   # For devtools::check
-  engagement <- NULL; is_parent <- NULL; mentionCount <- NULL; parent_percentage <- NULL;
+  engagement <- NULL; is_parent <- NULL; mentionCount <- NULL; parentPercentage <- NULL;
   tag <- NULL; tag.id <- NULL; tag.name <- NULL; percentage <- NULL; namespace <- NULL;
   totalEngagement <- NULL; totalOTS <- NULL; totalSentiment <- NULL; . <- NULL;
   totalPositive <- NULL; totalNegative <- NULL; totalNeutral <- NULL;
   ots <- NULL; netSentiment <- NULL; positivePercent <- NULL; negativePercent <- NULL;
-  neutralPercent <- NULL; parent_neg_percent <- NULL; parent_neut_percent <- NULL;
-  parent_pos_percent <- NULL;
+  neutralPercent <- NULL; parentNegPercent <- NULL; parentNeutPercent <- NULL;
+  parentPosPercent <- NULL;
 
   ac <- account(code)
 
@@ -189,10 +189,10 @@ topics_metric <- function(code, filter, file = NULL,
     if (nrow(parent) == 1) {
       parent_count <- parent %>% purrr::pluck("count", 1)
       data %<>%
-        mutate(parent_percentage = count / parent_count,
-               parent_pos_percent = totalPositive / parent_count,
-               parent_neg_percent = totalNegative / parent_count,
-               parent_neut_percent = totalNeutral / parent_count)
+        mutate(parentPercentage = count / parent_count,
+               parentPosPercent = totalPositive / parent_count,
+               parentNegPercent = totalNegative / parent_count,
+               parentNeutPercent = totalNeutral / parent_count)
     }
   }
 
@@ -220,12 +220,12 @@ topics_metric <- function(code, filter, file = NULL,
     write <- data %>%
       mutate(percentage=scales::percent(percentage))
 
-    if ('parent_percentage' %in% names(write)) {
+    if ('parentPercentage' %in% names(write)) {
       write %<>%
-        mutate(parent_percentage = scales::percent(parent_percentage),
-               parent_pos_percent = scales::percent(parent_pos_percent),
-               parent_neg_percent = scales::percent(parent_neg_percent),
-               parent_neut_percent = scales::percent(parent_neut_percent))
+        mutate(parentPercentage = scales::percent(parentPercentage),
+               parentPosPercent = scales::percent(parentPosPercent),
+               parentNegPercent = scales::percent(parentNegPercent),
+               parentNeutPercent = scales::percent(parentNeutPercent))
     }
 
     write %>%
