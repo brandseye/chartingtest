@@ -1,3 +1,5 @@
+# chartingtest 1.5.0
+
 # chartingtest 1.4.0
 
 * `topics_metric()` now also shows positive and negative sentiment.
