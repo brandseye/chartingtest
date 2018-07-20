@@ -177,13 +177,17 @@ column of percentage values specifically against that parent.</p></td>
 id. This is a tag ID that identifies the topics that have been assigned to the brand(s)
 that you're querying.</p>
 <p>There are two ways to find the ID, both using brandseyer2. The first is to ask for all root
-brand information, like so:</p><pre>library(brandseyer2)
-account("BEUB03AA") <!-- %&gt;% -->
+brand information, like so:</p>
+<pre>
+library(brandseyer2)
+account("BEUB03AA") %&gt;%
   root_brands(short = FALSE)
 </pre>
     <p>The column <code>topic_tree_id</code> will give the topic tree ID for the brand that you are interested in.</p>
-<p>Another way is to ask for the topic trees in an account:</p><pre>library(brandseyer2)
-account("BEUB03AA") <!-- %&gt;% -->
+<p>Another way is to ask for the topic trees in an account:</p>
+<pre>
+library(brandseyer2)
+account("BEUB03AA") %&gt;%
   topic_trees()
 </pre>
     <p>This returns regular tag information (since topic trees are only tags).</p>

@@ -43,15 +43,21 @@ id. This is a tag ID that identifies the topics that have been assigned to the b
 that you're querying.
 
 There are two ways to find the ID, both using brandseyer2. The first is to ask for all root
-brand information, like so:\preformatted{library(brandseyer2)
-account("BEUB03AA") %>%
+brand information, like so:
+
+\preformatted{
+library(brandseyer2)
+account("BEUB03AA") \%>\%
   root_brands(short = FALSE)
 }
 
 The column \code{topic_tree_id} will give the topic tree ID for the brand that you are interested in.
 
-Another way is to ask for the topic trees in an account:\preformatted{library(brandseyer2)
-account("BEUB03AA") %>%
+Another way is to ask for the topic trees in an account:
+
+\preformatted{
+library(brandseyer2)
+account("BEUB03AA") \%>\%
   topic_trees()
 }
 
