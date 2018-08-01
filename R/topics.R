@@ -131,7 +131,6 @@ topics_metric <- function(code, filter, file = NULL,
   parent_tree <- NULL
 
   if (nrow(trees) == 1) {
-    message("1 tree present")
     parent_tree <- trees[[1, "tag.id"]]
     mentions <- trees[[1, "mentionCount"]]
 
@@ -164,10 +163,8 @@ topics_metric <- function(code, filter, file = NULL,
 
   ac_topics <- NULL
   if (is.null(parent_tree)) {
-    message("No parent")
     ac_topics <- ac %>% topics() %>% mutate(parent = NA)
   } else {
-    message("has parent")
     ac_topics <- ac %>%
       tags() %>%
       with_tag_parents(parent_tree) %>%
