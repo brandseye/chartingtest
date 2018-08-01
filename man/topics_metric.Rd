@@ -35,10 +35,18 @@ A tibble of your data
 Returns topic data fora given filter. The filter must filter on the brand's topic_tree.
 }
 \details{
-This can pull data in various ways related to topics. Using the \code{showParents} and
+One thing to note is that your filter should contain a \emph{topic tree} id. This
+is a tag ID that identifies the topics assigned to a particular brand. See
+below for more details.
+
+Topic data in various ways related to topics. Using the \code{showParents} and
 \code{showChildren} parameters, its easy to only show parent and child topics, respectively.
+
+It is also possible to show only a single parent and its children. See the \code{forParent} parameter.
+Essentially, you should pass it the ID of the parent topic whose children you
+are interested in.
 }
-\section{Find topic tree IDs}{
+\section{Finding topic tree IDs}{
 
 
 The major difficulty in using this function is that your filter must contain a \emph{topic tree}
@@ -69,10 +77,6 @@ This returns regular tag information (since topic trees are only tags).
 Assuming the topic tree that you're interested in has an ID of 1001, and your
 filter is "published inthelast month and relevancy isnt irrelevant", your new filter should be
 "(published inthelast month and relevancy isnt irrelevant) and tag is 1001".
-
-It is also possible to show only a single parent and its children. See the \code{forParent} parameter.
-Essentially, you should pass it the ID of the parent topic whose children you
-are interested in.
 }
 
 \examples{
