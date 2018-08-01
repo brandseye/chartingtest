@@ -1,3 +1,5 @@
+# chartingtest 1.6.0
+
 # chartingtest 1.5.0
 
 * `volume_sentiment()` now has unique author count.
