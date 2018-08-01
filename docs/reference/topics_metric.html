@@ -32,7 +32,7 @@
 
 <meta property="og:title" content="Gets the Topics for a given filter — topics_metric" />
 
-<meta property="og:description" content="Returns topic data fora given filter. The filter must filter on the brand's topic_tree." />
+<meta property="og:description" content="Returns topic data for a given filter. The filter must filter on the brand's topic_tree." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -117,7 +117,7 @@
 
     <div class="ref-description">
     
-    <p>Returns topic data fora given filter. The filter must filter on the brand's topic_tree.</p>
+    <p>Returns topic data for a given filter. The filter must filter on the brand's topic_tree.</p>
     
     </div>
 
@@ -171,10 +171,15 @@ column of percentage values specifically against that parent.</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This can pull data in various ways related to topics. Using the <code>showParents</code> and
-<code>showChildren</code> parameters, its easy to only show parent and child topics, respectively.</p>
+    <p>One thing to note is that your filter should contain a <em>topic tree</em> id. This
+is a tag ID that identifies the topics assigned to a particular brand. See
+below for more details. Using the <code>showParents</code> and
+<code>showChildren</code> parameters, its easy to only show parent and child topics, respectively.
+It is also possible to show only a single parent and its children. See the <code>forParent</code> parameter.
+Essentially, you should pass it the ID of the parent topic whose children you
+are interested in.</p>
     
-    <h2 class="hasAnchor" id="find-topic-tree-ids"><a class="anchor" href="#find-topic-tree-ids"></a>Find topic tree IDs</h2>
+    <h2 class="hasAnchor" id="finding-topic-tree-ids"><a class="anchor" href="#finding-topic-tree-ids"></a>Finding topic tree IDs</h2>
 
     
     <p>The major difficulty in using this function is that your filter must contain a <em>topic tree</em>
@@ -198,9 +203,6 @@ account("BEUB03AA") %&gt;%
 <p>Assuming the topic tree that you're interested in has an ID of 1001, and your
 filter is "published inthelast month and relevancy isnt irrelevant", your new filter should be
 "(published inthelast month and relevancy isnt irrelevant) and tag is 1001".</p>
-<p>It is also possible to show only a single parent and its children. See the <code>forParent</code> parameter.
-Essentially, you should pass it the ID of the parent topic whose children you
-are interested in.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -218,7 +220,7 @@ are interested in.</p>
 
       <li><a href="#details">Details</a></li>
 
-      <li><a href="#find-topic-tree-ids">Find topic tree IDs</a></li>
+      <li><a href="#finding-topic-tree-ids">Finding topic tree IDs</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

@@ -32,16 +32,13 @@ column of percentage values specifically against that parent.}
 A tibble of your data
 }
 \description{
-Returns topic data fora given filter. The filter must filter on the brand's topic_tree.
+Returns topic data for a given filter. The filter must filter on the brand's topic_tree.
 }
 \details{
 One thing to note is that your filter should contain a \emph{topic tree} id. This
 is a tag ID that identifies the topics assigned to a particular brand. See
-below for more details.
-
-Topic data in various ways related to topics. Using the \code{showParents} and
+below for more details. Using the \code{showParents} and
 \code{showChildren} parameters, its easy to only show parent and child topics, respectively.
-
 It is also possible to show only a single parent and its children. See the \code{forParent} parameter.
 Essentially, you should pass it the ID of the parent topic whose children you
 are interested in.
