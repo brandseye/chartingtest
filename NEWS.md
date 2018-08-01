@@ -1,5 +1,7 @@
 # chartingtest 1.6.0
 
+* `topics_metric()` can now show the parent ID when filtering using a topic tree id.
+
 # chartingtest 1.5.0
 
 * `volume_sentiment()` now has unique author count.
