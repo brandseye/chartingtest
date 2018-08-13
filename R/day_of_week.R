@@ -44,14 +44,15 @@ day_of_week_metric <- function(code, filter, file = NULL, save = FALSE) {
 
   data <- account(code) %>%
     count_mentions(filter, groupBy=published,
-                   select = c(totalSentiment, engagement)) %>%
+                   select = c(mentionCount, totalSentiment, engagement)) %>%
     mutate(day = factor(days[lubridate::wday(published, week_start = 1)],
                         levels = days, ordered = TRUE)) %>%
     group_by(day) %>%
-    summarise(count = sum(count, na.rm = TRUE),
+    summarise(mentionCount = sum(mentionCount, na.rm = TRUE),
               totalSentiment = sum(totalSentiment, na.rm = TRUE),
               totalEngagement = sum(totalEngagement, na.rm = TRUE)) %>%
-    rename(netSentiment = totalSentiment,
+    rename(count = mentionCount,
+           netSentiment = totalSentiment,
            engagement = totalEngagement)
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",
