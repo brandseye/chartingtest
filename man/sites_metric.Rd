@@ -4,7 +4,8 @@
 \alias{sites_metric}
 \title{Gets the 'stats metric' for a given filter}
 \usage{
-sites_metric(code, filter, file = NULL, save = FALSE, truncateAt = NULL)
+sites_metric(code, filter, file = NULL, save = FALSE,
+  truncateAt = NULL)
 }
 \arguments{
 \item{code}{An account code}

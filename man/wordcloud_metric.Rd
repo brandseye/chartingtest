@@ -4,7 +4,8 @@
 \alias{wordcloud_metric}
 \title{Pulls breakdown of volume by keyword}
 \usage{
-wordcloud_metric(code, filter, exclude = NULL, save = FALSE, file = NULL)
+wordcloud_metric(code, filter, exclude = NULL, save = FALSE,
+  file = NULL)
 }
 \arguments{
 \item{code}{An account code}

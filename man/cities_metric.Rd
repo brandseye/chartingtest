@@ -4,7 +4,8 @@
 \alias{cities_metric}
 \title{Gives information grouped by city}
 \usage{
-cities_metric(code, filter, file = NULL, save = FALSE, truncateAt = NULL)
+cities_metric(code, filter, file = NULL, save = FALSE,
+  truncateAt = NULL)
 }
 \arguments{
 \item{code}{The account code to use}

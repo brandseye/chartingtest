@@ -4,7 +4,8 @@
 \alias{regions_metric}
 \title{Gives information grouped by region}
 \usage{
-regions_metric(code, filter, file = NULL, save = FALSE, truncateAt = NULL)
+regions_metric(code, filter, file = NULL, save = FALSE,
+  truncateAt = NULL)
 }
 \arguments{
 \item{code}{The account code to use}

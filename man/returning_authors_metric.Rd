@@ -4,8 +4,8 @@
 \alias{returning_authors_metric}
 \title{Returns a breakdown of new vs returning authors}
 \usage{
-returning_authors_metric(code, previousFilter, currentFilter, file = NULL,
-  save = FALSE)
+returning_authors_metric(code, previousFilter, currentFilter,
+  file = NULL, save = FALSE)
 }
 \arguments{
 \item{code}{The account code to use}

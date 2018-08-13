@@ -4,8 +4,9 @@
 \alias{topics_metric}
 \title{Gets the Topics for a given filter}
 \usage{
-topics_metric(code, filter, file = NULL, save = FALSE, truncateAt = NULL,
-  showParents = TRUE, showChildren = TRUE, forParent = NULL)
+topics_metric(code, filter, file = NULL, save = FALSE,
+  truncateAt = NULL, showParents = TRUE, showChildren = TRUE,
+  forParent = NULL)
 }
 \arguments{
 \item{code}{An account code}

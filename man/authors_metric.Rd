@@ -4,7 +4,8 @@
 \alias{authors_metric}
 \title{Gets the 'authors metric' for a given filter}
 \usage{
-authors_metric(code, filter, file = NULL, save = FALSE, truncateAt = NULL)
+authors_metric(code, filter, file = NULL, save = FALSE,
+  truncateAt = NULL)
 }
 \arguments{
 \item{code}{The account code to use}
