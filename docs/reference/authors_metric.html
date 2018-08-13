@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chartingtest</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.6.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.6.1</span>
       </span>
     </div>
 
@@ -121,7 +121,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>authors_metric</span>(<span class='no'>code</span>, <span class='no'>filter</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>save</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>truncateAt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>authors_metric</span>(<span class='no'>code</span>, <span class='no'>filter</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>save</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>truncateAt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -155,20 +156,20 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>authors_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 41 x 7
-#&gt;    authorId      authorHandle authorName   count netSentiment    ots engagement
-#&gt;    &lt;chr&gt;         &lt;chr&gt;        &lt;chr&gt;        &lt;int&gt;        &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
-#&gt;  1 Fxead2090319… &lt;NA&gt;         Juan Dev         9            6    115          6
-#&gt;  2 &lt;NA&gt;          &lt;NA&gt;         &lt;NA&gt;             5            0      0          2
-#&gt;  3 Ixbrandeye86  brandeye86   &lt;NA&gt;             4            2      4          0
-#&gt;  4 Tx14325176    brandseye    BrandsEye        4            1  25799          0
-#&gt;  5 x126339ee198… &lt;NA&gt;         &lt;NA&gt;             1            1   4000          0
-#&gt;  6 Tx1330307053  QueenCityFr… Queen City …     1            1   2938          0
-#&gt;  7 Tx8286406961… jeffreyraym… JEFFREY RAY…     1            1    710          0
-#&gt;  8 x62fe50f9cd2… &lt;NA&gt;         &lt;NA&gt;             1            1    300          0
-#&gt;  9 YTxUCFxHplbc… &lt;NA&gt;         MILENIO          1            0 413210          0
-#&gt; 10 Tx17317028    McKenzieCNN  David McKen…     1            0  52515          0
-#&gt; # ... with 31 more rows</div></pre>
+<span class='fu'>authors_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 31 x 7
+#&gt;    authorId       authorHandle  authorName  count netSentiment   ots engagement
+#&gt;    &lt;chr&gt;          &lt;chr&gt;         &lt;chr&gt;       &lt;int&gt;        &lt;int&gt; &lt;int&gt;      &lt;int&gt;
+#&gt;  1 Ixbrandeye86   brandeye86    &lt;NA&gt;            3            3     3          0
+#&gt;  2 Tx33967994     goodbeerhunt… Good Beer …     2            2 55180          0
+#&gt;  3 x57f3b9de86af… &lt;NA&gt;          &lt;NA&gt;            2            0 70000          0
+#&gt;  4 YTxUCh04rGazx… &lt;NA&gt;          BrandsEye       2            0   136          0
+#&gt;  5 Tx1157225262   JKCollins84   Jay             1            1   792          0
+#&gt;  6 x20e924d4ba72… &lt;NA&gt;          &lt;NA&gt;            1            1   300          0
+#&gt;  7 x163a7e1c1e07… &lt;NA&gt;          &lt;NA&gt;            1            1     0          0
+#&gt;  8 xf5b399fce5e9… &lt;NA&gt;          &lt;NA&gt;            1            0 35000          0
+#&gt;  9 x7600e4ca36e2… &lt;NA&gt;          &lt;NA&gt;            1            0 35000          0
+#&gt; 10 x8f81ae5a3873… &lt;NA&gt;          &lt;NA&gt;            1            0 10000          0
+#&gt; # ... with 21 more rows</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -1,5 +1,7 @@
 # chartingtest 1.6.1
 
+* bug fix: `day_of_week_metric()` now properly has the mention count included.
+
 # chartingtest 1.6.0
 
 * `topics_metric()` can now show the parent ID when filtering using a topic tree id.

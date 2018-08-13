@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chartingtest</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.6.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.6.1</span>
       </span>
     </div>
 
@@ -78,7 +78,7 @@
       <h1>Finding Brand IDs</h1>
                         <h4 class="author">Constance Neeser</h4>
             
-            <h4 class="date">2018-08-01</h4>
+            <h4 class="date">2018-08-13</h4>
       
       
       <div class="hidden name"><code>brands.Rmd</code></div>
@@ -111,41 +111,41 @@
 <span class="kw"><a href="https://brandseye.github.io/brandseyer2//reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st">      </span><span class="co"># Choose the account that you want </span>
 <span class="st">  </span><span class="kw"><a href="https://brandseye.github.io/brandseyer2//reference/root_brands.html">root_brands</a></span>()              <span class="co"># Ask for root brands</span>
 <span class="co">#&gt; # A tibble: 2 x 4</span>
-<span class="co">#&gt;      id name            deleted archived           </span>
-<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;lgl&gt;   &lt;dttm&gt;             </span>
-<span class="co">#&gt; 1     2 Sibling Brand   FALSE   NA                 </span>
-<span class="co">#&gt; 2     1 Your Brand Here FALSE   NA</span></code></pre></div>
+<span class="co">#&gt;      id name            deleted archived</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;           &lt;lgl&gt;      &lt;dbl&gt;</span>
+<span class="co">#&gt; 1     1 Your Brand Here FALSE         NA</span>
+<span class="co">#&gt; 2     2 Sibling Brand   FALSE         NA</span></code></pre></div>
 <p>The <code>id</code> column gives the brand ID for you to use in your filter. The <code>parent</code> column gives the ID of the brand’s parent brand (for root brands this will always be <code>NA</code>, or “Not Applicable”). <code>deleted</code> will indicate whether the brand has been deleted or not, and <code>archived</code> will give a date that the brand was archived, or <code>NA</code> if it is unarchived.</p>
 <p>By default, <code><a href="https://brandseye.github.io/brandseyer2//reference/root_brands.html">root_brands()</a></code> will only show brands that are undeleted and uncharived.</p>
 <p>If you want to find a deleted root brand, you can do so with an extra argument:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://brandseye.github.io/brandseyer2//reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="https://brandseye.github.io/brandseyer2//reference/root_brands.html">root_brands</a></span>(<span class="dt">includeDeleted =</span> <span class="ot">TRUE</span>)
 <span class="co">#&gt; # A tibble: 3 x 4</span>
-<span class="co">#&gt;      id name            deleted archived           </span>
-<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;           &lt;lgl&gt;   &lt;dttm&gt;             </span>
-<span class="co">#&gt; 1     2 Sibling Brand   FALSE   NA                 </span>
-<span class="co">#&gt; 2     5 So deleted      TRUE    NA                 </span>
-<span class="co">#&gt; 3     1 Your Brand Here FALSE   NA</span></code></pre></div>
+<span class="co">#&gt;      id name            deleted archived</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;           &lt;lgl&gt;      &lt;dbl&gt;</span>
+<span class="co">#&gt; 1     1 Your Brand Here FALSE         NA</span>
+<span class="co">#&gt; 2     2 Sibling Brand   FALSE         NA</span>
+<span class="co">#&gt; 3     5 So deleted      TRUE          NA</span></code></pre></div>
 <p>And can also include archived brands:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://brandseye.github.io/brandseyer2//reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="https://brandseye.github.io/brandseyer2//reference/root_brands.html">root_brands</a></span>(<span class="dt">includeArchived =</span> <span class="ot">TRUE</span>)
 <span class="co">#&gt; # A tibble: 3 x 4</span>
-<span class="co">#&gt;      id name                    deleted archived           </span>
-<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;                   &lt;lgl&gt;   &lt;dttm&gt;             </span>
-<span class="co">#&gt; 1     2 Sibling Brand           FALSE   NA                 </span>
-<span class="co">#&gt; 2     6 Brand of Christmas Past FALSE   2018-01-23 12:20:18</span>
-<span class="co">#&gt; 3     1 Your Brand Here         FALSE   NA</span></code></pre></div>
+<span class="co">#&gt;      id name                    deleted    archived</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;                   &lt;lgl&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt; 1     1 Your Brand Here         FALSE           NA </span>
+<span class="co">#&gt; 2     2 Sibling Brand           FALSE           NA </span>
+<span class="co">#&gt; 3     6 Brand of Christmas Past FALSE   1516710018.</span></code></pre></div>
 <p>If you want to find brands that are not root brands, you can use the <a href="https://brandseye.github.io/brandseyer2/reference/brands.html">brand()</a> function, like so:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://brandseye.github.io/brandseyer2//reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="https://brandseye.github.io/brandseyer2//reference/brands.html">brands</a></span>()
 <span class="co">#&gt; # A tibble: 5 x 5</span>
-<span class="co">#&gt;      id name                    parent deleted archived           </span>
-<span class="co">#&gt;   &lt;dbl&gt; &lt;chr&gt;                    &lt;dbl&gt; &lt;lgl&gt;   &lt;dttm&gt;             </span>
-<span class="co">#&gt; 1     1 Your Brand Here             NA FALSE   NA                 </span>
-<span class="co">#&gt; 2     2 Sibling Brand               NA FALSE   NA                 </span>
-<span class="co">#&gt; 3     5 So deleted                  NA TRUE    NA                 </span>
-<span class="co">#&gt; 4     6 Brand of Christmas Past     NA FALSE   2018-01-23 12:20:18</span>
-<span class="co">#&gt; 5     3 Niece Brand                  2 FALSE   NA</span></code></pre></div>
+<span class="co">#&gt;      id name                    parent deleted    archived</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;                    &lt;int&gt; &lt;lgl&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt; 1     1 Your Brand Here             NA FALSE           NA </span>
+<span class="co">#&gt; 2     2 Sibling Brand               NA FALSE           NA </span>
+<span class="co">#&gt; 3     5 So deleted                  NA TRUE            NA </span>
+<span class="co">#&gt; 4     6 Brand of Christmas Past     NA FALSE   1516710018.</span>
+<span class="co">#&gt; 5     3 Niece Brand                  2 FALSE           NA</span></code></pre></div>
 <p>For accounts that have many brands, you can view the brands as a table in RStudio, like so</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://brandseye.github.io/brandseyer2//reference/account.html">account</a></span>(<span class="st">"TEST01AA"</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="https://brandseye.github.io/brandseyer2//reference/brands.html">brands</a></span>() <span class="op">%&gt;%</span><span class="st"> </span>

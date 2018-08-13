@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chartingtest</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.6.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.6.1</span>
       </span>
     </div>
 
@@ -121,7 +121,8 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>cities_metric</span>(<span class='no'>code</span>, <span class='no'>filter</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>save</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>truncateAt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>cities_metric</span>(<span class='no'>code</span>, <span class='no'>filter</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>save</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>truncateAt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -156,16 +157,14 @@ top cities based on the volume of mentions from the site.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>cities_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week  and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 7 x 6
+<span class='fu'>cities_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week  and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 6
 #&gt;        id city         count engagement netSentiment    ots
 #&gt;     &lt;int&gt; &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;  &lt;dbl&gt;
-#&gt; 1      NA Unknown         43         15            9 520956
-#&gt; 2 3369157 Cape Town       10          4            1  54030
-#&gt; 3  993800 Johannesburg     2          0            0  52647
-#&gt; 4 4508722 Cincinnati       1          0            1   2938
-#&gt; 5 4407066 Saint Louis      1          0            1    710
-#&gt; 6 4167147 Orlando          1          0            0    112
-#&gt; 7  949880 Tembisa          1          0            0     92</div></pre>
+#&gt; 1      NA Unknown         31          0            4 164040
+#&gt; 2 4887398 Chicago          2          0            2  55180
+#&gt; 3 4461015 Clemmons         1          0            1    792
+#&gt; 4  993800 Johannesburg     1          0            0    431
+#&gt; 5 1784658 Zhengzhou        1          0            0     67</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
