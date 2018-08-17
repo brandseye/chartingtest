@@ -1,3 +1,5 @@
+# chartingtest 1.7.0
+
 # chartingtest 1.6.1
 
 * bug fix: `day_of_week_metric()` now properly has the mention count included.
