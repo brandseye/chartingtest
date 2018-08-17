@@ -1,5 +1,7 @@
 # chartingtest 1.7.0
 
+* added `netSentimentPercent` to `sites_metric()`, `authors_metric()` and `volume_sentiment_metric()`.
+
 # chartingtest 1.6.1
 
 * bug fix: `day_of_week_metric()` now properly has the mention count included.
