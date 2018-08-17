@@ -1,3 +1,5 @@
+# chartingtest 1.8.0
+
 # chartingtest 1.7.0
 
 * added `netSentimentPercent` to `sites_metric()`, `authors_metric()` and `volume_sentiment_metric()`.
