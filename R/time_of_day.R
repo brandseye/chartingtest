@@ -38,6 +38,8 @@ time_of_day_metric <- function(code, filter, file = NULL, save = FALSE) {
   published <- NULL; hour <- NULL; count <- NULL;
   positiveCount <- NULL; negativeCount <- NULL; engagement <- NULL;
   HOUR <- NULL; totalSentiment <- NULL; totalEngagement <- NULL; mentionCount <- NULL;
+  netSentiment <- NULL; percentage <- NULL; netSentimentPercent <- NULL;
+  . <- NULL;
 
   data <- account(code) %>%
     count_mentions(filter, groupBy=published[HOUR],
@@ -48,7 +50,9 @@ time_of_day_metric <- function(code, filter, file = NULL, save = FALSE) {
               totalSentiment = sum(totalSentiment, na.rm = TRUE),
               totalEngagement = sum(totalEngagement, na.rm = TRUE)) %>%
     rename(netSentiment = totalSentiment,
-           engagement = totalEngagement)
+           engagement = totalEngagement) %>%
+    mutate(netSentimentPercent = (if (sum(count, na.rm = TRUE) == 0) 0 else netSentiment / sum(count, na.rm = TRUE)),
+           percentage = if (sum(count, na.rm = TRUE) == 0) 0 else count / sum(count, na.rm = TRUE))
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",
                                           filter = "CSV Files (*.csv)",
@@ -58,7 +62,11 @@ time_of_day_metric <- function(code, filter, file = NULL, save = FALSE) {
   }
 
   if (!is.null(file)) {
-    readr::write_excel_csv(data, file, na = "")
+    data %>%
+      mutate(percentage = scales::percent(percentage),
+             netSentimentPercent = scales::percent(netSentimentPercent)) %>%
+      replace(is.na(.), 0) %>%
+      readr::write_excel_csv(file, na = "")
     done(glue("Written your CSV to {file}"))
   }
 

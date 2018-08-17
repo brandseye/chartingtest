@@ -41,6 +41,7 @@ regions_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt =
   # For devtools::check
   region <- NULL; region.id <- NULL; region.name <- NULL; engagement <- NULL; . <- NULL;
   mentionCount <- NULL; totalEngagement <- NULL; totalOTS <- NULL; totalSentiment <- NULL;
+  netSentiment <- NULL; percentage <- NULL; netSentimentPercent <- NULL;
 
   data <- account(code) %>%
     count_mentions(filter, groupBy = region,
@@ -67,8 +68,11 @@ regions_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt =
            engagement = totalEngagement,
            netSentiment = totalSentiment,
            ots = totalOTS) %>%
+    mutate(netSentimentPercent = (if (sum(count, na.rm = TRUE) == 0) 0 else netSentiment / sum(count, na.rm = TRUE)),
+           percentage = (if (sum(count, na.rm = TRUE) == 0) 0 else count / sum(count, na.rm = TRUE))) %>%
     tidyr::replace_na(list(region = "Unknown",
                            count = 0, engagement = 0,
+                           percentage = 0, netSentimentPercent = 0,
                            netSentiment = 0, ots = 0)) %>%
     select(id, region, everything())
 
@@ -81,6 +85,8 @@ regions_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt =
 
   if (!is.null(file)) {
     data %>%
+      mutate(percentage = scales::percent(percentage),
+             netSentimentPercent = scales::percent(netSentimentPercent)) %>%
       readr::write_excel_csv(file, na = "")
     done(glue("Written your CSV to {file}"))
   }

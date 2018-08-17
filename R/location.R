@@ -41,6 +41,7 @@ locations_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt
   # For devtools::check
   country <- NULL; country.id <- NULL; country.name <- NULL; engagement <- NULL; . <- NULL;
   mentionCount <- NULL; totalEngagement <- NULL; totalOTS <- NULL; totalSentiment <- NULL;
+  netSentiment <- NULL; percentage <- NULL; netSentimentPercent <- NULL;
 
   data <- account(code) %>%
     count_mentions(filter, groupBy = country,
@@ -67,7 +68,10 @@ locations_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt
            engagement = totalEngagement,
            netSentiment = totalSentiment,
            ots = totalOTS) %>%
-    tidyr::replace_na(list(country = "Unknown", count = 0, engagement = 0, netSentiment = 0, ots = 0))
+    mutate(netSentimentPercent = (if (sum(count, na.rm = TRUE) == 0) 0 else netSentiment / sum(count, na.rm = TRUE)),
+           percentage = (if (sum(count, na.rm = TRUE) == 0) 0 else count / sum(count, na.rm = TRUE))) %>%
+    tidyr::replace_na(list(country = "Unknown", count = 0, engagement = 0,
+                           netSentiment = 0, ots = 0, percentage = 0, netSentimentPercent = 0))
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",
                                           filter = "CSV Files (*.csv)",
@@ -78,6 +82,8 @@ locations_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt
 
   if (!is.null(file)) {
     data %>%
+      mutate(percentage = scales::percent(percentage),
+             netSentimentPercent = scales::percent(netSentimentPercent)) %>%
       readr::write_excel_csv(file, na = "")
     done(glue("Written your CSV to {file}"))
   }

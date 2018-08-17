@@ -35,12 +35,15 @@ gender_metric <- function(code, filter, file = NULL, save = FALSE) {
   # for devtools::check
   gender <- NULL; gender.id <- NULL; mentionCount <- NULL;
   engagement <- NULL; totalEngagement <- NULL; totalOTS <- NULL; totalSentiment <- NULL;
+  netSentiment <- NULL; percentage <- NULL; netSentimentPercent <- NULL;
 
   data <- account(code) %>%
     count_mentions(filter, groupBy = gender, select = c(mentionCount, totalOTS, engagement, totalSentiment)) %>%
     select(-gender) %>%
     rename(gender = gender.id, count = mentionCount,
            ots = totalOTS, engagement = totalEngagement, netSentiment = totalSentiment) %>%
+    mutate(netSentimentPercent = (if (sum(count, na.rm = TRUE) == 0) 0 else netSentiment / sum(count, na.rm = TRUE)),
+           percentage = if (sum(count, na.rm = TRUE) == 0) 0 else count / sum(count, na.rm = TRUE)) %>%
     select(gender, count, everything())
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",
@@ -55,7 +58,10 @@ gender_metric <- function(code, filter, file = NULL, save = FALSE) {
     data %>%
       tidyr::replace_na(list(gender = "Unknown")) %>%
       mutate(gender = stringr::str_to_title(gender)) %>%
-      readr::write_excel_csv(file, na = "")
+      mutate(percentage = scales::percent(percentage),
+             netSentimentPercent = scales::percent(netSentimentPercent)) %>%
+      tidyr::replace_na(list(gender = "UNKNOWN")) %>%
+      readr::write_excel_csv(file, na = "0")
     done(glue("Written your CSV to {file}"))
   }
 

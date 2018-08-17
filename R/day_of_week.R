@@ -39,6 +39,8 @@ day_of_week_metric <- function(code, filter, file = NULL, save = FALSE) {
   published <- NULL; count <- NULL; day <- NULL;
   positiveCount <- NULL; negativeCount <- NULL; engagement <- NULL;
   totalEngagement <- NULL; totalSentiment <- NULL; mentionCount <- NULL;
+  netSentiment <- NULL; percentage <- NULL; netSentimentPercent <- NULL;
+  . <- NULL;
 
   days <- c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
 
@@ -53,7 +55,9 @@ day_of_week_metric <- function(code, filter, file = NULL, save = FALSE) {
               totalEngagement = sum(totalEngagement, na.rm = TRUE)) %>%
     rename(count = mentionCount,
            netSentiment = totalSentiment,
-           engagement = totalEngagement)
+           engagement = totalEngagement) %>%
+    mutate(netSentimentPercent = (if (sum(count, na.rm = TRUE) == 0) 0 else netSentiment / sum(count, na.rm = TRUE)),
+           percentage = if (sum(count, na.rm = TRUE) == 0) 0 else count / sum(count, na.rm = TRUE))
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",
                                           filter = "CSV Files (*.csv)",
@@ -63,7 +67,11 @@ day_of_week_metric <- function(code, filter, file = NULL, save = FALSE) {
   }
 
   if (!is.null(file)) {
-    readr::write_excel_csv(data, file, na = "")
+    data %>%
+      mutate(percentage = scales::percent(percentage),
+             netSentimentPercent = scales::percent(netSentimentPercent)) %>%
+      replace(is.na(.), "0") %>%
+      readr::write_excel_csv(file, na = "")
     done(glue("Written your CSV to {file}"))
   }
 

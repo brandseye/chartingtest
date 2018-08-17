@@ -37,6 +37,8 @@ race_metric <- function(code, filter, file = NULL, save = FALSE) {
   # for devtools::check
   race <- NULL; race.id <- NULL; mentionCount <- NULL; label <- NULL;
   engagement <- NULL; totalEngagement <- NULL; totalOTS <- NULL; totalSentiment <- NULL;
+  netSentiment <- NULL; percentage <- NULL; netSentimentPercent <- NULL;
+  . <- NULL;
 
   data <- account(code) %>%
     count_mentions(filter, groupBy = race, select = c(mentionCount, totalOTS, engagement, totalSentiment)) %>%
@@ -44,6 +46,8 @@ race_metric <- function(code, filter, file = NULL, save = FALSE) {
     select(-race) %>%
     rename(race = race.id, count = mentionCount,
            ots = totalOTS, engagement = totalEngagement, netSentiment = totalSentiment) %>%
+    mutate(percentage = (if (sum(count, na.rm = TRUE) == 0) 0 else count / sum(count, na.rm = TRUE)),
+           netSentimentPercent = (if (sum(count, na.rm = TRUE) == 0) 0 else netSentiment / sum(count, na.rm = TRUE))) %>%
     select(race, label, count, everything())
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",
@@ -56,6 +60,10 @@ race_metric <- function(code, filter, file = NULL, save = FALSE) {
 
   if (!is.null(file)) {
     data %>%
+      mutate(percentage = scales::percent(percentage),
+             netSentimentPercent = scales::percent(netSentimentPercent)) %>%
+      tidyr::replace_na(list(race = "UNKNOWN")) %>%
+      replace(is.na(.), "0") %>%
       readr::write_excel_csv(file, na = "")
     done(glue("Written your CSV to {file}"))
   }

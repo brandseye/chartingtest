@@ -106,7 +106,7 @@ topics_metric <- function(code, filter, file = NULL,
   totalPositive <- NULL; totalNegative <- NULL; totalNeutral <- NULL;
   ots <- NULL; netSentiment <- NULL; positivePercent <- NULL; negativePercent <- NULL;
   neutralPercent <- NULL; parentNegPercent <- NULL; parentNeutPercent <- NULL;
-  parentPosPercent <- NULL;
+  parentPosPercent <- NULL; netSentimentPercent <- NULL;
 
   ac <- account(code)
 
@@ -180,7 +180,8 @@ topics_metric <- function(code, filter, file = NULL,
            ots = totalOTS) %>%
     mutate(positivePercent = ifelse(count == 0, 0, totalPositive / count),
            negativePercent = ifelse(count == 0, 0, totalNegative / count),
-           neutralPercent = ifelse(count == 0, 0, totalPositive / count)) %>%
+           neutralPercent = ifelse(count == 0, 0, totalPositive / count),
+           netSentimentPercent = (if (sum(count, na.rm = TRUE) == 0) 0 else netSentiment / sum(count, na.rm = TRUE))) %>%
     select(id, topic, count, percentage, engagement, ots,
            netSentiment, totalPositive, positivePercent, totalNegative, negativePercent,
            totalNeutral, neutralPercent, everything()) %>%
@@ -231,6 +232,7 @@ topics_metric <- function(code, filter, file = NULL,
 
   if (!is.null(file)) {
     write <- data %>%
+      tidyr::replace_na(list(percentage = 0)) %>%
       mutate(percentage=scales::percent(percentage))
 
     if ('parentPercentage' %in% names(write)) {
@@ -238,7 +240,8 @@ topics_metric <- function(code, filter, file = NULL,
         mutate(parentPercentage = scales::percent(parentPercentage),
                parentPosPercent = scales::percent(parentPosPercent),
                parentNegPercent = scales::percent(parentNegPercent),
-               parentNeutPercent = scales::percent(parentNeutPercent))
+               parentNeutPercent = scales::percent(parentNeutPercent),
+               netSentimentPercent = scales::percent(netSentimentPercent))
     }
 
     write %>%
