@@ -1,5 +1,16 @@
 # chartingtest 1.8.0
 
+* Ensured that `netSentimentPercent` and `percentage` are available in the following
+  functions that were missing them.
+  
+  - `cities_metric()`
+  - `regions_metric()`
+  - `locations_metric()`
+  - `gender_metric()`
+  - `race_metric()`
+  - `time_of_day_metric()`
+  - `day_of_week_metric()`
+
 # chartingtest 1.7.0
 
 * added `netSentimentPercent` to `sites_metric()`, `authors_metric()` and `volume_sentiment_metric()`.
