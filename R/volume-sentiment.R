@@ -45,6 +45,7 @@ volume_sentiment_metric <- function(code, filter, group = "day", file = NULL, sa
   netSentiment <- NULL; mentionCount <- NULL; totalSentiment <- NULL;
   positiveSentiment <- NULL; negativeSentiment <- NULL; neutralSentiment <- NULL;
   . <- NULL; uniqueAuthors <- NULL; authorIdCount <- NULL; authorId <- NULL;
+  netSentimentPercent <- NULL;
 
   data <- account(code) %>%
     count_mentions(filter = filter,
@@ -52,6 +53,7 @@ volume_sentiment_metric <- function(code, filter, group = "day", file = NULL, sa
                    select=c(mentionCount, totalSentiment, totalPositive, totalNegative, totalNeutral, authorId)) %>%
     mutate(netSentiment = totalSentiment,
            count = mentionCount,
+           netSentimentPercent = (if (sum(count, na.rm = TRUE) == 0) 0 else netSentiment / sum(count, na.rm = TRUE)),
            uniqueAuthors = authorIdCount,
            published = lubridate::force_tz(published, brandseyer::account_timezone(code)),
            positiveSentiment = totalPositive,
@@ -60,7 +62,7 @@ volume_sentiment_metric <- function(code, filter, group = "day", file = NULL, sa
            positivePercent = positiveSentiment / ifelse(count == 0, 1, count),
            negativePercent = negativeSentiment / ifelse(count == 0, 1, count),
            neutralPercent = neutralSentiment / ifelse(count == 0, 1, count)) %>%
-    select(published, count, netSentiment, uniqueAuthors,
+    select(published, count, netSentiment, netSentimentPercent, uniqueAuthors,
            positiveSentiment, positivePercent,
            negativeSentiment, negativePercent,
            neutralSentiment, neutralPercent)
@@ -75,6 +77,7 @@ volume_sentiment_metric <- function(code, filter, group = "day", file = NULL, sa
   if (!is.null(file)) {
     data %>%
       dplyr::mutate(published = format(published, "%F %R"),
+                    netSentimentPercent=scales::percent(netSentimentPercent),
                     positivePercent=scales::percent(positivePercent),
                     neutralPercent=scales::percent(neutralPercent),
                     negativePercent=scales::percent(negativePercent)) %>%

@@ -38,6 +38,7 @@ authors_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt =
   # For devtools::check
   mentionCount <- NULL; . <- NULL; authorHandle <- NULL; authorId <- NULL; authorName <- NULL;
   engagement <- NULL; totalEngagement <- NULL; totalOTS <- NULL; totalSentiment <- NULL;
+  netSentiment <- NULL;
 
   ac <- account(code)
   data <- count_mentions(ac, filter,
@@ -62,6 +63,7 @@ authors_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt =
            netSentiment = totalSentiment,
            ots = totalOTS,
            engagement = totalEngagement) %>%
+    mutate(netSentimentPercent = (if (sum(count, na.rm = TRUE) == 0) 0 else netSentiment / sum(count, na.rm = TRUE))) %>%
     select(authorId, authorHandle, authorName, count, everything())
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",

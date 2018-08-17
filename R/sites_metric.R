@@ -43,7 +43,7 @@ sites_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = N
   # For devtools::check
   mentionCount <- NULL; . <- NULL; site <- NULL; engagement <- NULL;
   totalSentiment <- NULL; totalOTS <- NULL; totalEngagement <- NULL;
-  percentage <- NULL;
+  percentage <- NULL; netSentiment <- NULL; netSentimentPercent <- NULL;
 
   ac <- account(code)
   data <- count_mentions(ac, filter, groupBy = site, select = c(mentionCount, engagement, totalSentiment, totalOTS)) %>%
@@ -67,7 +67,8 @@ sites_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = N
     rename(count = mentionCount,
            engagement = totalEngagement,
            netSentiment = totalSentiment,
-           ots = totalOTS)
+           ots = totalOTS) %>%
+    mutate(netSentimentPercent = (if (sum(count, na.rm = TRUE) == 0) 0 else netSentiment / sum(count, na.rm = TRUE)))
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",
                                           filter = "CSV Files (*.csv)",
@@ -78,7 +79,8 @@ sites_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = N
 
   if (!is.null(file)) {
     data %>%
-      mutate(percentage=scales::percent(percentage)) %>%
+      mutate(percentage = scales::percent(percentage),
+             netSentimentPercent = scales::percent(netSentimentPercent)) %>%
       readr::write_excel_csv(file, na = "0")
     done(glue("Written your CSV to {file}"))
   }
