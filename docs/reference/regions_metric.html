@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chartingtest</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.6.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.7.0</span>
       </span>
     </div>
 
@@ -157,14 +157,12 @@ top regions based on the volume of mentions from the site.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>regions_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week  and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 5 x 6
-#&gt;   id    region         count engagement netSentiment    ots
-#&gt;   &lt;chr&gt; &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;  &lt;dbl&gt;
-#&gt; 1 &lt;NA&gt;  Unknown           31          0            4 164040
-#&gt; 2 US.IL Illinois           2          0            2  55180
-#&gt; 3 US.NC North Carolina     1          0            1    792
-#&gt; 4 ZA.06 Gauteng            1          0            0    431
-#&gt; 5 CN.09 Henan Sheng        1          0            0     67</div></pre>
+<span class='fu'>regions_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week  and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 6
+#&gt;   id    region   count engagement netSentiment   ots
+#&gt;   &lt;chr&gt; &lt;chr&gt;    &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;
+#&gt; 1 &lt;NA&gt;  Unknown     15          0            0 18836
+#&gt; 2 US.IL Illinois     1          0            1 27610
+#&gt; 3 ZA.06 Gauteng      1          0            0   431</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

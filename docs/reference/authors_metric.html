@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chartingtest</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.6.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.7.0</span>
       </span>
     </div>
 
@@ -156,20 +156,27 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>authors_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 31 x 7
-#&gt;    authorId       authorHandle  authorName  count netSentiment   ots engagement
-#&gt;    &lt;chr&gt;          &lt;chr&gt;         &lt;chr&gt;       &lt;int&gt;        &lt;int&gt; &lt;int&gt;      &lt;int&gt;
-#&gt;  1 Ixbrandeye86   brandeye86    &lt;NA&gt;            3            3     3          0
-#&gt;  2 Tx33967994     goodbeerhunt… Good Beer …     2            2 55180          0
-#&gt;  3 x57f3b9de86af… &lt;NA&gt;          &lt;NA&gt;            2            0 70000          0
-#&gt;  4 YTxUCh04rGazx… &lt;NA&gt;          BrandsEye       2            0   136          0
-#&gt;  5 Tx1157225262   JKCollins84   Jay             1            1   792          0
-#&gt;  6 x20e924d4ba72… &lt;NA&gt;          &lt;NA&gt;            1            1   300          0
-#&gt;  7 x163a7e1c1e07… &lt;NA&gt;          &lt;NA&gt;            1            1     0          0
-#&gt;  8 xf5b399fce5e9… &lt;NA&gt;          &lt;NA&gt;            1            0 35000          0
-#&gt;  9 x7600e4ca36e2… &lt;NA&gt;          &lt;NA&gt;            1            0 35000          0
-#&gt; 10 x8f81ae5a3873… &lt;NA&gt;          &lt;NA&gt;            1            0 10000          0
-#&gt; # ... with 21 more rows</div></pre>
+<span class='fu'>authors_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 17 x 8
+#&gt;    authorId authorHandle authorName count netSentiment   ots engagement
+#&gt;    &lt;chr&gt;    &lt;chr&gt;        &lt;chr&gt;      &lt;int&gt;        &lt;int&gt; &lt;int&gt;      &lt;int&gt;
+#&gt;  1 Tx33967… goodbeerhun… Good Beer…     1            1 27610          0
+#&gt;  2 Ixbrand… brandeye86   &lt;NA&gt;           1            1     1          0
+#&gt;  3 x8f81ae… &lt;NA&gt;         &lt;NA&gt;           1            0 10000          0
+#&gt;  4 Tx57835… mlnangalama  MarthaLea…     1            0  2388          0
+#&gt;  5 Tx15560… _brandeye    Bran.✨        1            0  1242          0
+#&gt;  6 xf3dcc2… &lt;NA&gt;         &lt;NA&gt;           1            0  1000          0
+#&gt;  7 xac86ff… &lt;NA&gt;         &lt;NA&gt;           1            0  1000          0
+#&gt;  8 Tx10382… LuxuryShare  Luxury Sh…     1            0   951          0
+#&gt;  9 Tx31387… SeeNewsNet   SeeNews.n…     1            0   714          0
+#&gt; 10 Tx30068… Skowtura_Ini Gaia Stra…     1            0   642          0
+#&gt; 11 Tx95951… 1NEWSDAYcom  1newsday       1            0   540          0
+#&gt; 12 Tx41061… PMGeducator  Paul Grah…     1            0   431          0
+#&gt; 13 Tx76920… NewsMagnetI… NewsMagne…     1            0   295          0
+#&gt; 14 Tx87571… waynfo       Waynfo.com     1            0    13          0
+#&gt; 15 Tx10031… ddstxkl      deadstock…     1            0     0          0
+#&gt; 16 x524d33… &lt;NA&gt;         &lt;NA&gt;           1            0     0          0
+#&gt; 17 x72fc06… &lt;NA&gt;         &lt;NA&gt;           1           -1    50          0
+#&gt; # ... with 1 more variable: netSentimentPercent &lt;dbl&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
