@@ -1,3 +1,5 @@
+# chartingtest 1.9.0
+
 # chartingtest 1.8.0
 
 * Ensured that `netSentimentPercent` and `percentage` are available in the following
