@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chartingtest</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.8.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.9.0</span>
       </span>
     </div>
 
@@ -157,12 +157,15 @@ top regions based on the volume of mentions from the site.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>regions_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week  and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 3 x 8
-#&gt;   id    region  count engagement netSentiment   ots netSentimentPer… percentage
-#&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-#&gt; 1 &lt;NA&gt;  Unknown    17          1            0 22851           0          0.895 
-#&gt; 2 US.IL Illino…     1          0            1 27610           0.0526     0.0526
-#&gt; 3 ZA.06 Gauteng     1          0            0   431           0          0.0526</div></pre>
+<span class='fu'>regions_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week  and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 6 x 8
+#&gt;   id     region count engagement netSentiment   ots netSentimentPer… percentage
+#&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
+#&gt; 1 &lt;NA&gt;   Unkno…    23          4            6 89046           0.188      0.719 
+#&gt; 2 SE.26  Stock…     4          0            0    44           0          0.125 
+#&gt; 3 ZA.11  Weste…     2          1            0 12723           0          0.0625
+#&gt; 4 US.NJ  New J…     1          0            1   333           0.0312     0.0312
+#&gt; 5 US.TX  Texas      1          0            0  1606           0          0.0312
+#&gt; 6 GR.ES… Attica     1          0            0  1554           0          0.0312</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

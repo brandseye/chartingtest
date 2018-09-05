@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pulls breakdown of volume by keyword — wordcloud_metric • chartingtest</title>
+<title>Returns data grouped by brand — brand_metric • chartingtest</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Pulls breakdown of volume by keyword — wordcloud_metric" />
+<meta property="og:title" content="Returns data grouped by brand — brand_metric" />
 
-<meta property="og:description" content="Pulls breakdown of volume by keyword" />
+<meta property="og:description" content="Returns data grouped by brand" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -110,67 +110,59 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pulls breakdown of volume by keyword</h1>
+    <h1>Returns data grouped by brand</h1>
     
-    <div class="hidden name"><code>wordcloud_metric.Rd</code></div>
+    <div class="hidden name"><code>brand_metric.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Pulls breakdown of volume by keyword</p>
+    <p>Returns data grouped by brand</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>wordcloud_metric</span>(<span class='no'>code</span>, <span class='no'>filter</span>, <span class='kw'>exclude</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>save</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>brand_metric</span>(<span class='no'>code</span>, <span class='no'>filter</span>, <span class='kw'>file</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>save</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>truncateAt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>code</th>
-      <td><p>An account code</p></td>
+      <td><p>The account code to use</p></td>
     </tr>
     <tr>
       <th>filter</th>
-      <td><p>A filter for data</p></td>
+      <td><p>The filter for the data</p></td>
     </tr>
     <tr>
-      <th>exclude</th>
-      <td><p>A character vector of terms you want to exclude</p></td>
+      <th>file</th>
+      <td><p>An optional file name to save a CSV file to</p></td>
     </tr>
     <tr>
       <th>save</th>
       <td><p>Set to TRUE if you'd like a dialog file to choose where to save your CSV</p></td>
     </tr>
     <tr>
-      <th>file</th>
-      <td><p>An optional file name to save a CSV file to</p></td>
+      <th>truncateAt</th>
+      <td><p>Optional number of results - rest will become "Others"</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Return a list of words and volume of mentions</p>
+    <p>A tibble of your data</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>wordcloud_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: NAs introduced by coercion</span></div><div class='output co'>#&gt; # A tibble: 323 x 2
-#&gt;    Word       Mentions
-#&gt;    &lt;chr&gt;         &lt;int&gt;
-#&gt;  1 eye              16
-#&gt;  2 brands           14
-#&gt;  3 global           11
-#&gt;  4 casino            9
-#&gt;  5 athens            9
-#&gt;  6 gaming            9
-#&gt;  7 brandseye         9
-#&gt;  8 @brandseye        4
-#&gt;  9 world             4
-#&gt; 10 open              3
-#&gt; # ... with 313 more rows</div><div class='input'>
-</div></pre>
+<span class='fu'>brand_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week  and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 1 x 14
+#&gt;   brand.id brand.name count netSentiment netSentimentPer… uniqueAuthors    ots
+#&gt;      &lt;int&gt; &lt;chr&gt;      &lt;int&gt;        &lt;int&gt;            &lt;dbl&gt;         &lt;int&gt;  &lt;int&gt;
+#&gt; 1    10006 BrandsEye     32            7            0.219            24 105306
+#&gt; # ... with 7 more variables: engagement &lt;int&gt;, positiveSentiment &lt;int&gt;,
+#&gt; #   positivePercent &lt;dbl&gt;, negativeSentiment &lt;int&gt;, negativePercent &lt;dbl&gt;,
+#&gt; #   neutralSentiment &lt;int&gt;, neutralPercent &lt;dbl&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

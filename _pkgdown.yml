@@ -21,6 +21,7 @@ reference:
       - locations_metric
       - regions_metric
       - cities_metric
+      - brand_metric
 
   - title: "Creating charts and metrics"
     desc: >

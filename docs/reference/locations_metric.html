@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">chartingtest</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.8.0</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.9.0</span>
       </span>
     </div>
 
@@ -157,18 +157,19 @@ top countries based on the volume of mentions from the site.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='fu'>locations_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week  and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 9 x 8
-#&gt;   id    country count engagement netSentiment   ots netSentimentPer… percentage
-#&gt;   &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-#&gt; 1 US    United…     5          0            1 30566           0.0526     0.263 
-#&gt; 2 &lt;NA&gt;  Unknown     4          1            1  4029           0.0526     0.211 
-#&gt; 3 CA    Canada      2          0            0  2683           0          0.105 
-#&gt; 4 GB    United…     2          0            0  1593           0          0.105 
-#&gt; 5 ZA    South …     2          0           -1   481          -0.0526     0.105 
-#&gt; 6 RU    Russia      1          0            0 10000           0          0.0526
-#&gt; 7 FR    France      1          0            0  1000           0          0.0526
-#&gt; 8 UA    Ukraine     1          0            0   540           0          0.0526
-#&gt; 9 MY    Malays…     1          0            0     0           0          0.0526</div></pre>
+<span class='fu'>locations_metric</span>(<span class='st'>"QUIR01BA"</span>, <span class='st'>"published inthelast week  and brand isorchildof 10006"</span>)</div><div class='output co'>#&gt; # A tibble: 10 x 8
+#&gt;    count engagement netSentiment   ots id    country netSentimentPe… percentage
+#&gt;    &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;      &lt;dbl&gt;
+#&gt;  1    12          4            6  8984 &lt;NA&gt;  Unknown          0.188      0.375 
+#&gt;  2     5          0            1  9567 US    United…          0.0312     0.156 
+#&gt;  3     4          0            0    44 SE    Sweden           0          0.125 
+#&gt;  4     2          1            0 12723 ZA    South …          0          0.0625
+#&gt;  5     2          0            0 70000 KR    South …          0          0.0625
+#&gt;  6     2          0            0    60 GB    United…          0          0.0625
+#&gt;  7     2          0            0     0 AE    United…          0          0.0625
+#&gt;  8     1          0            0  2374 IT    Italy            0          0.0312
+#&gt;  9     1          0            0  1554 GR    Greece           0          0.0312
+#&gt; 10     1          0            0     0 TH    Thaila…          0          0.0312</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
