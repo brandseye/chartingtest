@@ -2,6 +2,7 @@
 
 export("%>%")
 export(authors_metric)
+export(brand_metric)
 export(cities_metric)
 export(day_of_week_metric)
 export(gender_metric)
