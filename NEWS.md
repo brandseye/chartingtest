@@ -1,5 +1,7 @@
 # chartingtest 1.9.0
 
+* Added `brand_metric()` to group data by brands. 
+
 # chartingtest 1.8.0
 
 * Ensured that `netSentimentPercent` and `percentage` are available in the following
@@ -12,9 +14,6 @@
   - `race_metric()`
   - `time_of_day_metric()`
   - `day_of_week_metric()`
-
-* Added `brand_metric()` to group data by brands. 
-
 
 # chartingtest 1.7.0
 
