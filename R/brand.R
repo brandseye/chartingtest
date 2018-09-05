@@ -24,6 +24,7 @@
 #' @param filter The filter for the data
 #' @param file   An optional file name to save a CSV file to
 #' @param save   Set to TRUE if you'd like a dialog file to choose where to save your CSV
+#' @param truncateAt Optional number of results - rest will become "Others"
 #'
 #' @return A tibble of your data
 #' @export
@@ -31,7 +32,7 @@
 #' @examples
 #'
 #' brand_metric("QUIR01BA", "published inthelast week  and brand isorchildof 10006")
-brand_metric <- function(code, filter, file = NULL, save = FALSE) {
+brand_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = NULL) {
   assert_that(is.string(code))
   assert_that(is.string(filter))
   assert_that(is.null(file) || is.string(file), msg = "File name must be a string")
@@ -44,13 +45,14 @@ brand_metric <- function(code, filter, file = NULL, save = FALSE) {
   positiveSentiment <- NULL; negativeSentiment <- NULL; neutralSentiment <- NULL;
   . <- NULL; uniqueAuthors <- NULL; authorIdCount <- NULL; authorId <- NULL;
   netSentimentPercent <- NULL; brand <- NULL; brand.id <- NULL; brand.name <- NULL;
-  totalOTS <- NULL;
+  totalOTS <- NULL; ots <- NULL; engagement <- NULL; totalEngagement <- NULL;
 
   data <- account(code) %>%
     count_mentions(filter = filter,
                    groupBy = brand,
                    select=c(mentionCount,
                             totalSentiment, totalPositive, totalNegative, totalNeutral,
+                            totalEngagement,
                             authorId, totalOTS)) %>%
     mutate(netSentiment = totalSentiment,
            count = mentionCount,
@@ -59,14 +61,38 @@ brand_metric <- function(code, filter, file = NULL, save = FALSE) {
            positiveSentiment = totalPositive,
            negativeSentiment = totalNegative,
            neutralSentiment = totalNeutral,
+           engagement = totalEngagement,
+           ots = totalOTS,
            positivePercent = positiveSentiment / ifelse(count == 0, 1, count),
            negativePercent = negativeSentiment / ifelse(count == 0, 1, count),
            neutralPercent = neutralSentiment / ifelse(count == 0, 1, count)) %>%
     select(brand.id, brand.name,
-           count, netSentiment, netSentimentPercent, uniqueAuthors, totalOTS,
+           count, netSentiment, netSentimentPercent, uniqueAuthors, ots, engagement,
            positiveSentiment, positivePercent,
            negativeSentiment, negativePercent,
-           neutralSentiment, neutralPercent)
+           neutralSentiment, neutralPercent) %>%
+    arrange(desc(count))
+
+  if (!is.null(truncateAt)) {
+    assert_that(is.number(truncateAt))
+    top <- data %>% top_n(n = truncateAt, wt=count)
+    others <- data %>%
+      top_n(n=-(nrow(.)-truncateAt), wt=count) %$%
+      tibble(brand.id=NA, brand.name="Others",
+             count = sum(count, na.rm = TRUE),
+             netSentiment = sum(netSentiment, na.rm = TRUE),
+             netSentimentPercent = ifelse(count == 0, 0, netSentiment / count),
+             uniqueAuthors = sum(uniqueAuthors, na.rm = TRUE),
+             ots = sum(ots, na.rm = TRUE),
+             engagement = sum(engagement, na.rm = TRUE),
+             positiveSentiment = sum(positiveSentiment, na.rm = TRUE),
+             negativeSentiment = sum(negativeSentiment, na.rm = TRUE),
+             neutralSentiment = sum(neutralSentiment, na.rm = TRUE),
+             positivePercent = positiveSentiment / ifelse(count == 0, 1, count),
+             negativePercent = negativeSentiment / ifelse(count == 0, 1, count),
+             neutralPercent = neutralSentiment / ifelse(count == 0, 1, count))
+    data <- bind_rows(top, others)
+  }
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",
                                           filter = "CSV Files (*.csv)",

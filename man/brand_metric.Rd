@@ -4,7 +4,8 @@
 \alias{brand_metric}
 \title{Returns data grouped by brand}
 \usage{
-brand_metric(code, filter, file = NULL, save = FALSE)
+brand_metric(code, filter, file = NULL, save = FALSE,
+  truncateAt = NULL)
 }
 \arguments{
 \item{code}{The account code to use}
@@ -14,6 +15,8 @@ brand_metric(code, filter, file = NULL, save = FALSE)
 \item{file}{An optional file name to save a CSV file to}
 
 \item{save}{Set to TRUE if you'd like a dialog file to choose where to save your CSV}
+
+\item{truncateAt}{Optional number of results - rest will become "Others"}
 }
 \value{
 A tibble of your data
