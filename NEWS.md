@@ -11,6 +11,9 @@
   - `time_of_day_metric()`
   - `day_of_week_metric()`
 
+* Added `brand_metric()` to group data by brands. 
+
+
 # chartingtest 1.7.0
 
 * added `netSentimentPercent` to `sites_metric()`, `authors_metric()` and `volume_sentiment_metric()`.
