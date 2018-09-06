@@ -47,7 +47,7 @@ sites_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = N
 
   ac <- account(code)
   data <- count_mentions(ac, filter, groupBy = site, select = c(mentionCount, engagement, totalSentiment, totalOTS)) %>%
-    mutate(percentage=mentionCount/sum(mentionCount))
+    mutate(ifelse(mentionCount == 0, 0, mentionCount/sum(mentionCount, na.rm = TRUE)))
 
   if (!is.null(truncateAt)) {
     assert_that(is.number(truncateAt))

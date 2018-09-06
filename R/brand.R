@@ -56,6 +56,7 @@ brand_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = N
                             authorId, totalOTS)) %>%
     mutate(netSentiment = totalSentiment,
            count = mentionCount,
+           percentage=ifelse(count == 0, 0, count/sum(count, na.rm = TRUE)),
            netSentimentPercent = ifelse(count == 0, 0, netSentiment / count),
            uniqueAuthors = authorIdCount,
            positiveSentiment = totalPositive,
@@ -67,7 +68,7 @@ brand_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = N
            negativePercent = negativeSentiment / ifelse(count == 0, 1, count),
            neutralPercent = neutralSentiment / ifelse(count == 0, 1, count)) %>%
     select(brand.id, brand.name,
-           count, netSentiment, netSentimentPercent, uniqueAuthors, ots, engagement,
+           count, percentage, netSentiment, netSentimentPercent, uniqueAuthors, ots, engagement,
            positiveSentiment, positivePercent,
            negativeSentiment, negativePercent,
            neutralSentiment, neutralPercent) %>%
@@ -80,6 +81,7 @@ brand_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = N
       top_n(n=-(nrow(.)-truncateAt), wt=count) %$%
       tibble(brand.id=NA, brand.name="Others",
              count = sum(count, na.rm = TRUE),
+             percentage = sum(percentage, na.rm = TRUE),
              netSentiment = sum(netSentiment, na.rm = TRUE),
              netSentimentPercent = ifelse(count == 0, 0, netSentiment / count),
              uniqueAuthors = sum(uniqueAuthors, na.rm = TRUE),
@@ -103,7 +105,8 @@ brand_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = N
 
   if (!is.null(file)) {
     data %>%
-      dplyr::mutate(netSentimentPercent=scales::percent(netSentimentPercent),
+      dplyr::mutate(percentage = scales::percent(percentage),
+                    netSentimentPercent=scales::percent(netSentimentPercent),
                     positivePercent=scales::percent(positivePercent),
                     neutralPercent=scales::percent(neutralPercent),
                     negativePercent=scales::percent(negativePercent)) %>%
