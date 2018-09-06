@@ -63,7 +63,7 @@ authors_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt =
            netSentiment = totalSentiment,
            ots = totalOTS,
            engagement = totalEngagement) %>%
-    mutate(netSentimentPercent = (if (sum(count, na.rm = TRUE) == 0) 0 else netSentiment / sum(count, na.rm = TRUE))) %>%
+    mutate(netSentimentPercent = ifelse(count == 0, 0, netSentiment / count)) %>%
     select(authorId, authorHandle, authorName, count, everything())
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",

@@ -47,7 +47,7 @@ race_metric <- function(code, filter, file = NULL, save = FALSE) {
     rename(race = race.id, count = mentionCount,
            ots = totalOTS, engagement = totalEngagement, netSentiment = totalSentiment) %>%
     mutate(percentage = (if (sum(count, na.rm = TRUE) == 0) 0 else count / sum(count, na.rm = TRUE)),
-           netSentimentPercent = (if (sum(count, na.rm = TRUE) == 0) 0 else netSentiment / sum(count, na.rm = TRUE))) %>%
+           netSentimentPercent = ifelse(count == 0, 0, netSentiment / count)) %>%
     select(race, label, count, everything())
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",

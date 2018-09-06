@@ -56,7 +56,7 @@ day_of_week_metric <- function(code, filter, file = NULL, save = FALSE) {
     rename(count = mentionCount,
            netSentiment = totalSentiment,
            engagement = totalEngagement) %>%
-    mutate(netSentimentPercent = (if (sum(count, na.rm = TRUE) == 0) 0 else netSentiment / sum(count, na.rm = TRUE)),
+    mutate(netSentimentPercent = ifelse(count == 0, 0, netSentiment / count),
            percentage = if (sum(count, na.rm = TRUE) == 0) 0 else count / sum(count, na.rm = TRUE))
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",

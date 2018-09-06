@@ -69,7 +69,7 @@ cities_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = 
            engagement = totalEngagement,
            netSentiment = totalSentiment,
            ots = totalOTS) %>%
-    mutate(netSentimentPercent = (if (sum(count, na.rm = TRUE) == 0) 0 else netSentiment / sum(count, na.rm = TRUE)),
+    mutate(netSentimentPercent = ifelse(count == 0, 0, netSentiment / count),
            percentage = (if (sum(count, na.rm = TRUE) == 0) 0 else count / sum(count, na.rm = TRUE))) %>%
     tidyr::replace_na(list(city = "Unknown", count = 0, engagement = 0,
                            netSentiment = 0, ots = 0, percentage = 0, netSentimentPercent = 0)) %>%

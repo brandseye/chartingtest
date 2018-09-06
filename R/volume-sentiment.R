@@ -53,7 +53,7 @@ volume_sentiment_metric <- function(code, filter, group = "day", file = NULL, sa
                    select=c(mentionCount, totalSentiment, totalPositive, totalNegative, totalNeutral, authorId)) %>%
     mutate(netSentiment = totalSentiment,
            count = mentionCount,
-           netSentimentPercent = (if (sum(count, na.rm = TRUE) == 0) 0 else netSentiment / sum(count, na.rm = TRUE)),
+           netSentimentPercent = ifelse(count == 0, 0, netSentiment / count),
            uniqueAuthors = authorIdCount,
            published = lubridate::force_tz(published, brandseyer::account_timezone(code)),
            positiveSentiment = totalPositive,

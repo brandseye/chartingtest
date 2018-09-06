@@ -181,7 +181,7 @@ topics_metric <- function(code, filter, file = NULL,
     mutate(positivePercent = ifelse(count == 0, 0, totalPositive / count),
            negativePercent = ifelse(count == 0, 0, totalNegative / count),
            neutralPercent = ifelse(count == 0, 0, totalPositive / count),
-           netSentimentPercent = (if (sum(count, na.rm = TRUE) == 0) 0 else netSentiment / sum(count, na.rm = TRUE))) %>%
+           netSentimentPercent = ifelse(count == 0, 0, netSentiment / count)) %>%
     select(id, topic, count, percentage, engagement, ots,
            netSentiment, totalPositive, positivePercent, totalNegative, negativePercent,
            totalNeutral, neutralPercent, everything()) %>%

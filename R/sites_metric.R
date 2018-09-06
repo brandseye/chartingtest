@@ -68,7 +68,7 @@ sites_metric <- function(code, filter, file = NULL, save = FALSE, truncateAt = N
            engagement = totalEngagement,
            netSentiment = totalSentiment,
            ots = totalOTS) %>%
-    mutate(netSentimentPercent = (if (sum(count, na.rm = TRUE) == 0) 0 else netSentiment / sum(count, na.rm = TRUE)))
+    mutate(netSentimentPercent = ifelse(count == 0, 0, netSentiment / count))
 
   if (save) file = rstudioapi::selectFile(caption = "Save as",
                                           filter = "CSV Files (*.csv)",
