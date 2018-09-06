@@ -1,6 +1,7 @@
 # chartingtest 1.9.1
 
 * netSentimentPercent now calculated correctly across all metrics.
+* `brand_metric()` now has a percentage column.
 
 # chartingtest 1.9.0
 
