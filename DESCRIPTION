@@ -1,5 +1,5 @@
 Package: chartingtest
-Version: 1.9.0
+Version: 1.9.1
 Title: Data and Charting Functions for BrandsEye
 Description: This is a package for testing pulling data and creating BrandsEye themed charts using.
   It makes use of the brandseyer2 library to pull data from the BrandsEye API, and formats

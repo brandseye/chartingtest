@@ -1,3 +1,5 @@
+# chartingtest 1.9.1
+
 # chartingtest 1.9.0
 
 * Added `brand_metric()` to group data by brands. 
