@@ -89,18 +89,6 @@ font_import(pattern="OpenSans")
 font_import(pattern="NunitoSans")
 ```
 
-Keeping R up to date
-====================
-
-If you're using R on windows, one convenient way to keep things up to date is to use the [InstallR](https://github.com/talgalili/installr) library.
-
-When a new version of R is out, you can update R by installing `InstallR` and running:
-
-``` r
-library("installr")
-updateR()
-```
-
 Updating chartingtest
 =====================
 
